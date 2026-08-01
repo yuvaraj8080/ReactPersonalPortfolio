@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-hidden="true">
+  <title>IIT Bombay</title>
+  <!-- Inspired by IIT Bombay institutional colors (navy + brass/gold accent) -->
+  <defs>
+    <linearGradient id="iitRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4af37"/>
+      <stop offset="100%" stop-color="#9a7b2c"/>
+    </linearGradient>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="#003d82" stroke="url(#iitRing)" stroke-width="2.5"/>
+  <circle cx="32" cy="32" r="23" fill="none" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1"/>
+  <!-- Torch / flame symbol (simplified) -->
+  <path d="M32 18c-2 4-6 7-6 12 0 4 3 7 6 9 3-2 6-5 6-9 0-5-4-8-6-12z" fill="#f5d76e"/>
+  <path d="M32 22c-1 3-3 5-3 8 0 3 2 5 3 6 1-1 3-3 3-6 0-3-2-5-3-8z" fill="#fff8e7"/>
+  <!-- IIT wordmark -->
+  <text
+    x="32"
+    y="52"
+    text-anchor="middle"
+    fill="#ffffff"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="12"
+    font-weight="700"
+    letter-spacing="0.15em"
+  >IIT</text>
+</svg>
