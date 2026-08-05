@@ -2,105 +2,6 @@ import type { Blog } from "@/types";
 
 export const blogs: Blog[] = [
   {
-    title: "Fast Website Development with Vibe Coding: How We Shipped MagicMond Global in 3 Days",
-    slug: "fast-website-development-with-vibe-coding",
-    excerpt:
-      "How vibe coding with Claude Code took MagicMond Global — the agency's own marketing site — from idea to a live, production website in 3 days with the MagicMond Magicians Team, and how the same workflow shipped Shri Yamuna Infra just as fast.",
-    category: "AI & Development",
-    date: "2026-08-01",
-    tags: ["Vibe Coding", "AI Agents", "Web Development"],
-    featured: true,
-    coverImage: "/assets/images/projects/magicmond/secondScreen.webp",
-    keyTakeaways: [
-      "Vibe coding means directing an AI agent with **plain-language intent** and reviewing its output — not hand-typing every line.",
-      "The same **React, Vite, Tailwind CSS, Framer Motion, React Router, and Zustand** stack shipped two separate production sites, reused rather than rebuilt each time.",
-      "Popular tools for this workflow include **Claude Code**, **Cursor**, **GitHub Copilot**, and **Windsurf** — different entry points to the same discipline.",
-      "Speed came from **rapid iteration and tight team collaboration**, not from writing less code.",
-    ],
-    relatedProjectSlugs: ["magicmond-global", "shri-yamuna-infra"],
-    content: [
-      {
-        type: "paragraph",
-        text: "MagicMond Global — the agency's own marketing site, introducing itself as \"the house of Magicians\" across Design, Growth, Tech, and AI — went from an idea to a live, production website in 3 days. I built it with the MagicMond Magicians Team using vibe coding: describing intent to an AI coding agent and reviewing/iterating on what it produced, instead of hand-typing every line.",
-      },
-      { type: "heading", level: 2, text: "How the vibe coding loop actually worked" },
-      {
-        type: "paragraph",
-        text: "In practice this meant: describe what a section should do, let the agent draft it, review the diff, run it, move to the next piece. Architecture, review, and final judgment stayed mine — the agent did the typing and the first pass of pattern-matching. Run tightly, that loop is what turns a multi-week build into a multi-day one, without the codebase turning into a mess.",
-      },
-      {
-        type: "image",
-        src: "/assets/images/blog/VibeCoading.png",
-        alt: "Infographic: What is Vibe Coding? Choose your AI assistant, write a natural-language prompt, let AI generate the code, then review and refine the output.",
-        caption: "Choose an assistant, describe intent, let it generate, then review and refine.",
-      },
-      {
-        type: "callout",
-        variant: "tip",
-        text: "One habit that made this reliable: a written instructions file the agent reads before touching anything — conventions, breakpoints, and tokens already in the codebase, so nothing needs re-explaining every session. (This portfolio's own CLAUDE.md does exactly that job.)",
-      },
-      { type: "heading", level: 2, text: "Popular vibe-coding tools" },
-      {
-        type: "list",
-        items: [
-          "**Claude Code** — an agent-first CLI that plans, edits, and verifies multi-file changes on its own before handing control back",
-          "**Cursor** — an IDE built around AI edits, good for watching a diff form line-by-line as it happens",
-          "**GitHub Copilot** — the most widely adopted, IDE-integrated assistant, strongest at in-line autocomplete and small edits",
-          "**Windsurf** — an agentic IDE built around a similar plan-edit-verify loop",
-        ],
-      },
-      { type: "heading", level: 2, text: "The tech stack" },
-      {
-        type: "paragraph",
-        text: "Both MagicMond Global and Shri Yamuna Infra ran on the same core stack — reused, not rebuilt:",
-      },
-      {
-        type: "tech-stack",
-        items: ["React", "Vite", "Tailwind CSS", "Framer Motion", "React Router", "Zustand"],
-      },
-      { type: "heading", level: 2, text: "Both projects, live in production" },
-      {
-        type: "paragraph",
-        text: "**MagicMond Global** (the agency's own marketing site) and **Shri Yamuna Infra** (a responsive, production-ready real-estate marketing site for a Vrindavan developer) both shipped with the same **vibe-coding workflow** — modern technology, production-ready design, and business goals brought together **in days, not weeks**.",
-      },
-      {
-        type: "link-card-row",
-        items: [
-          {
-            title: "MagicMond Global",
-            url: "https://magicmond.com/",
-            image: "/assets/images/projects/magicmond/introPage.webp",
-          },
-          {
-            title: "Shri Yamuna Infra",
-            url: "https://lnkd.in/gqJ23XzG",
-            image: "/assets/images/projects/sreeYamunaInfra/introPage.webp",
-          },
-        ],
-      },
-      { type: "heading", level: 2, text: "What I learned" },
-      {
-        type: "list",
-        items: [
-          "Building **production-ready software** with speed, without trading away quality or reliability",
-          "Leveraging **vibe coding** to accelerate development while keeping the codebase clean and maintainable",
-          "Designing **clean, scalable, reusable** frontend architecture that both projects could reuse instead of rebuilding from scratch",
-          "Strengthening **debugging, testing, and continuous iteration** to keep fast-moving work stable",
-          "**Collaboration, code reviews, and fast feedback loops** turn ideas into shipped products — not just fewer keystrokes",
-          "How **design, development, marketing, and team collaboration** come together on a real client project, not just the code",
-        ],
-      },
-      {
-        type: "quote",
-        text: "Great products aren't built by writing more code — they're built through collaboration, rapid iteration, continuous learning, and a team committed to delivering quality.",
-      },
-      {
-        type: "paragraph",
-        text: "Both of these shipped with the MagicMond Magicians Team — with guidance from Chirag Pachauri across architecture, development, debugging, and deployment on MagicMond Global, and production-ready design support from Kunal Naskar and Abhishek Saini on Shri Yamuna Infra. Vibe coding didn't replace any of that collaboration — it just removed the typing bottleneck so there was more time for it.",
-      },
-    ],
-  },
-  {
     title: "Vibe Coding Explained: What It Is, What It Isn't, and When to Use It",
     slug: "vibe-coding-explained",
     excerpt:
@@ -198,11 +99,12 @@ export const blogs: Blog[] = [
     date: "2026-07-12",
     tags: ["Claude Code", "Cursor", "AI Agents"],
     featured: false,
-    coverImage: "/assets/images/blog/vibe-coding-workflow.svg",
+    coverImage: "/assets/images/blog/AgentWorkflow.png",
     keyTakeaways: [
       "An AI coding agent's loop is: **read the relevant code, propose a change, apply it, verify it** — the same loop a careful human engineer follows, just faster at the reading and typing steps.",
       "**Claude Code** is agent-first and CLI-native — good for larger, multi-file changes and running its own verification (build, browser checks) before handing back.",
       "**Cursor** is IDE-integrated — good for tight, in-context edits where you want to watch and steer line by line.",
+      "Agents are strongest **extending an existing pattern** and weakest **inventing a new one from scratch** — for genuinely novel design, sketch the first version by hand, then hand off the repetition.",
       "The highest-leverage habit either way: **give the agent the constraints up front** (existing patterns, tokens, breakpoints) instead of correcting it after the fact.",
     ],
     content: [
@@ -222,6 +124,14 @@ export const blogs: Blog[] = [
         ],
       },
       {
+        type: "image",
+        src: "/assets/images/blog/AgentWorkflow.png",
+        alt: "Infographic of the seven-step AI agent workflow: ideation & planning, code & build with Cursor, deep thinking & complex logic with Claude Code, terminal & automation, testing & debugging, review & polish, and commit & deploy",
+        caption: "The full loop end to end — Cursor for speed and flow, Claude Code for depth and execution.",
+        fit: "contain",
+        aspectRatio: "8/5",
+      },
+      {
         type: "code",
         language: "bash",
         code: "npm run build\n# then check at 375px / 768px / 1280px, light + dark, before calling it done",
@@ -234,6 +144,40 @@ export const blogs: Blog[] = [
       {
         type: "paragraph",
         text: "Cursor lives inside the editor, so edits stay visible line-by-line as they happen. That's better suited to tight, local changes where I want to watch the diff form in real time rather than review it after the fact — a single component's styling, a targeted bug fix.",
+      },
+      { type: "heading", level: 2, text: "Where agents still fall short" },
+      {
+        type: "paragraph",
+        text: "Neither tool is magic, and the gaps matter as much as the wins. An agent that isn't told to stay scoped will happily \"improve\" a couple of nearby functions while fixing the one thing you actually asked for — which is why this repo's own CLAUDE.md has a rule that a requested change should stay just that change.",
+      },
+      {
+        type: "paragraph",
+        text: "They're also much better at extending an existing pattern than inventing a new one. Point either tool at a component that already exists five times in the codebase and ask for a sixth, and it nails it. Ask for something with no precedent in the repo — a layout or interaction nobody has built here before — and the output needs far heavier editing before it's usable.",
+      },
+      {
+        type: "paragraph",
+        text: "Context also doesn't fully survive between sessions. A context file recovers the big picture at the start of a new one — stack, conventions, current priorities — but not the small stuff: a debugging path already ruled out, the reasoning behind a decision made minutes before the session ended. Some of that has to be re-established by hand.",
+      },
+      { type: "heading", level: 2, text: "A routine that actually works" },
+      {
+        type: "paragraph",
+        text: "In practice the split comes down to the size of the change, not loyalty to one tool. Anything that touches several files — a new page, a shared component's props changing everywhere it's used, a data-model update — goes to an agent that can read broadly, plan the whole change, and verify it before handing back.",
+      },
+      {
+        type: "paragraph",
+        text: "Anything I want to watch happen line by line — tuning one component's spacing, chasing a single bug — stays in the editor, where the diff forms in front of me instead of arriving as a finished patch.",
+      },
+      {
+        type: "paragraph",
+        text: "And for genuine one-liners — a typo, an import path, a stray console.log — neither tool is worth invoking. Opening an agent for a single keystroke change is more overhead than the change itself.",
+      },
+      {
+        type: "image",
+        src: "/assets/images/blog/AgentArchitecture.png",
+        alt: "Claude Code architecture and integration flow: the AI assistant core and context management connect through an extension bridge into Cursor's IDE, with user input flowing through the extension to the Claude API and back",
+        caption: "Same request/response loop under the hood, whichever editor it's running in.",
+        fit: "contain",
+        aspectRatio: "4/3",
       },
       {
         type: "callout",

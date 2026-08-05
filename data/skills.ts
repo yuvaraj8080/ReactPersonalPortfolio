@@ -56,7 +56,6 @@ export const SKILLS: SkillGroups = {
     "claude-code",
     "cursor",
     "desktop-development",
-    "frame",
     "local-storage",
     "microsoft-clarity",
     "revenuecat",

@@ -110,11 +110,35 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
-              I design and ship production-ready apps across Android, iOS,
-              and the web — from React Native and Flutter apps to full-stack
-              platforms and automation tools. 80+ projects delivered, 25+
-              live in production, including a CRM platform serving 500+
-              active clients.
+              I design and ship production-ready apps across{" "}
+              <strong className="font-semibold text-text-primary">
+                Android, iOS, and the web
+              </strong>{" "}
+              — from{" "}
+              <strong className="font-semibold text-text-primary">
+                React Native
+              </strong>{" "}
+              and{" "}
+              <strong className="font-semibold text-text-primary">
+                Flutter
+              </strong>{" "}
+              apps to{" "}
+              <strong className="font-semibold text-text-primary">
+                full-stack platforms
+              </strong>{" "}
+              and automation tools.{" "}
+              <strong className="font-semibold text-text-primary">
+                80+ projects delivered
+              </strong>
+              ,{" "}
+              <strong className="font-semibold text-text-primary">
+                25+ live in production
+              </strong>
+              , including a CRM platform serving{" "}
+              <strong className="font-semibold text-text-primary">
+                500+ active clients
+              </strong>
+              .
             </motion.p>
 
             {/* Tech Stack Badges */}

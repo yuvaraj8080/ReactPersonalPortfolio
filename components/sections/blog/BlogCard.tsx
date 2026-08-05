@@ -24,7 +24,7 @@ export function BlogCard({ blog, index = 0, variant = "scroll" }: BlogCardProps)
         "transition-[border-color,box-shadow,transform] duration-300",
         "hover:border-border-hover hover:shadow-[0_12px_28px_rgba(0,0,0,0.12)] hover:-translate-y-1",
         variant === "scroll"
-          ? "flex-[0_0_min(400px,84vw)] max-[768px]:flex-[0_0_min(320px,86vw)]"
+          ? "flex-[0_0_min(460px,88vw)] max-[768px]:flex-[0_0_min(340px,88vw)]"
           : "w-full"
       )}
       initial={{ opacity: 0, y: 16 }}
@@ -33,13 +33,13 @@ export function BlogCard({ blog, index = 0, variant = "scroll" }: BlogCardProps)
       transition={{ duration: 0.3, delay: index * 0.04 }}
     >
       <AppLink href={`/blog/${blog.slug}`} className="flex flex-col no-underline">
-        <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-bg-hover">
+        <div className="relative aspect-[16/9] w-full shrink-0 overflow-hidden bg-bg-hover">
           {blog.coverImage ? (
             <AppImage
               src={blog.coverImage}
               alt={blog.title}
               fill
-              sizes="(max-width: 768px) 320px, 400px"
+              sizes="(max-width: 768px) 340px, 460px"
               className="object-cover transition-transform duration-[400ms] group-hover:scale-105"
             />
           ) : (

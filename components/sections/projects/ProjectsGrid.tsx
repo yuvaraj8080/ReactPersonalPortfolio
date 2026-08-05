@@ -56,10 +56,10 @@ export function ProjectsGrid({
     <>
       <div
         className={cn(
-          "mx-auto grid max-w-[1200px] gap-8 py-8 max-[600px]:py-4",
+          "grid gap-8 py-8 max-[600px]:py-4",
           singleColumn
             ? "grid-cols-1 gap-10"
-            : "max-w-[1400px] grid-cols-2 max-[900px]:grid-cols-1"
+            : "grid-cols-2 max-[900px]:grid-cols-1"
         )}
       >
         {displayedProjects.map((project, index) => {

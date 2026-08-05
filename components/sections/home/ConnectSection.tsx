@@ -8,7 +8,7 @@ import { Title } from "@/lib/common/Title";
 import { Text } from "@/lib/common/Text";
 import { Container } from "@/lib/common/Container";
 
-const CAL_COM_USERNAME = "yuvaraj8080";
+const CAL_COM_USERNAME = "yuvaraj-dekhane-h4iqhf";
 const CONTACT_EMAIL = "yuvarajdekhane8080@gmail.com";
 
 const ROLE_OPTIONS = [
@@ -337,7 +337,7 @@ export function ConnectSection() {
                   </Text>
                   <div className="mt-4 h-[600px] min-h-[600px] w-full overflow-hidden rounded-lg border border-border-color bg-bg-secondary max-[768px]:h-[500px] max-[768px]:min-h-[500px]">
                     <iframe
-                      src={`https://cal.com/${CAL_COM_USERNAME}/secret?embed=true&embedType=inline`}
+                      src={`https://cal.com/${CAL_COM_USERNAME}/15min?embed=true&embedType=inline`}
                       className="block h-full w-full overflow-hidden rounded-lg border-none"
                       title="Book a meeting"
                       allow="camera; microphone; geolocation"
