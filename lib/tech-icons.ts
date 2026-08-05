@@ -76,6 +76,8 @@ const TECH_ICON_MAP: Record<string, string> = {
   tflite: "serviceTools/tensorflow",
   framer: "framework/framer",
   "framer motion": "framework/framer",
+  "react bits": "framework/react-bits",
+  reactbits: "framework/react-bits",
   c: "languages/c",
   clerk: "serviceTools/clerk",
   "claude code": "serviceTools/claude-code",

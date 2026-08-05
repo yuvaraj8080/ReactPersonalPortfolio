@@ -76,7 +76,7 @@ function ContentBlock({ block }: { block: BlogContentBlock }) {
           <div
             className={cn(
               "relative w-full overflow-hidden rounded-2xl border border-border-color bg-bg-secondary",
-              block.aspectRatio === "4/3" ? "aspect-[4/3]" : "aspect-video"
+              block.aspectRatio === "4/3" ? "aspect-[4/3]" : block.aspectRatio === "8/5" ? "aspect-[8/5]" : "aspect-video"
             )}
           >
             <AppImage

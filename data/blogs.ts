@@ -298,14 +298,23 @@ export const blogs: Blog[] = [
     ],
   },
   {
-    title: "React Case Study: Shipping PerfectCareer in 5 Days",
-    slug: "perfect-career-react-case-study",
+    title: "React Case Studies: PerfectCareer, Reidius Infra Global & Landing Page",
+    slug: "react-case-studies",
     excerpt:
-      "How PerfectCareer's core platform — a React, Vite, and Tailwind CSS web app with Node.js APIs and full WhatsApp/email automation — got built in 5 days, then scaled to 353K+ campaign impressions.",
+      "Three React builds in production: PerfectCareer's automation-driven platform, Reidius Infra Global's Dubai villa-construction site, and the Reidius Infra lead-gen landing page — same stack, same fast-shipping discipline.",
     category: "Case Study",
     date: "2026-08-03",
-    tags: ["React", "Automation", "Google Cloud Tasks", "WhatsApp Automation"],
+    tags: [
+      "React",
+      "Automation",
+      "Google Cloud Tasks",
+      "WhatsApp Automation",
+      "Google Analytics",
+      "Google Tag Manager",
+      "Meta Pixel",
+    ],
     featured: false,
+    coverImage: "/assets/images/blog/CaseReactCover.png",
     relatedProjectSlugs: ["perfect-career"],
     keyTakeaways: [
       "Built with guidance from **Chirag Pachauri** as Senior Developer, on a tight, fixed timeline from day one.",
@@ -348,7 +357,7 @@ export const blogs: Blog[] = [
       { type: "heading", level: 2, text: "The tech stack" },
       {
         type: "tech-stack",
-        items: ["React", "Vite", "Tailwind CSS", "shadcn/ui", "Redux Toolkit", "Node.js"],
+        items: ["React", "Vite", "Tailwind CSS", "shadcn/ui", "Redux Toolkit", "Node.js", "React Bits", "Framer Motion"],
       },
       { type: "heading", level: 2, text: "Automation that shipped with it" },
       {
@@ -374,9 +383,126 @@ export const blogs: Blog[] = [
         url: "https://lnkd.in/g43TY_FE",
         description: "Live platform — personalized career reports from birth details.",
       },
+      { type: "heading", level: 2, text: "Also shipped in React: Reidius Infra Global and the landing page" },
+      {
+        type: "paragraph",
+        text: "Reidius Infra's Dubai arm and its lead-generation landing page are two more React builds from the same discipline — different business, same describe-review-ship loop.",
+      },
+      {
+        type: "list",
+        items: [
+          "**Reidius Infra Global (Dubai)** — a turnkey villa-construction site built around one promise: one contract, one team, full accountability, for Dubai's fragmented villa-building market — 14+ years in Dubai, 50+ projects delivered",
+          "**The Reidius Infra landing page** — a focused lead-gen page with transparent per-square-foot pricing across civil, semi-furnished, and fully-furnished tiers, and a direct cost comparison against typical contractor markups",
+        ],
+      },
+      {
+        type: "link-card-row",
+        items: [
+          { title: "Reidius Infra Global (Dubai)", url: "https://reidiusinfraglobal.com/" },
+          { title: "Reidius Infra — Landing Page", url: "https://lp.reidiusinfra.com/" },
+        ],
+      },
       {
         type: "paragraph",
         text: "This shipped with guidance from Chirag Pachauri as Senior Developer — the same collaborator who guided the MagicMond Global build. Different companies, different stacks, same discipline: describe the change, review it, ship it.",
+      },
+    ],
+  },
+  {
+    title: "Flutter Case Studies: Dosha Detector, GRAH9 & E-Commerce App",
+    slug: "flutter-case-studies",
+    excerpt:
+      "Three Flutter apps in production — Dosha Detector's AI-powered astrology insights, GRAH9's CRM managing 2000+ users, and a full e-commerce app + admin panel — all built on Flutter, GetX, and Firebase.",
+    category: "Case Study",
+    date: "2026-08-04",
+    tags: [
+      "Flutter",
+      "GetX",
+      "Firebase",
+      "Google Analytics",
+      "Interakt",
+      "Meta Pixel",
+      "Pie Chart",
+      "Pagination",
+    ],
+    featured: false,
+    coverImage: "/assets/images/blog/CaseFlutterCover.png",
+    relatedProjectSlugs: ["dosha-detector", "grah9", "ecommerce-app"],
+    keyTakeaways: [
+      "**Dosha Detector** — a Flutter astrology app with **500+ downloads** on the Play Store, detecting 10+ types of doshas from a birth chart with personalized remedies.",
+      "**GRAH9** — an internal Flutter admin panel/CRM managing **2000+ users** across AstroVedansh's product suite, with WhatsApp automation via Interakt.",
+      "A full **e-commerce app + admin panel** — Razorpay payments, two-step authentication, variable products, and real-time order management.",
+      "Same core stack across all three: **Flutter, GetX, Firebase**, and **Dart** throughout, MVVM-style architecture.",
+    ],
+    content: [
+      {
+        type: "paragraph",
+        text: "Alongside the React builds, three Flutter apps shipped for AstroVedansh's product suite: Dosha Detector (a consumer astrology app), GRAH9 (the internal CRM that runs the business), and a full e-commerce app with its own admin panel. Same team, same discipline, a different stack.",
+      },
+      {
+        type: "image",
+        src: "/assets/images/blog/FlutterWorkFlow.png",
+        alt: "How Flutter works: Dart code drives Widgets, a Render Engine, and Platform Channels, which talk to the platform's Canvas, Events, and native APIs like Camera, Audio, Location, and Sensors",
+        caption: "App code, Flutter's engine, and the native platform — how a Flutter app actually runs.",
+        fit: "contain",
+        aspectRatio: "8/5",
+      },
+      { type: "heading", level: 2, text: "Dosha Detector — AI-powered Vedic astrology" },
+      {
+        type: "paragraph",
+        text: "Dosha Detector is a consumer astrology app published under Astro Vedansh Innovations. Users enter their birth date, time, and place; the app analyzes planetary positions to surface doshas in their birth chart, explains what each one means, and recommends personalized remedies — with an option to book a live consultation with an astrologer for deeper guidance.",
+      },
+      {
+        type: "list",
+        items: [
+          "**10+ dosha types** detected from a full Janam Kundali (birth chart), each with a calculated strength score",
+          "Interactive birth chart visualization with complete planetary placements",
+          "Personalized remedies and an effects breakdown per dosha — career, relationships, health",
+          "Live video consultations with expert astrologers, built directly into the app",
+        ],
+      },
+      {
+        type: "link-card",
+        title: "Dosha Detector",
+        url: "https://play.google.com/store/apps/details?id=com.DoshaDetector.app&hl=en_IN",
+        description: "Live on the Google Play Store — 500+ downloads.",
+      },
+      { type: "heading", level: 2, text: "GRAH9 — the CRM behind the product suite" },
+      {
+        type: "paragraph",
+        text: "GRAH9 is the centralized admin panel and CRM that runs AstroVedansh's entire product line — Perfect Timing, Perfect Career, and Dosha Detector all get managed from one dashboard. It's an internal tool, not a public site, so there's no live link to share — but it's the system doing the heaviest daily lifting.",
+      },
+      {
+        type: "list",
+        items: [
+          "Manages **2000+ users** across every connected AstroVedansh product from a single dashboard",
+          "**Interakt WhatsApp template automation** for order updates and customer communication",
+          "Real-time revenue, tax, and campaign analytics — Razorpay financials plus ad-performance tracking",
+          "Order and consultation management, coupon configuration, and content/banner management across products",
+        ],
+      },
+      { type: "heading", level: 2, text: "E-commerce App + Admin Panel" },
+      {
+        type: "paragraph",
+        text: "A complete Flutter shopping app paired with a companion admin panel — one codebase for the shopper experience, one for the store owner running it.",
+      },
+      {
+        type: "list",
+        items: [
+          "**Razorpay** payment gateway plus Cash on Delivery, with two-step authentication on accounts",
+          "Single and variable products (size/color), categories, brands, and favorites saved via **Hive** local storage",
+          "Address management, order history, and profile management for shoppers",
+          "Admin dashboard — live sales totals, a weekly revenue chart, and order-status breakdown",
+        ],
+      },
+      { type: "heading", level: 2, text: "The tech stack" },
+      {
+        type: "tech-stack",
+        items: ["Flutter", "Dart", "GetX", "Firebase", "Razorpay"],
+      },
+      {
+        type: "paragraph",
+        text: "Three different products, three different jobs — a consumer app, an internal CRM, and a full commerce platform — built on the same Flutter/GetX/Firebase foundation, with each one reusing patterns the last one already proved out.",
       },
     ],
   },

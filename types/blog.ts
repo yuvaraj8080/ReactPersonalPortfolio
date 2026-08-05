@@ -9,7 +9,7 @@ export type BlogContentBlock =
       caption?: string;
       fit?: "cover" | "contain";
       /** Match the box ratio to the source image's real ratio so `fit: "contain"` needs no letterboxing. Defaults to 16/9. */
-      aspectRatio?: "16/9" | "4/3";
+      aspectRatio?: "16/9" | "4/3" | "8/5";
     }
   | { type: "code"; language: string; code: string }
   | { type: "quote"; text: string; author?: string }
