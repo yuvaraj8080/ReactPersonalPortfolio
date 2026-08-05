@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { SITE_TITLE, SITE_DESCRIPTION } from "@/lib/constants/site";
 import { HomeContent } from "@/components/sections/home/HomeContent";
 
 export const metadata: Metadata = {
-  title: "Krishay Nair — Site Reliability Engineer, CKA Certified",
-  description:
-    "I build reliable systems at scale — from container orchestration and service mesh to observability and secure networking. Focused on SRE, DevOps, and networking.",
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function HomePage() {

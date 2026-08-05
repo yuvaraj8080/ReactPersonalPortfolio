@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { AppImage } from "@/lib/common/AppImage";
 import { Title } from "@/lib/common/Title";
 import { Text } from "@/lib/common/Text";
 import { Container } from "@/lib/common/Container";
@@ -72,12 +72,11 @@ export function Achievements() {
             <motion.article
               key={`${achievement.id}-${index}`}
               className={cn(
-                "group relative flex min-h-[260px] flex-[0_0_min(340px,78vw)] flex-col overflow-hidden rounded-xl px-7 py-6",
+                "group relative flex flex-[0_0_min(300px,78vw)] flex-col overflow-hidden rounded-xl",
                 "bg-bg-secondary border border-border-color",
                 "transition-[border-color,box-shadow] duration-[250ms]",
                 "hover:border-border-hover hover:shadow-[0_12px_28px_rgba(0,0,0,0.12)]",
-                "max-[768px]:min-h-[240px] max-[768px]:flex-[0_0_min(300px,85vw)] max-[768px]:px-6 max-[768px]:py-5",
-                "max-[480px]:min-h-[220px] max-[480px]:flex-[0_0_min(280px,90vw)]"
+                "max-[768px]:flex-[0_0_min(260px,85vw)]"
               )}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -85,72 +84,41 @@ export function Achievements() {
               transition={{ duration: 0.3, delay: index * 0.03 }}
               whileHover={{ y: -3 }}
             >
-              <div className="pointer-events-none absolute -left-1/2 -top-1/2 h-[200%] w-[200%] bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.04)_0%,transparent_50%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <div className="relative z-[1] flex min-h-0 flex-1 flex-col">
-                <div className="mb-4 flex items-center justify-between gap-3">
-                  <div
-                    className={cn(
-                      "flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px]",
-                      "bg-bg-hover border border-border-color transition-colors duration-200",
-                      "group-hover:bg-[rgba(255,255,255,0.08)] group-hover:border-border-hover",
-                      "max-[768px]:h-10 max-[768px]:w-10"
-                    )}
-                  >
-                    <span className="text-[1.4rem] leading-none max-[768px]:text-[1.25rem]">
-                      {achievement.icon}
-                    </span>
+              <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-bg-hover">
+                {achievement.image ? (
+                  <AppImage
+                    src={achievement.image}
+                    alt={achievement.title}
+                    fill
+                    sizes="(max-width: 768px) 260px, 300px"
+                    className="object-cover transition-transform duration-[400ms] group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center text-[2.5rem]">
+                    {achievement.icon}
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[0.65rem] font-bold uppercase tracking-[0.08em] text-text-secondary">
-                      {achievement.category}
-                    </span>
-                    <span className="rounded bg-bg-hover px-2 py-[0.2rem] text-[0.8rem] font-semibold text-text-primary">
-                      {achievement.year}
-                    </span>
-                  </div>
-                </div>
+                )}
+                <span className="absolute right-2 top-2 rounded bg-[rgba(0,0,0,0.65)] px-2 py-[0.2rem] text-[0.75rem] font-semibold text-white">
+                  {achievement.year}
+                </span>
+              </div>
+              <div className="flex flex-1 flex-col gap-1.5 px-5 py-4 max-[768px]:px-4 max-[768px]:py-3.5">
+                <span className="text-[0.65rem] font-bold uppercase tracking-[0.08em] text-text-secondary">
+                  {achievement.category}
+                </span>
                 <Title
                   level={3}
-                  className="m-0 mb-2 line-clamp-2 font-display text-[1.1rem] font-semibold leading-[1.35] text-text-primary max-[768px]:text-base"
+                  className="m-0 line-clamp-2 font-display text-[1.05rem] font-semibold leading-[1.35] text-text-primary max-[768px]:text-base"
                 >
                   {achievement.title}
                 </Title>
-                <Text className="m-0 mb-3 line-clamp-2 flex-1 text-sm leading-[1.55] text-text-secondary">
+                <Text className="m-0 line-clamp-2 text-sm leading-[1.5] text-text-secondary">
                   {achievement.description}
                 </Text>
-                {achievement.highlight && (
-                  <Text className="m-0 line-clamp-2 rounded-lg border-l-2 border-border-hover bg-[rgba(255,255,255,0.03)] px-3 py-2.5 text-[0.8rem] italic leading-[1.5] text-text-secondary">
-                    {achievement.highlight}
-                  </Text>
-                )}
               </div>
             </motion.article>
           ))}
         </div>
-      </div>
-      <div className="mt-6 flex justify-center">
-        <Link
-          href="/achievements"
-          className={cn(
-            "group inline-flex items-center gap-2 rounded-lg px-6 py-3",
-            "bg-bg-secondary border border-border-color font-sans text-[0.95rem] font-semibold text-text-primary no-underline",
-            "transition-all duration-[250ms]",
-            "hover:bg-bg-hover hover:border-border-hover hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(0,0,0,0.08)]"
-          )}
-        >
-          View all on dedicated page
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            className="transition-transform duration-200 group-hover:translate-x-1"
-          >
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </Link>
       </div>
     </Container>
   );

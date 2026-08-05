@@ -7,22 +7,22 @@ export interface SocialLink {
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     name: "LinkedIn",
-    url: "https://www.linkedin.com/in/krishay-nair-667313233/",
+    url: "https://www.linkedin.com/in/yuvaraj8080",
     icon: "/assets/images/socials/Linkedin.svg",
   },
   {
     name: "GitHub",
-    url: "https://github.com/KrishayNair",
+    url: "https://github.com/yuvaraj8080",
     icon: "/assets/images/socials/GitHub.svg",
   },
   {
     name: "Email",
-    url: "mailto:krishay958@gmail.com",
+    url: "mailto:yuvarajdekhane8080@gmail.com",
     icon: "/assets/images/socials/Gmail.svg",
   },
   {
     name: "Instagram",
-    url: "https://www.instagram.com/krishay_nair/",
+    url: "https://www.instagram.com/yuvaraj8080",
     icon: "/assets/images/socials/Instagram.svg",
   },
 ];

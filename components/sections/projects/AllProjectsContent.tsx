@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { layout } from "@/lib/constants/styles";
 import { Footer } from "@/components/layout/Footer";
 import { ProjectsGrid } from "@/components/sections/projects/ProjectsGrid";
 import { projects } from "@/data/projects";
@@ -11,10 +12,8 @@ export function AllProjectsContent() {
     <div className="min-h-screen bg-bg-primary transition-colors duration-200">
       <main
         className={cn(
-          "mx-auto max-w-[1600px] px-[12rem] py-8 pt-32",
-          "max-[1200px]:px-16 max-[1200px]:pt-24",
-          "max-[900px]:px-8 max-[900px]:pt-20",
-          "max-[600px]:px-6 max-[600px]:py-4 max-[600px]:pt-16"
+          layout.container,
+          "py-8 pt-32 max-[1200px]:pt-24 max-[900px]:pt-20 max-[600px]:py-4 max-[600px]:pt-16"
         )}
       >
         <motion.h1

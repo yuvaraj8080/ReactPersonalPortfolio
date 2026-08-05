@@ -7,7 +7,7 @@ import { Title } from "@/lib/common/Title";
 import { Text } from "@/lib/common/Text";
 import { Container } from "@/lib/common/Container";
 
-const GITHUB_USERNAME = "KrishayNair";
+const GITHUB_USERNAME = "yuvaraj8080";
 
 interface ContributionDay {
   date: string;
@@ -25,10 +25,30 @@ function getLevel(count: number, maxCount: number) {
 }
 
 const outerSectionClasses =
-  "min-h-screen w-full bg-bg-primary py-24 transition-colors duration-300 max-[900px]:py-16";
+  "w-full bg-bg-primary py-24 transition-colors duration-300 max-[900px]:py-16";
 
 const headingClasses =
-  "mb-12 text-center font-display text-3xl font-semibold leading-[1.2] tracking-[0.04em] !text-text-primary transition-colors duration-300";
+  "mb-3 text-left font-display text-3xl font-semibold leading-[1.2] tracking-[0.04em] !text-text-primary transition-colors duration-300";
+
+/** Longest run of consecutive contributing days, and the current run ending today. */
+function computeStreaks(days: { count: number }[]) {
+  let longest = 0;
+  let running = 0;
+  for (const day of days) {
+    if (day.count > 0) {
+      running += 1;
+      longest = Math.max(longest, running);
+    } else {
+      running = 0;
+    }
+  }
+  let current = 0;
+  for (let i = days.length - 1; i >= 0; i--) {
+    if (days[i].count > 0) current += 1;
+    else break;
+  }
+  return { current, longest };
+}
 
 const levelClasses: Record<number, string> = {
   0: "bg-bg-secondary border-border-color [[data-theme=light]_&]:bg-[rgba(0,0,0,0.06)] [[data-theme=light]_&]:border-[rgba(0,0,0,0.1)]",
@@ -57,6 +77,8 @@ export function GitHubContributions() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [totalContributions, setTotalContributions] = useState(0);
+  const [publicRepos, setPublicRepos] = useState(0);
+  const [streaks, setStreaks] = useState({ current: 0, longest: 0 });
 
   useEffect(() => {
     let cancelled = false;
@@ -95,6 +117,9 @@ export function GitHubContributions() {
       const calendarQuery = `
         query($username: String!, $from: DateTime!, $to: DateTime!) {
           user(login: $username) {
+            repositories(privacy: PUBLIC, ownerAffiliations: OWNER) {
+              totalCount
+            }
             contributionsCollection(from: $from, to: $to) {
               contributionCalendar {
                 totalContributions
@@ -154,6 +179,8 @@ export function GitHubContributions() {
         setContributions(
           list.map((d) => ({ ...d, level: getLevel(d.count, maxInList) }))
         );
+        setStreaks(computeStreaks(list));
+        setPublicRepos(data?.user?.repositories?.totalCount ?? 0);
 
         let allTimeTotal = 0;
         const createdAtRes = await ghGraphql(
@@ -260,7 +287,7 @@ export function GitHubContributions() {
           transition={{ duration: 0.6 }}
         >
           <Title level={2} className={headingClasses}>GitHub Contributions</Title>
-          <Text className="mb-16 text-center font-sans text-lg font-medium leading-[1.7] text-text-secondary transition-colors duration-300">
+          <Text className="mb-12 text-left font-sans text-lg font-medium leading-[1.7] text-text-secondary transition-colors duration-300">
             My coding activity and contributions
           </Text>
         </motion.div>
@@ -272,20 +299,40 @@ export function GitHubContributions() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-16 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-6 max-[768px]:grid-cols-2 max-[768px]:gap-4"
         >
-          <div
-            className={cn(
-              "rounded-2xl border border-border-color bg-bg-secondary p-8 text-center transition-all duration-300",
-              "hover:border-border-hover hover:bg-bg-hover hover:-translate-y-[5px] hover:shadow-[0_10px_30px_rgba(0,0,0,0.1)]",
-              "max-[768px]:p-6"
-            )}
-          >
-            <div className="mb-2 font-display text-4xl font-semibold text-text-primary transition-colors duration-300 max-[768px]:text-3xl">
-              {totalContributions.toLocaleString()}
+          {[
+            {
+              value: totalContributions.toLocaleString(),
+              label: "Total contributions (all time)",
+            },
+            {
+              value: streaks.current.toLocaleString(),
+              label: streaks.current === 1 ? "Day current streak" : "Days current streak",
+            },
+            {
+              value: streaks.longest.toLocaleString(),
+              label: streaks.longest === 1 ? "Day longest streak" : "Days longest streak",
+            },
+            {
+              value: publicRepos.toLocaleString(),
+              label: "Public repositories",
+            },
+          ].map((stat) => (
+            <div
+              key={stat.label}
+              className={cn(
+                "rounded-2xl border border-border-color bg-bg-secondary p-8 text-center transition-all duration-300",
+                "hover:border-border-hover hover:bg-bg-hover hover:-translate-y-[5px] hover:shadow-[0_10px_30px_rgba(0,0,0,0.1)]",
+                "max-[768px]:p-6"
+              )}
+            >
+              <div className="mb-2 font-display text-4xl font-semibold text-text-primary transition-colors duration-300 max-[768px]:text-3xl">
+                {stat.value}
+              </div>
+              <div className="text-[0.95rem] uppercase tracking-[0.5px] text-text-secondary transition-colors duration-300">
+                {stat.label}
+              </div>
             </div>
-            <div className="text-[0.95rem] uppercase tracking-[0.5px] text-text-secondary transition-colors duration-300">
-              Total contributions (all time)
-            </div>
-          </div>
+          ))}
         </motion.div>
 
         <motion.div

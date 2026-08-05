@@ -6,15 +6,10 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { layout } from "@/lib/constants/styles";
+import { NAV_LINKS } from "@/lib/constants/nav";
 import { useThemeStore } from "@/store/useThemeStore";
 import { MobileMenu } from "@/components/layout/MobileMenu";
-
-const NAV_LINKS = [
-  { name: "Projects", href: "/#projects" },
-  { name: "Experience", href: "/#experience" },
-  { name: "Certifications", href: "/#certifications" },
-  { name: "Blog", href: "/#blogs" },
-];
+import { AppImage } from "@/lib/common/AppImage";
 
 const navElementClasses = cn(
   "m-0 font-sans text-base font-medium text-text-secondary no-underline",
@@ -122,27 +117,23 @@ export function Navbar() {
           <Link href="/" className="inline-block no-underline">
             <motion.div
               className={cn(
-                "group relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl",
-                "bg-[linear-gradient(135deg,var(--accent-blue),#2563eb)]",
-                "border border-[rgba(59,130,246,0.3)]",
-                "shadow-[0_2px_8px_rgba(59,130,246,0.2),inset_0_1px_0_rgba(255,255,255,0.1)]",
-                "transition-all duration-300",
-                "hover:shadow-[0_4px_16px_rgba(59,130,246,0.35),inset_0_1px_0_rgba(255,255,255,0.15)] hover:border-[rgba(59,130,246,0.5)]",
+                "relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl",
+                "shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition-shadow duration-300",
+                "hover:shadow-[0_4px_16px_rgba(59,130,246,0.35)]",
                 "max-[768px]:h-[42px] max-[768px]:w-[42px]"
               )}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              <span
-                className={cn(
-                  "pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100",
-                  "bg-[linear-gradient(135deg,rgba(255,255,255,0.1),transparent)]"
-                )}
+              <AppImage
+                src="/assets/logo/yd-logo-icon.png"
+                alt="YD logo"
+                fill
+                sizes="48px"
+                className="object-contain"
+                priority
               />
-              <span className="relative z-[1] font-display text-xl font-bold tracking-[0.02em] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.2)] max-[768px]:text-[1.1rem]">
-                KN
-              </span>
             </motion.div>
           </Link>
 
@@ -211,7 +202,7 @@ export function Navbar() {
 
             {/* Desktop: full "Download CV" pill */}
             <motion.a
-              href="/assets/pdf/Krishay_Nair_Resume.pdf"
+              href="/assets/pdf/resume.pdf"
               className="z-[3] hidden md:inline-block"
               download="resume"
               whileHover={{ scale: 1.03 }}
@@ -232,7 +223,7 @@ export function Navbar() {
 
             {/* Mobile: compact icon-only "Download CV" */}
             <motion.a
-              href="/assets/pdf/Krishay_Nair_Resume.pdf"
+              href="/assets/pdf/resume.pdf"
               className={cn(iconButtonClasses, "md:hidden")}
               download="resume"
               aria-label="Download CV"

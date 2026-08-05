@@ -6,7 +6,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { Container } from "@/lib/common/Container";
 import { ProjectGallery } from "@/components/sections/projects/ProjectGallery";
+import { ExpandableSection } from "@/components/sections/projects/ExpandableSection";
 import { Title } from "@/lib/common/Title";
 import { Text } from "@/lib/common/Text";
 import { getBriefText, getBriefAchievement } from "@/lib/text";
@@ -17,12 +19,7 @@ interface ProjectDetailProps {
   relatedProjects: Project[];
 }
 
-type SectionKey =
-  | "overview"
-  | "features"
-  | "technical"
-  | "impact"
-  | "achievements";
+type SectionKey = "achievements";
 
 const sectionTitleClasses =
   "mb-6 font-display text-[1.75rem] font-semibold text-[var(--primary-text)]";
@@ -52,10 +49,6 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
   const [expandedSections, setExpandedSections] = useState<
     Record<SectionKey, boolean>
   >({
-    overview: false,
-    features: false,
-    technical: false,
-    impact: false,
     achievements: false,
   });
 
@@ -67,9 +60,11 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
     setExpandedSections((prev) => ({ ...prev, [section]: !prev[section] }));
   };
 
+  const hasStats = project.timeline || project.role || project.status;
+
   return (
     <div className="min-h-screen bg-bg-primary transition-colors duration-300">
-      <div className="mx-auto min-h-screen max-w-[1400px] bg-bg-primary p-8 text-text-primary transition-colors duration-300 max-[768px]:p-4">
+      <Container className="min-h-screen py-8 text-text-primary transition-colors duration-300 max-[768px]:py-4">
         <motion.button
           className={cn(
             "mb-8 cursor-pointer rounded-lg border-none bg-transparent px-4 py-2",
@@ -96,32 +91,40 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
               {getBriefText(project.description)}
             </Text>
 
-            <div className="mb-8 flex flex-wrap gap-8 max-[768px]:gap-4">
-              <div className="flex flex-col gap-1">
-                <span className="text-[0.85rem] uppercase tracking-[0.5px] text-[var(--secondary-text)]">
-                  Timeline
-                </span>
-                <span className="text-base font-medium text-[var(--primary-text)]">
-                  2 months
-                </span>
+            {hasStats && (
+              <div className="mb-8 flex flex-wrap gap-8 max-[768px]:gap-4">
+                {project.timeline && (
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[0.85rem] uppercase tracking-[0.5px] text-[var(--secondary-text)]">
+                      Timeline
+                    </span>
+                    <span className="text-base font-medium text-[var(--primary-text)]">
+                      {project.timeline}
+                    </span>
+                  </div>
+                )}
+                {project.role && (
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[0.85rem] uppercase tracking-[0.5px] text-[var(--secondary-text)]">
+                      Role
+                    </span>
+                    <span className="text-base font-medium text-[var(--primary-text)]">
+                      {project.role}
+                    </span>
+                  </div>
+                )}
+                {project.status && (
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[0.85rem] uppercase tracking-[0.5px] text-[var(--secondary-text)]">
+                      Status
+                    </span>
+                    <span className="rounded-full border border-[rgba(59,130,246,0.3)] bg-[rgba(59,130,246,0.12)] px-3 py-1 text-[0.85rem] font-semibold text-accent-blue">
+                      {project.status}
+                    </span>
+                  </div>
+                )}
               </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-[0.85rem] uppercase tracking-[0.5px] text-[var(--secondary-text)]">
-                  Role
-                </span>
-                <span className="text-base font-medium text-[var(--primary-text)]">
-                  Full Stack
-                </span>
-              </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-[0.85rem] uppercase tracking-[0.5px] text-[var(--secondary-text)]">
-                  Status
-                </span>
-                <span className="rounded-full border border-[rgba(59,130,246,0.3)] bg-[rgba(59,130,246,0.12)] px-3 py-1 text-[0.85rem] font-semibold text-accent-blue">
-                  Completed
-                </span>
-              </div>
-            </div>
+            )}
 
             <div className="flex flex-wrap gap-4 max-[768px]:flex-col">
               {project.liveUrls?.map((link, index) => (
@@ -175,176 +178,33 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
         )}
 
         {/* Overview */}
-        <section className="mb-16 max-w-[900px]">
-          <Title level={2} className={sectionTitleClasses}>Overview</Title>
-          <div className="font-sans text-base leading-[1.8] text-[var(--secondary-text)]">
-            <Text className="mb-4">
-              {getBriefText(
-                project.detailedDescription?.overview || project.description
-              )}
-            </Text>
-            <AnimatePresence>
-              {expandedSections.overview && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="mt-4 overflow-hidden"
-                >
-                  <Text>
-                    {project.detailedDescription?.overview ||
-                      project.description}
-                  </Text>
-                </motion.div>
-              )}
-            </AnimatePresence>
-            {project.detailedDescription?.overview && (
-              <button
-                className={expandButtonClasses}
-                onClick={() => toggleSection("overview")}
-              >
-                {expandedSections.overview ? "Show Less" : "View More Details →"}
-              </button>
-            )}
-          </div>
-        </section>
+        <ExpandableSection
+          title="Overview"
+          text={project.detailedDescription?.overview || project.description}
+        />
 
         {/* Key Features */}
         {project.detailedDescription?.features && (
-          <section className="mb-16 max-w-[900px]">
-            <Title level={2} className={sectionTitleClasses}>Key Features</Title>
-            <div className="font-sans text-base leading-[1.8] text-[var(--secondary-text)]">
-              <ul className="m-0 list-none p-0">
-                {project.detailedDescription.features
-                  .slice(0, 3)
-                  .map((feature, index) => (
-                    <li
-                      key={index}
-                      className="border-b border-border-color py-3 leading-[1.6] text-text-secondary last:border-b-0"
-                    >
-                      {feature.replace(/^[^\s]+\s/, "").split(".")[0]}
-                    </li>
-                  ))}
-              </ul>
-              <AnimatePresence>
-                {expandedSections.features && (
-                  <motion.ul
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="m-0 list-none p-0"
-                  >
-                    {project.detailedDescription.features
-                      .slice(3)
-                      .map((feature, index) => (
-                        <li
-                          key={index + 3}
-                          className="border-b border-border-color py-3 leading-[1.6] text-text-secondary last:border-b-0"
-                        >
-                          {feature.replace(/^[^\s]+\s/, "")}
-                        </li>
-                      ))}
-                  </motion.ul>
-                )}
-              </AnimatePresence>
-              {project.detailedDescription.features.length > 3 && (
-                <button
-                  className={expandButtonClasses}
-                  onClick={() => toggleSection("features")}
-                >
-                  {expandedSections.features
-                    ? "Show Less"
-                    : "View More Details →"}
-                </button>
-              )}
-            </div>
-          </section>
+          <ExpandableSection
+            title="Key Features"
+            items={project.detailedDescription.features}
+          />
         )}
 
         {/* Technical Details */}
         {project.detailedDescription?.technicalDetails && (
-          <section className="mb-16 max-w-[900px]">
-            <Title level={2} className={sectionTitleClasses}>Technical Details</Title>
-            <div className="font-sans text-base leading-[1.8] text-[var(--secondary-text)]">
-              <ul className="m-0 list-none p-0">
-                {project.detailedDescription.technicalDetails
-                  .slice(0, 3)
-                  .map((detail, index) => (
-                    <li
-                      key={index}
-                      className="border-b border-border-color py-3 leading-[1.6] text-text-secondary last:border-b-0"
-                    >
-                      {detail.replace(/^[^\s]+\s/, "").split(".")[0]}
-                    </li>
-                  ))}
-              </ul>
-              <AnimatePresence>
-                {expandedSections.technical && (
-                  <motion.ul
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="m-0 list-none p-0"
-                  >
-                    {project.detailedDescription.technicalDetails
-                      .slice(3)
-                      .map((detail, index) => (
-                        <li
-                          key={index + 3}
-                          className="border-b border-border-color py-3 leading-[1.6] text-text-secondary last:border-b-0"
-                        >
-                          {detail.replace(/^[^\s]+\s/, "")}
-                        </li>
-                      ))}
-                  </motion.ul>
-                )}
-              </AnimatePresence>
-              {project.detailedDescription.technicalDetails.length > 3 && (
-                <button
-                  className={expandButtonClasses}
-                  onClick={() => toggleSection("technical")}
-                >
-                  {expandedSections.technical
-                    ? "Show Less"
-                    : "View More Details →"}
-                </button>
-              )}
-            </div>
-          </section>
+          <ExpandableSection
+            title="Technical Details"
+            items={project.detailedDescription.technicalDetails}
+          />
         )}
 
         {/* Impact */}
         {project.detailedDescription?.impact && (
-          <section className="mb-16 max-w-[900px]">
-            <Title level={2} className={sectionTitleClasses}>Impact</Title>
-            <div className="font-sans text-base leading-[1.8] text-[var(--secondary-text)]">
-              <Text className="mb-4">
-                {getBriefText(project.detailedDescription.impact)}
-              </Text>
-              <AnimatePresence>
-                {expandedSections.impact && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: "auto" }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="mt-4 overflow-hidden"
-                  >
-                    <Text>{project.detailedDescription.impact}</Text>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              <button
-                className={expandButtonClasses}
-                onClick={() => toggleSection("impact")}
-              >
-                {expandedSections.impact ? "Show Less" : "View More Details →"}
-              </button>
-            </div>
-          </section>
+          <ExpandableSection
+            title="Impact"
+            text={project.detailedDescription.impact}
+          />
         )}
 
         {/* Achievements */}
@@ -528,7 +388,7 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
             View All Projects
           </Link>
         </section>
-      </div>
+      </Container>
     </div>
   );
 }

@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { AppImage } from "@/lib/common/AppImage";
 import { Title } from "@/lib/common/Title";
@@ -19,31 +19,28 @@ interface ProjectsGridProps {
 function TechIcon({ tech }: { tech: string }) {
   const [failed, setFailed] = useState(false);
   const iconName = getTechIcon(tech);
-  const showLabel = !iconName || failed;
 
   return (
     <span
       title={tech}
       className={cn(
-        "inline-flex h-7 min-w-7 max-w-[100px] shrink-0 items-center justify-center overflow-hidden rounded-md px-2",
+        "inline-flex h-7 max-w-full shrink-0 items-center gap-1.5 overflow-hidden rounded-md px-2",
         "bg-bg-hover border border-border-color"
       )}
     >
       {iconName && !failed && (
         <AppImage
           src={`/assets/skills/${iconName}.svg`}
-          alt={tech}
+          alt=""
           width={22}
           height={22}
-          className="!h-[18px] !w-[18px] object-contain"
+          className="!h-[16px] !w-[16px] shrink-0 object-contain"
           onError={() => setFailed(true)}
         />
       )}
-      {showLabel && (
-        <span className="overflow-hidden text-ellipsis whitespace-nowrap px-1 text-[0.7rem] font-semibold text-text-primary">
-          {tech}
-        </span>
-      )}
+      <span className="overflow-hidden text-ellipsis whitespace-nowrap text-[0.7rem] font-semibold text-text-primary">
+        {tech}
+      </span>
     </span>
   );
 }
@@ -53,69 +50,10 @@ export function ProjectsGrid({
   singleColumn = false,
   showAllProjects = false,
 }: ProjectsGridProps) {
-  const [isHovering, setIsHovering] = useState(false);
-
   const displayedProjects = showAllProjects ? projects : projects.slice(0, 4);
-
-  const cursorX = useMotionValue(0);
-  const cursorY = useMotionValue(0);
-  const springConfig = { damping: 25, stiffness: 700 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
-
-  useEffect(() => {
-    const updateCursorPosition = (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
-    };
-
-    if (isHovering) {
-      document.body.style.cursor = "none";
-      window.addEventListener("mousemove", updateCursorPosition);
-      return () => {
-        window.removeEventListener("mousemove", updateCursorPosition);
-        document.body.style.cursor = "";
-      };
-    }
-    document.body.style.cursor = "";
-  }, [isHovering, cursorX, cursorY]);
 
   return (
     <>
-      {/* Custom "View project" cursor */}
-      {isHovering && (
-        <motion.div
-          className={cn(
-            "pointer-events-none fixed left-0 top-0 z-[9999] flex items-center justify-center gap-2",
-            "whitespace-nowrap rounded-[2.5rem] px-6 py-3 backdrop-blur-lg",
-            "bg-[rgba(240,240,240,0.98)] shadow-[0_2px_8px_rgba(0,0,0,0.12),0_1px_3px_rgba(0,0,0,0.08)]",
-            "[[data-theme=dark]_&]:bg-[rgba(45,45,45,0.98)] [[data-theme=dark]_&]:shadow-[0_2px_8px_rgba(0,0,0,0.3),0_1px_3px_rgba(0,0,0,0.2)]"
-          )}
-          style={{ x: cursorXSpring, y: cursorYSpring }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.2 }}
-        >
-          <span className="font-sans text-sm font-semibold tracking-[0.01em] text-[#1a1a1a] [[data-theme=dark]_&]:text-[#f5f5f5]">
-            View project
-          </span>
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            className="h-4 w-4 shrink-0 stroke-[#1a1a1a] [[data-theme=dark]_&]:stroke-[#f5f5f5]"
-          >
-            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-            <polyline points="15 3 21 3 21 9"></polyline>
-            <line x1="10" y1="14" x2="21" y2="3"></line>
-          </svg>
-        </motion.div>
-      )}
-
       <div
         className={cn(
           "mx-auto grid max-w-[1200px] gap-8 py-8 max-[600px]:py-4",
@@ -149,9 +87,16 @@ export function ProjectsGrid({
               <div
                 className={cn(
                   "w-full shrink-0 overflow-hidden bg-bg-secondary [aspect-ratio:16/10]",
-                  singleColumn &&
-                  "w-auto max-w-[720px] flex-[0_0_68%] max-[900px]:w-full max-[900px]:max-w-none max-[900px]:flex-none"
+                  singleColumn && project.previewFit === "contain"
+                    ? "w-auto max-w-[720px] flex-[0_0_68%] self-start max-[900px]:w-full max-[900px]:max-w-none max-[900px]:flex-none max-[900px]:self-auto"
+                    : singleColumn &&
+                      "w-auto max-w-[720px] flex-[0_0_68%] max-[900px]:w-full max-[900px]:max-w-none max-[900px]:flex-none"
                 )}
+                style={
+                  project.previewFit === "contain"
+                    ? { aspectRatio: "16 / 9" }
+                    : undefined
+                }
               >
                 {imageSrc ? (
                   liveUrl ? (
@@ -160,14 +105,15 @@ export function ProjectsGrid({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group relative block h-full w-full text-inherit no-underline"
-                      onMouseEnter={() => setIsHovering(true)}
-                      onMouseLeave={() => setIsHovering(false)}
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={`/assets/images/projects/${imageSrc}`}
                         alt={project.title}
-                        className="block h-full w-full object-cover object-center"
+                        className={cn(
+                          "block h-full w-full object-center",
+                          project.previewFit === "contain" ? "object-contain" : "object-cover"
+                        )}
                         loading={index < 2 ? "eager" : "lazy"}
                       />
                       <span className="absolute inset-x-0 bottom-0 bg-[rgba(0,0,0,0.7)] px-3 py-2 text-[0.8rem] font-medium text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
@@ -179,7 +125,10 @@ export function ProjectsGrid({
                     <img
                       src={`/assets/images/projects/${imageSrc}`}
                       alt={project.title}
-                      className="block h-full w-full object-cover object-center"
+                      className={cn(
+                        "block h-full w-full object-center",
+                        project.previewFit === "contain" ? "object-contain" : "object-cover"
+                      )}
                       loading={index < 2 ? "eager" : "lazy"}
                     />
                   )
@@ -189,7 +138,7 @@ export function ProjectsGrid({
                   </div>
                 )}
               </div>
-              <div className="flex min-w-0 flex-1 flex-col justify-center gap-3 px-6 py-5 max-[900px]:p-5">
+              <div className="flex min-w-0 flex-1 flex-col gap-2.5 px-5 pb-5 pt-4 max-[900px]:p-4">
                 <Title
                   level={3}
                   className="m-0 text-[1.1rem] font-semibold leading-[1.3] text-text-primary"
@@ -203,7 +152,7 @@ export function ProjectsGrid({
                   <span className="text-[0.7rem] font-semibold uppercase tracking-[0.05em] text-text-secondary">
                     Technologies
                   </span>
-                  <div className="flex min-w-0 max-h-[calc(2*(28px+0.4rem))] flex-wrap content-start items-center gap-[0.4rem] overflow-hidden">
+                  <div className="flex min-w-0 flex-wrap content-start items-center gap-[0.4rem]">
                     {techList.slice(0, 6).map((tech, techIndex) => (
                       <TechIcon key={techIndex} tech={tech} />
                     ))}
@@ -214,11 +163,11 @@ export function ProjectsGrid({
                     )}
                   </div>
                 </div>
-                <div className="mt-1 flex flex-wrap gap-3">
+                <div className="mt-auto flex pt-1">
                   <Link
                     href={project.detailsUrl}
                     className={cn(
-                      "inline-flex items-center gap-[0.4rem] rounded-lg px-4 py-2.5",
+                      "flex w-full items-center justify-center gap-[0.4rem] rounded-lg px-4 py-2.5",
                       "bg-bg-secondary border border-border-color text-sm font-medium text-text-primary no-underline",
                       "transition-colors duration-200",
                       "hover:bg-bg-hover hover:border-accent-blue hover:text-accent-blue"

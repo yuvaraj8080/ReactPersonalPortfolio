@@ -20,9 +20,24 @@ export async function generateMetadata({
   const { id } = await params;
   const project = projects.find((p) => p.slug === id);
   if (!project) return { title: "Project not found" };
+  const description = getBriefText(project.description);
+  const previewImage = `/assets/images/projects/${project.previewSrc}`;
   return {
-    title: `${project.title} | Projects`,
-    description: getBriefText(project.description),
+    title: `${project.title} — Yuvaraj Dekhane`,
+    description,
+    alternates: {
+      canonical: `/projects/${project.slug}`,
+    },
+    openGraph: {
+      title: project.title,
+      description,
+      type: "website",
+      images: [previewImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [previewImage],
+    },
   };
 }
 

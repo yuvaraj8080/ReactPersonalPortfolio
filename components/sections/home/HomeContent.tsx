@@ -25,7 +25,7 @@ export function HomeContent() {
       <main className={layout.container}>
         <motion.h1
           id="projects"
-          className="mb-12 mt-12 text-center font-display text-4xl font-semibold leading-[1.2] tracking-[0.04em] !text-[var(--primary-text)]"
+          className="mb-12 mt-12 text-left font-display text-4xl font-semibold leading-[1.2] tracking-[0.04em] text-text-primary"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}

@@ -6,7 +6,7 @@
 export const layout = {
   /** .pageContainer — site-wide horizontal container */
   container:
-    "relative mx-auto w-full max-w-[1200px] px-[12rem] max-[1600px]:px-32 max-[1400px]:px-24 max-[1200px]:px-16 max-[900px]:px-8 max-[600px]:px-[16px]",
+    "relative mx-auto w-full max-w-[1600px] px-[12rem] max-[1600px]:px-32 max-[1400px]:px-24 max-[1200px]:px-16 max-[900px]:px-8 max-[600px]:px-[16px]",
   /** .section-container — standard vertical rhythm */
   section: "mx-auto max-w-[1200px] py-24 max-[900px]:py-16",
   sectionGap: "mb-12",

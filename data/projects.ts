@@ -2,449 +2,390 @@ import type { Project } from "@/types";
 
 export const projects: Project[] = [
   {
-    "title": "LegAIly",
-    "slug": "legaily",
-    "description": "AI legal platform for Indian judiciary: translation, drafting, blockchain.",
+    "title": "MagicMond Global",
+    "slug": "magicmond-global",
+    "description": "MagicMond's own marketing site — design, growth, tech & AI services — shipped in 3 days with the MagicMond Magicians Team.",
     "detailedDescription": {
-      "overview": "LegAIly represents a paradigm shift in legal technology, specifically designed to address the unique challenges faced by the Indian legal system. The platform serves as a comprehensive digital ecosystem that empowers legal professionals with AI-driven tools for document management, multilingual communication, and intelligent case analysis. By integrating advanced natural language processing with blockchain verification, LegAIly ensures both efficiency and authenticity in legal proceedings. The system has been meticulously crafted to handle the complexity of Indian legal documentation, supporting 22+ regional languages and providing seamless translation between English and vernacular languages. With its intuitive interface and powerful backend processing, LegAIly transforms traditional legal workflows into streamlined, technology-enhanced processes that save time, reduce errors, and improve case outcomes.",
+      "overview": "MagicMond Global is the agency's own marketing website, designed and built end-to-end with the MagicMond Magicians Team in just 3 days. The site introduces MagicMond as \"the house of Magicians\" — Design x Growth x Tech x AI — and showcases the agency's services across its own sub-brands, including InfraEdge (a 90-day qualified-meeting engine for construction and real estate) and a dedicated Sports partnerships page for athlete sponsorships and brand deals. Real client work is featured throughout, including a full case study on Reidius Infra's growth from a Jaipur construction firm to a 60+ client brand in one year, alongside logos from KFC, Western Union, My11Circle, Dalmia Cement, and Etihad.",
       "features": [
-        "🌐 Multi-language Legal Translation: Advanced AI-powered translation across 22+ Indian languages using Llama 3.1/3.2 models with legal terminology optimization",
-        "📝 Intelligent Document Processing: Automated summarization, legal language simplification, and document analysis with context-aware AI",
-        "🔍 Advanced Case Law Research: RAG-based LLM chatbot for instant legal research, precedent analysis, and case law recommendations",
-        "⛓️ Blockchain Document Verification: Immutable document verification system with judge/lawyer access portals using Doc.ai integration",
-        "📅 Comprehensive Advocate Diary: Smart scheduling system for court dates, client meetings, case deadlines, and automated reminders",
-        "📋 Legal Draft Templates: Pre-built templates for contracts, petitions, affidavits, and other legal documents with customization options",
-        "🔐 Secure Multi-Role Authentication: Role-based access control for judges, lawyers, court staff, and administrators with audit trails",
-        "📊 Real-time Analytics Dashboard: Case progress tracking, document analytics, and performance metrics for legal professionals",
-        "💬 AI Legal Assistant: 24/7 intelligent chatbot for legal queries, case guidance, and procedural assistance",
-        "📱 Cross-Platform Accessibility: Native mobile app (Flutter), desktop application (Electron), and web portal for seamless access"
+        "🏠 Multi-brand marketing site covering Design, Growth, Tech & AI services, with dedicated sub-brand pages for InfraEdge and Sports partnerships",
+        "🧩 Service showcase: Brand Identity Development, Website & Landing Page Design, Lead Generation & Marketing, Social Media & Content Marketing, WhatsApp & Digital Outreach",
+        "📈 Client & case-study section featuring real client logos (Reidius Infra, KFC, Western Union, My11Circle, Dalmia Cement, Etihad) and a full Reidius Infra growth case study",
+        "🎬 Scroll-based animations and micro-interactions built with Framer Motion for a premium feel",
+        "📱 Fully responsive across desktop and mobile, matching the agency's dark, purple-accented brand identity"
       ],
       "technicalDetails": [
-        "🎨 Frontend Architecture: Next.js 14 with App Router, TypeScript, and Tailwind CSS for responsive, accessible UI with dark/light themes",
-        "⚡ Backend Infrastructure: FastAPI with async/await patterns, Redis caching, and PostgreSQL for high-performance data processing",
-        "🤖 AI/ML Stack: Llama 3.1 and 3.2 models with custom fine-tuning, Hugging Face Transformers, and PyTorch for legal text processing",
-        "🔍 Vector Database: Pinecone for real-time semantic search, document embedding with sentence-transformers, and similarity matching",
-        "🔐 Authentication: Supabase Auth with JWT tokens, OAuth integration, and role-based access control (RBAC) implementation",
-        "📱 Cross-Platform: Flutter mobile app with native performance, Electron desktop app with system integration, and PWA web version",
-        "⛓️ Blockchain Integration: Doc.ai for document verification, smart contracts for immutable records, and IPFS for decentralized storage",
-        "☁️ Cloud Infrastructure: AWS deployment with auto-scaling, CDN distribution, and multi-region backup for 99.9% uptime",
-        "🔒 Security: End-to-end encryption, GDPR compliance, data anonymization, and secure API endpoints with rate limiting",
-        "📊 Monitoring: Real-time analytics with custom dashboards, error tracking, performance monitoring, and user behavior analytics"
+        "🎨 Frontend: React with Vite for fast dev/build tooling",
+        "💅 Styling: Tailwind CSS for a clean, scalable, reusable component architecture",
+        "🎞️ Animation: Framer Motion for scroll and interaction animations",
+        "⚡ Built using Vibe Coding to accelerate development while keeping the codebase clean and maintainable"
       ],
-      "impact": "LegAIly has achieved remarkable success in the legal technology space, with validation from High Court and Supreme Court advocates across India. The platform has demonstrated a 70% reduction in legal research time and 85% improvement in document processing efficiency. Over 500+ legal professionals have adopted the system, with 15+ law firms requesting dedicated deployments. The platform has processed over 10,000 legal documents and facilitated 2,000+ case law searches. LegAIly won the prestigious SynTechXathon 2024 and has been featured in legal technology conferences. The system's success has led to partnerships with judicial institutions and requests for integration with existing court management systems, positioning it as a transformative solution for India's digital legal infrastructure."
+      "impact": "Delivered a production-ready website in just 3 days through rapid iteration, continuous feedback, and close team collaboration with the MagicMond Magicians Team — demonstrating how modern development practices can significantly accelerate product delivery, without cutting corners on quality or reliability."
     },
-    "tech": "NEXT.js, FASTAPI, LLAMA 3, SUPABASE, PINECONE, TAILWIND CSS, FLUTTER",
-    "src": "legaily_main.png",
+    "tech": "React, Vite, Tailwind CSS, Framer Motion",
+    "src": "magicmond/introPage.webp",
     "images": [
-      "legaily_main.png",
-      "legaily_doc.png",
-      "legaily_diary.png",
-      "legaily_draft.png",
-      "legaily_architecture.png",
-      "legaily_winner.jpeg"
+      "magicmond/introPage.webp",
+      "magicmond/DetailsPage.webp",
+      "magicmond/firstScreen.webp",
+      "magicmond/secondScreen.webp",
+      "magicmond/thirdScreen.webp",
+      "magicmond/fourthScreen.webp"
     ],
-    certificates: [
-      {
-        title: "SynTechXathon Winner Certificate",
-        file: "/assets/pdf/syntech_certificate.pdf",
-        image: "/assets/images/projects/legaily_winner.jpeg"
-      }
-    ],
-    "previewSrc": "legaily_main.png",
-    "githubUrl": "https://github.com/KrishayNair/LegAIly", 
-    "detailsUrl": "/projects/legaily",
+    "previewSrc": "magicmond/introPage.webp",
+    "previewFit": "contain",
+    "githubUrl": "",
+    "detailsUrl": "/projects/magicmond-global",
+    "role": "Frontend Developer",
+    "status": "Completed",
+    "timeline": "3 days",
     "liveUrls": [
       {
-        "title": "LegAIly Web Portal",
-        "url": "https://legaily.tech/"
+        "title": "MagicMond Website",
+        "url": "https://magicmond.com/"
       }
     ],
-    "color": "#6366F1",
+    "color": "#7C3AED",
     "achievements": [
       {
-        "title": "Adopted by Legal Professionals",
-        "icon": "⚖️",
-        "description": "Used and recommended by High Court and Supreme Court lawyers"
+        "title": "Shipped in 3 Days",
+        "icon": "⚡",
+        "description": "Took the project from idea to a production-ready website in just 3 days through rapid iteration and Vibe Coding"
       },
       {
-        "title": "Hackathon Winner",
-        "icon": "🏆",
-        "description": "Recognized as the winning project in the Legal Tech Hackathon"
+        "title": "Team Collaboration",
+        "icon": "🤝",
+        "description": "Built with the MagicMond Magicians Team, with guidance from Chirag Pachauri across architecture, development, debugging, and deployment"
       }
     ]
   },
   {
-    title: "BugScout AI",
-    slug: "bugscout-ai",
-    description: "LLM agents detect UX issues from replays, suggest code fixes.",
+    title: "Shri Yamuna Infra",
+    slug: "shri-yamuna-infra",
+    description: "Real-estate marketing site for a Vrindavan developer — spiritual living, RERA-verified projects, lead generation.",
     detailedDescription: {
-      overview: "BugScout AI is an intelligent issue detection and resolution system that uses a four-agent LLM architecture to automatically identify, classify, and suggest fixes for web application issues from real-time user session data. The system ingests live session replay data from PostHog, cleans and stores it in NeonDB, vectorizes it in ChromaDB, and runs an Issue Monitoring Agent to detect exceptions, rage clicks, dead clicks, and UX friction. The Solution Agent retrieves category summaries from the Self Learning Agent and similar past solutions via vector search, then generates step-by-step fixes with code snippets. The Codebase Crawler Agent provides accurate code locations for large codebases. Developer ratings create a feedback loop that improves future suggestions.",
+      overview: "Shri Yamuna Infra is a responsive, production-ready marketing website built with the MagicMond Magicians Team for a Vrindavan-based real estate developer (est. 2011). The site positions the brand around \"Creating Global Spiritual Communities\" — premium, RERA-registered residential projects (Tulsi Wings, Vrinda Apartments, Kanha Tulsi Heights, Shri Braj Rani Apartments) aimed at both local and international buyers drawn to Vrindavan's spiritual significance and fast-growing tourism. It blends investor-facing messaging — location analysis, price trends, documentation and RERA verification — with devotional, lifestyle-first framing: founder story, spiritual-living positioning, and testimonials from international buyers.",
       features: [
-        "🔍 Real-Time Issue Detection: Automatically detects issues from PostHog session replays—exceptions, rage clicks, dead clicks, UX friction—and classifies them using PostHog taxonomy",
-        "🤖 Multi-Agent LLM System: Four specialized agents (Issue Monitoring, Solution, Self Learning, Codebase Crawler) work together for detection, fix generation, knowledge summarization, and code location",
-        "📧 Instant Notifications: Sends email and Slack alerts the moment high-friction UX issues are detected, with confidence scores and links to view/fix",
-        "📚 Self-Learning Knowledge Base: Developer ratings (1–5) on fixes feed category-specific summaries and boost confidence for similar future issues",
-        "🔎 Vector Similarity Retrieval: ChromaDB + OpenAI embeddings enable semantic search over past solutions so the Solution Agent suggests fixes aligned with high-rated resolutions",
-        "🗂️ Codebase-Aware Fixes: CODEBASE_MAP.json and Codebase Crawler Agent map URLs and selectors to file paths for accurate, actionable code-level suggestions",
-        "📊 Measured Improvement: 92% issue detection (vs 70% baseline), 87% code location accuracy (vs 45%), 4.2/5 developer rating (vs 2.8/5), under 30s time to suggestion (vs 2–4 hours manual)",
-        "☁️ Production-Ready Stack: Next.js 14, Neon PostgreSQL, ChromaDB Cloud, Clerk auth, PostHog analytics, Vercel deployment with cron-based sync"
+        "🏘️ Project showcase for multiple developments (Tulsi Wings, Vrinda Apartments, Kanha Tulsi Heights, Shri Braj Rani Apartments) with dedicated detail sections",
+        "📄 Trust & compliance section — MVDA-approved developments, RERA-registered projects, clear land documentation, transparent ownership structure",
+        "📝 Lead-capture forms (\"Unlock Pricing & Brochure\") with name/mobile/purpose fields, plus a persistent WhatsApp click-to-chat button",
+        "🗺️ Interactive strategic-location map with travel times (45 min from Jewar Airport, 1.5 hrs from Delhi NCR, 10 min from Vrindavan Railway Station) and nearby 7-star hospitality brands",
+        "📚 Buyer-education knowledge base (why documentation matters, location vs price, how to verify a builder) and a founder-story video section",
+        "💬 International buyer testimonials reinforcing the \"global spiritual community\" positioning"
       ],
       technicalDetails: [
-        "🎨 Frontend: Next.js 14 with React, TypeScript, Tailwind CSS; dashboard for issues, fix suggestions, and developer ratings",
-        "🤖 LLM: OpenAI GPT-4o-mini for all four agents (Issue Monitoring, Solution, Self Learning, Codebase Crawler) with JSON mode and tuned token limits",
-        "📐 Embeddings: OpenAI text-embedding-3-small (1536-dim), batch processing; used for monitoring, issues, logs, and posthog_events in ChromaDB",
-        "🗄️ Data: Neon PostgreSQL as source of truth (monitoring, issues, logs, posthog_events); automatic sync to ChromaDB for vector search",
-        "🔗 Integrations: PostHog API for session recordings and events; Slack/email for alerts; optional GitHub for future automated PRs",
-        "🔄 Pipeline: Ingestion → cleaning/dedup → NeonDB → vector sync → Issue Monitoring Agent → (Codebase Crawler, Self Learning) → Solution Agent → developer review → knowledge update",
-        "📈 Evaluation: Tested on 50 real PostHog sessions; metrics include detection rate, false positive rate, code location accuracy, developer rating, time to resolution, confidence correlation",
-        "🚀 Hosting: Vercel (serverless), Neon (serverless Postgres), ChromaDB Cloud; cron jobs for periodic vector sync"
+        "🎨 Frontend: React with Vite for fast dev/build tooling",
+        "💅 Styling: Tailwind CSS for a clean, scalable, reusable component architecture",
+        "📦 State Management: Zustand for lightweight, global UI and form state",
+        "⚡ Built using Vibe Coding to accelerate development while keeping the codebase clean and maintainable"
       ],
-      impact: "BugScout AI delivers measurable gains over manual review and generic LLM baselines: +31% issue detection, +93% code location accuracy, +50% developer satisfaction, 99% reduction in time to resolution. The system is in MVP stage, testing with a partner startup; multiple startups have expressed interest. Roadmap includes onboarding 5–10 early adopters, automated fix application via GitHub PRs, and expansion to mobile (React Native, Flutter) and enterprise features (SSO, custom taxonomies)."
+      impact: "Delivered with the MagicMond Magicians Team, bringing together modern technology, production-ready design, and business goals into one digital experience. Production-ready design contributions from Kunal Naskar and Abhishek Saini helped solve complex UI/UX challenges through close design-development collaboration."
     },
-    tech: "NEXT.js, REACT, TYPESCRIPT, TAILWIND CSS, OPENAI, POSTHOG, CHROMADB",
-    src: "bs1.png",
-    images: ["bs1.png", "bs2.png", "bs3.png", "bs4.png", "bs5.png", "bs6.png"],
-    previewSrc: "bs1.png",
-    githubUrl: "",
-    detailsUrl: "/projects/bugscout-ai",
-    liveUrls: [{ title: "Live Demo", url: "https://bugscoutai.vercel.app/" }],
-    color: "#8B5CF6",
-    achievements: [
-      {
-        title: "Real-Time UX Detection",
-        icon: "🎯",
-        description: "92% issue detection rate and 87% code location accuracy vs baseline; under 30s from detection to fix suggestion"
-      },
-      {
-        title: "Self-Learning System",
-        icon: "🧠",
-        description: "Four-agent LLM architecture with developer feedback loop and category-specific knowledge summarization"
-      }
-    ]
-  },
-  {
-    title: "HabitatForge",
-    slug: "habitatforge",
-    description: "AI platform for NASA-compliant space habitat design and 3D visualization.",
-    detailedDescription: {
-      overview: "HabitatForge is an AI-powered space habitat design platform that enables mission planners, engineers, and students to create, optimize, and visualize NASA-compliant space habitats efficiently and intelligently. The platform integrates AI-driven layout optimization, real-time constraint validation, and immersive visualization to streamline habitat design for future lunar and Martian missions. The system begins with a mission setup wizard that defines key parameters such as crew size, mission duration, and destination. Using this data, an AI optimization engine built on genetic algorithms generates optimal layouts that satisfy NASA's Net Habitable Volume (NHV) standards. The 2D deck planner allows intuitive drag-and-drop editing, while the 3D visualization module enables users to explore designs interactively. Real-time compliance scoring and automated recommendations ensure that every configuration aligns with NASA's safety and livability standards. HabitatForge makes NASA's complex engineering accessible to everyone—no aerospace background required. The project reduces habitat design time from months to hours, minimizes human error, and democratizes space planning for a wide audience.",
-      features: [
-        "🚀 AI-Powered Layout Generation: Agentic AI workflows with LangGraph orchestration automatically generate NASA-compliant habitat layouts using genetic algorithms and simulated annealing",
-        "📐 NASA Standards Integration: Full compliance with NASA-STD-3001 (human spaceflight requirements), NASA-STD-3000 (habitability), NASA-STD-8709.22 (safety), and NASA-STD-5005 (emergency egress)",
-        "🎨 Multi-Modal Visualization: Interactive 3D habitat viewer with React Three Fiber, 2D technical blueprint editor with Konva.js, and AI-rendered concept art for immersive design exploration",
-        "📊 Real-Time Constraint Validation: Live compliance scoring, Net Habitable Volume (NHV) calculations, adjacency validation, and automated recommendations for design improvements",
-        "🔄 Mission Setup Wizard: Guided workflow for defining crew size, mission duration, destination (Mars/Moon/Gateway), gravity mode, and transport vehicle specifications",
-        "🏗️ 2D Deck Planner: Intuitive drag-and-drop interface for designing multi-floor habitat layouts with NASA-compliant space modules and equipment placement",
-        "🤖 AI Space Assistant: Intelligent chatbot powered by LLMs for answering questions about space habitats, NASA standards, and design best practices",
-        "📈 Mission Analytics Dashboard: Real-time metrics including NHV per crew member, logistics volume, power requirements, plant growth schedules, and environmental constraints",
-        "🎯 Genetic Algorithm Optimization: Advanced optimization engine that proposes, evaluates, and optimizes layouts based on NASA constraints, crew needs, and mission parameters",
-        "🌍 Multi-Destination Support: Design habitats for Mars missions, lunar bases, Gateway stations, and other space destinations with destination-specific environmental parameters"
-      ],
-      technicalDetails: [
-        "🎨 Frontend: React with TypeScript, Vite for build tooling, Tailwind CSS for styling, React Three Fiber for 3D visualization, and Konva.js for 2D canvas editing",
-        "⚡ Backend: FastAPI with Python, Uvicorn ASGI server, Pydantic for data validation, and async/await patterns for high-performance API endpoints",
-        "🤖 AI/ML Stack: LangGraph for agentic workflow orchestration, genetic algorithms and simulated annealing for layout optimization, and LLM integration for AI assistant",
-        "📊 State Management: Zustand for global state management, React Hooks for component-level state, and optimized re-rendering for real-time updates",
-        "🗄️ Data Processing: NASA standards compliance engine, NHV calculation algorithms, constraint validation system, and layout optimization models",
-        "🎨 3D Visualization: React Three Fiber with Three.js for immersive 3D habitat rendering, orbit controls, zoom, and pan interactions",
-        "📐 2D Editing: Konva.js for interactive canvas-based deck planner with drag-and-drop, multi-floor support, and real-time layout updates",
-        "☁️ Deployment: Railway and Render for backend hosting, GitHub Actions for CI/CD, and scalable infrastructure for production workloads",
-        "🔒 NASA Compliance: Integration of NASA-STD-3001, 3000, 8709.22, and 5005 standards with automated validation and compliance scoring",
-        "🚀 Performance: Optimized rendering pipeline, efficient genetic algorithm implementation, and real-time constraint validation for responsive user experience"
-      ],
-      impact: "HabitatForge achieved recognition as a Global Nominee in the NASA Space Apps Challenge 2025, representing Team KARLVerse's innovative approach to space habitat design. The platform addresses the critical challenge of accelerating space habitat design while ensuring absolute compliance with NASA standards—a process that traditionally takes months of manual engineering work. HabitatForge democratizes access to professional-grade space architecture tools, supporting NASA's Artemis program and commercial space development by reducing design time from months to hours while eliminating human error in critical space systems. Judges praised the platform: 'A habitat layout platform that's functional and stays close to the challenge of defining volume and exploring layout options. It communicates very well, linking design steps to constraints, and is well informed by standards so could be useful for planners and students.' The platform's multi-modal approach combines 2D drag-and-drop editing, interactive 3D visualization, and AI-rendered concept art, making it accessible to both expert engineers and mission planners while maintaining the precision required for human spaceflight safety."
-    },
-    tech: "REACT, TYPESCRIPT, REACT THREE FIBER, KONVA.js, FASTAPI, LANGGRAPH, TAILWIND CSS",
-    src: "hf1.png",
-    images: ["hf1.png", "hf2.png", "hf3.png", "hf4.png"],
-    previewSrc: "hf1.png",
-    githubUrl: "",
-    detailsUrl: "/projects/habitatforge",
-    liveUrls: [
-      { title: "Live Platform", url: "https://www.habitatforge.earth/" },
-      { title: "Project Demo", url: "https://drive.google.com/drive/folders/1bRIR_X-uetCG07wD9yi7bMKdCgsh4Ci4?usp=sharing" }
-    ],
-    color: "#1E40AF",
-    achievements: [
-      {
-        title: "NASA Space Apps Global Nominee",
-        icon: "🏆",
-        description: "Recognized as Global Nominee in NASA Space Apps Challenge 2025 by Team KARLVerse, advancing to Global Judging phase"
-      },
-      {
-        title: "NASA Standards Compliance",
-        icon: "🚀",
-        description: "Full integration of NASA-STD-3001, 3000, 8709.22, and 5005 standards with automated validation and compliance scoring"
-      },
-      {
-        title: "Design Time Reduction",
-        icon: "⚡",
-        description: "Reduces habitat design time from months to hours while eliminating human error in critical space systems"
-      }
-    ]
-  },
-  {
-    title: "Campus2Career",
-    slug: "campus2career",
-    description: "AI placement prep: learning paths, DSA practice, mock interviews, job matching.",
-    detailedDescription: {
-      overview: "Campus2Career represents a comprehensive transformation of the placement preparation landscape, specifically designed to address the critical gap between academic learning and industry requirements. The platform serves as an intelligent, end-to-end ecosystem that empowers students with personalized learning paths, real-time skill assessment, and AI-powered career guidance. By integrating advanced artificial intelligence with interactive learning tools, Campus2Career creates a dynamic environment where students can practice coding, prepare for interviews, build professional resumes, and receive intelligent job recommendations—all within a unified, user-friendly interface. The system leverages cutting-edge AI models to provide realistic mock interview experiences, detailed performance analytics, and personalized feedback that adapts to each student's learning pace and skill level. With its comprehensive approach to placement preparation, Campus2Career has become the go-to platform for students across top engineering colleges, helping them bridge the gap between education and employment through data-driven insights and AI-enhanced learning experiences.",
-      features: [
-        "🎯 Personalized Learning Roadmap: AI-powered placement preparation roadmap with adaptive learning paths, skill gap analysis, and progress tracking tailored to individual student profiles",
-        "🤖 AI Mock Interview System: Advanced AI mock interviews powered by OpenAI GPT models and Google Gemini, providing realistic interview scenarios with real-time evaluation, feedback, and performance analytics",
-        "💻 Interactive DSA Practice Portal: Comprehensive Data Structures and Algorithms practice environment with 500+ problems, code execution, real-time feedback, and detailed solution explanations",
-        "📝 Intelligent Resume Builder: AI-assisted resume builder with industry-specific templates, ATS optimization, skill-based recommendations, and real-time formatting assistance",
-        "🎓 1:1 Mentorship Platform: Direct connection with industry professionals and alumni for personalized guidance, career counseling, and interview preparation support",
-        "📊 Performance Analytics Dashboard: Comprehensive analytics with skill progression tracking, interview performance metrics, coding practice statistics, and personalized improvement recommendations",
-        "🏆 Gamified Learning System: Leaderboards, achievement badges, streak tracking, and competitive challenges to enhance student engagement and motivation",
-        "🔍 Smart Job Matching: AI-driven job matching algorithm that analyzes student profiles, skills, and preferences to recommend relevant job opportunities from top companies",
-        "📚 Curated Learning Resources: Access to placement guides, company-specific preparation materials, coding interview questions, and industry insights from leading tech companies",
-        "📱 Cross-Platform Accessibility: Responsive web application with mobile-optimized interface, ensuring seamless access across all devices for on-the-go learning"
-      ],
-      technicalDetails: [
-        "🎨 Frontend Architecture: Next.js 14 with App Router, TypeScript, and Tailwind CSS for responsive, accessible UI with server-side rendering and optimized performance",
-        "⚡ Backend Infrastructure: FastAPI with async/await patterns, PostgreSQL database with Drizzle ORM for type-safe database operations and efficient query handling",
-        "🤖 AI/ML Integration: OpenAI GPT-4 and Google Gemini API integration for intelligent interview generation, evaluation, and personalized feedback with natural language processing",
-        "🔐 Authentication & Database: Supabase Auth with JWT tokens, PostgreSQL for relational data storage, and secure role-based access control for students, mentors, and administrators",
-        "📊 Real-time Analytics: Custom analytics engine with data aggregation, performance tracking, and visualization using Chart.js and D3.js for interactive dashboards",
-        "💾 Code Execution Engine: Secure code execution environment with Docker containers, support for multiple programming languages, and real-time compilation and testing",
-        "🔍 Search & Matching: Advanced job matching algorithm using vector embeddings, semantic search with PostgreSQL full-text search, and recommendation engine based on student profiles",
-        "☁️ Cloud Infrastructure: Vercel deployment for frontend with edge functions, scalable backend hosting, and CDN distribution for optimal global performance",
-        "🔒 Security & Privacy: End-to-end encryption for sensitive data, secure API endpoints with rate limiting, GDPR compliance, and data anonymization for analytics",
-        "📈 Monitoring & Optimization: Real-time error tracking, performance monitoring, user behavior analytics, and automated testing with CI/CD pipeline for continuous deployment"
-      ],
-      impact: "Campus2Career has achieved remarkable success in transforming placement preparation for engineering students across India. The platform won the prestigious Quasar 2.0 competition, securing 2nd place in the Smart Education domain, validating its innovative approach to AI-powered learning. With over 2,000+ registered students from top engineering colleges, Campus2Career has facilitated 5,000+ mock interviews and processed 10,000+ coding practice sessions. The platform has demonstrated a 65% improvement in student interview performance and 80% increase in placement success rates among active users. Over 50+ companies have expressed interest in partnering with Campus2Career for campus recruitment, and the platform has been adopted by 15+ engineering colleges as an official placement preparation tool. The system's success has led to recognition at national-level tech conferences and has been featured in educational technology publications, positioning Campus2Career as a leading solution for bridging the gap between academic education and industry requirements in the Indian tech ecosystem."
-    },
-    tech: "NEXT.js, DRIZZLE ORM, TAILWIND CSS, POSTGRESQL, OPENAI, FASTAPI",
-    src: "learn.png",
-    images: ["learn.png", "learnify_dashboard.png", "learnify_mentoring.png", "learnify_feedback.png", "learnify_visualize.png"],
-    certificates: [
-      {
-        title: "Quasar 2.0 Winning Certificate",
-        file: "/assets/images/projects/quasar.png",
-        image: "/assets/images/projects/quasar_main.jpg"
-      }
-    ],
-    previewSrc: "learn.png",
-    githubUrl: "https://github.com/KrishayNair/Learnify",
-    detailsUrl: "/projects/campus2career",
-    liveUrls: [
-      {
-        title: "Campus2Career Platform",
-        url: "https://campus2career.app/"
-      }
-    ],
-    color: "#10B981",
-    achievements: [
-      {
-        title: "Quasar 2.0 Winner",
-        icon: "🎓",
-        description: "Secured 2nd place in the Smart Education domain at the Quasar 2.0 national-level competition"
-      }
-    ]
-  },
-  {
-    title: "DAK",
-    slug: "dak",
-    description: "DAK is a nationwide unified portal for philatelists, enabling seamless purchase of postal materials released by all 24 postal circles of India. It revolutionizes the traditional offline process of opening a Philatelic Deposit Account (PDA) by fully digitizing it, featuring integrated payment gateways and a dedicated forum for collectors. The government dashboard allows postal circles to add and manage products, access real-time analytics, receive preferential notifications, and optimize supply chain logistics to reduce wastage and stamp shortages.",
-    detailedDescription: {
-      overview: "DAK is a comprehensive digital solution that transforms the traditional philately experience in India. It serves two distinct user groups: philatelists and government postal departments.",
-      features: [
-        "Unified portal for all 24 postal circles of India",
-        "Digital Philatelic Deposit Account (PDA) management",
-        "Integrated payment gateways for seamless transactions",
-        "Dedicated forum for collectors to connect and trade",
-        "Real-time analytics and inventory management",
-        "Preferential notifications for new releases",
-        "Supply chain optimization to reduce wastage"
-      ],
-      technicalDetails: [
-        "Built with Next.js for frontend and Django for backend",
-        "Real-time updates using Firebase",
-        "Asynchronous task processing with Celery and Redis",
-        "Scalable architecture with Nginx and Cloudflare",
-        "Responsive design for all devices"
-      ],
-      impact: "The project has been recognized as the winning solution in Smart India Hackathon 2024 and is being officially adopted by the Government of India, Department of Post for nationwide implementation."
-    },
-    tech: "NEXT.js, TAILWIND CSS, DJANGO, CELERY, REDIS, FIREBASE, NGINX, CLOUDFLARE",
-    src: "dak_main.jpeg",
+    tech: "React, Vite, Tailwind CSS, Zustand",
+    src: "sreeYamunaInfra/introPage.webp",
     images: [
-      "dak_main.jpeg",
-      "dak_dashboard.jpeg",
-      "dak_forum.jpeg",
-      "dak_catalogue.png",
-      "dak_pda.png"
+      "sreeYamunaInfra/introPage.webp",
+      "sreeYamunaInfra/firstyScreen.webp",
+      "sreeYamunaInfra/secondScreen.webp",
+      "sreeYamunaInfra/thirdScreen.webp",
+      "sreeYamunaInfra/fourthScreen.webp"
     ],
-    certificates: [
-      {
-        title: "Smart India Hackathon 2024 Winner",
-        file: "/assets/pdf/sih_winner.pdf",
-        image: "/assets/images/projects/dak_winner.jpeg"
-      }
-    ],
-    previewSrc: "dak_main.jpeg",
-    githubUrl: "https://github.com/KrishayNair/DAK-Philately",
-    detailsUrl: "/projects/dak",
-    liveUrls: [
-      {
-        title: "DAK for Philatelists",
-        url: "https://dak-portal.vercel.app/"
-      },
-      {
-        title: "DAK Government Portal",
-        url: "https://dak-admin.vercel.app/"
-      }
-    ],
-    color: "#3B82F6",
+    previewSrc: "sreeYamunaInfra/introPage.webp",
+    previewFit: "contain",
+    githubUrl: "",
+    detailsUrl: "/projects/shri-yamuna-infra",
+    role: "Frontend Developer",
+    status: "Completed",
+    liveUrls: [{ title: "Shri Yamuna Infra Website", url: "https://lnkd.in/gqJ23XzG" }],
+    color: "#B45309",
     achievements: [
       {
-        title: "Smart India Hackathon 2024 Winner",
-        icon: "🏆",
-        description: "Recognized as the winning project in the prestigious Smart India Hackathon 2024"
+        title: "Trust-First Real Estate Platform",
+        icon: "🛕",
+        description: "Positioned MVDA-approved, RERA-registered projects with full documentation transparency for buyers"
       },
       {
-        title: "Government Adoption",
-        icon: "🏛️",
-        description: "Officially being adapted by Government of India, Department of Post for nationwide implementation"
+        title: "Design-Development Collaboration",
+        icon: "🎨",
+        description: "Built with production-ready design support from Kunal Naskar and Abhishek Saini, closely aligning UI/UX with business goals"
+      }
+    ]
+  },
+  {
+    title: "Dosha Detector",
+    slug: "dosha-detector",
+    description: "AI-powered Vedic astrology app — dosha detection, birth chart analysis, personalized remedies. 500+ downloads.",
+    detailedDescription: {
+      overview: "Dosha Detector is an AI-powered Vedic astrology companion published on the Google Play Store under Astro Vedansh Innovations. Users share their birth details (date, time, place) and the app analyzes planetary positions to identify present doshas in their birth chart, explains their effects, recommends personalized remedies, and generates a detailed Janam Kundali (birth chart). Whether someone is curious about their karmic influences or seeking harmony in life, the app offers insights guided by traditional astrological wisdom, backed by an option to consult expert astrologers live for deeper guidance.",
+      features: [
+        "📅 Birth-detail input flow (date, time, place) to generate an accurate Janam Kundali",
+        "🔮 AI-based dosha detection — surfaces afflictions like 8th House Affliction, Poverty Dosha, Guru Chandal Dosha, and Mangal Dosha, each with a calculated strength score",
+        "📜 Interactive birth chart (Kundali) visualization with full planetary placements",
+        "💊 Personalized remedies and an effects breakdown for each detected dosha — career, relationships, and health",
+        "📹 Live video consultations with expert astrologers directly in-app",
+        "🔒 Privacy-first design — birth details kept confidential"
+      ],
+      technicalDetails: [
+        "📱 Frontend: Flutter for a native, cross-platform mobile experience",
+        "🔥 Backend: Firebase for authentication, data storage, and real-time sync",
+        "🧠 State Management: GetX for lightweight, reactive state management",
+        "🤖 Astrology Engine: Automated Vedic astrology calculations to detect doshas and generate a Janam Kundali from birth data"
+      ],
+      impact: "Published on the Google Play Store under Astro Vedansh Innovations, Dosha Detector has reached 500+ downloads with a 4.3★ rating. Users highlight the app for identifying the real reason behind personal and professional setbacks and offering both remedies and live astrologer consultations to act on them."
+    },
+    tech: "Flutter, Firebase, GetX",
+    src: "doshaDetector/introPageGenerated.webp",
+    images: [
+      "doshaDetector/introPageGenerated.webp",
+      "doshaDetector/firstScreen.webp",
+      "doshaDetector/secondScreen.webp",
+      "doshaDetector/thirdScreen.webp"
+    ],
+    previewSrc: "doshaDetector/introPageGenerated.webp",
+    previewFit: "contain",
+    githubUrl: "",
+    detailsUrl: "/projects/dosha-detector",
+    role: "Flutter Developer",
+    status: "Completed",
+    color: "#F0B429",
+    achievements: [
+      {
+        title: "500+ Downloads",
+        icon: "📲",
+        description: "Published on the Google Play Store with a 4.3★ rating across early reviews"
+      },
+      {
+        title: "AI-Powered Astrology",
+        icon: "🔮",
+        description: "Automated dosha detection and Janam Kundali generation from just birth date, time, and place"
+      }
+    ]
+  },
+  {
+    title: "PerfectTiming",
+    slug: "perfect-timing",
+    description: "Astrology web app for personalized Kundli-based predictions and timing insights — 1.56M+ campaign impressions.",
+    detailedDescription: {
+      overview: "PerfectTiming is a modern astrology platform by AstroVedansh, built to deliver highly personalized, Kundli-based predictions and divine timing insights with accuracy and depth. Users submit astro-queries across major life domains — career, relationships, finance, health, and auspicious timing (Muhurat) — and each response is crafted by expert astrologers through detailed analysis of Kundli charts, planetary movements, and Dasha timelines. The core platform was built in just 7 days under the guidance of Rajat Vallabh, with Prem Patel leading the automation workflows, followed by continuous improvements and production fixes to keep the system fast, stable, and user-ready.",
+      features: [
+        "🔮 Astro-query submission across 5 life domains: Career & Opportunities, Relationships & Compatibility, Finance & Stability, Health & Well-being, and Life Decisions & Auspicious Timing (Muhurat)",
+        "📄 Personalized reports with detailed Kundli analysis and Dasha timelines, delivered by expert astrologers",
+        "⏳ Accurate timing insights — Perfect Muhurat and divine timing guidance for major life decisions",
+        "💳 Full checkout flow — birth details, coupon codes, English/Hindi language selection, and express delivery option",
+        "📊 Admin dashboard with campaign performance, Razorpay financials, and engagement analytics",
+        "🎥 Embedded video content and social proof (4.9 rating from 10,000+ customers) to build trust"
+      ],
+      technicalDetails: [
+        "📱 Frontend: Flutter Web for a single cross-platform codebase running in the browser",
+        "🔥 Backend: Firebase with Cloud Functions for serverless business logic",
+        "🧠 State Management: GetX for reactive state management",
+        "🔌 Integrations: REST APIs and real-time processing for report generation and delivery",
+        "⚙️ Full ownership: development, deployment, analytics integration, and admin panel"
+      ],
+      impact: "PerfectTiming launched with 1.56M+ campaign impressions and 1,000+ conversions in its initial launch cycle, delivering 18,000+ personalized reports in its first month alone. Built under the guidance of Rajat Vallabh, with Prem Patel leading automation workflows, and supported by the full AstroVedansh team of astrologers, designers, and analysts."
+    },
+    tech: "Flutter Web, Firebase, GetX, Cloud Functions",
+    src: "perfectTiming/introPage.webp",
+    images: [
+      "perfectTiming/introPage.webp",
+      "perfectTiming/firstScreen1.webp",
+      "perfectTiming/secondScreen.webp",
+      "perfectTiming/thirdScreen.webp"
+    ],
+    previewSrc: "perfectTiming/introPage.webp",
+    previewFit: "contain",
+    githubUrl: "",
+    detailsUrl: "/projects/perfect-timing",
+    role: "Full Stack Developer",
+    status: "Completed",
+    timeline: "7 days",
+    liveUrls: [
+      {
+        title: "PerfectTiming Web App",
+        url: "https://lnkd.in/dUXJdMtc"
+      }
+    ],
+    color: "#2563EB",
+    achievements: [
+      {
+        title: "1.56M+ Campaign Impressions",
+        icon: "📈",
+        description: "Reached over 1.56 million impressions in the initial launch campaign"
+      },
+      {
+        title: "1,000+ Conversions",
+        icon: "🎯",
+        description: "Converted 1,000+ users in the initial launch cycle, with 18,000+ personalized reports delivered in the first month"
+      }
+    ]
+  },
+  {
+    title: "PerfectCareer",
+    slug: "perfect-career",
+    description: "Astrology-based career guidance web app — personalized profession direction from birth details. 353K+ campaign impressions.",
+    detailedDescription: {
+      overview: "PerfectCareer is an astrology web app by AstroVedansh that helps users find direction when they're stuck between career, job, business, or income decisions. Instead of generic advice, users select a specific career question, submit their birth details, and receive a personalized Perfect Career Report — expert hand analysis combining astrology and numerology to recommend a clear profession, top skills to focus on, and an income roadmap. The core platform was built in just 5 days, with continuous enhancements, automation, and production improvements since launch, under the guidance of Chirag Pachauri as Senior Developer.",
+      features: [
+        "🎯 Career-question selector across categories (Trending, Career Crossroad, Job, Business/Family) instead of generic astrology",
+        "📊 \"Normal Confusion vs Perfect Career Report\" comparison — replaces random advice and trial-and-error with a personalized, Kundli-based direction, clear profession recommendation, and focused decision making",
+        "📄 Personalized report combining birth date, astrology, and numerology — career nature, top professions, income & skills, and a roadmap with remedies",
+        "📲 Report delivery via WhatsApp in Hindi & English, with an express delivery option",
+        "💳 Full checkout flow with coupon codes, discounts, and a price breakdown",
+        "📥 Downloadable sample report so users can preview the report structure before paying"
+      ],
+      technicalDetails: [
+        "⚛️ Frontend: React with Vite, Tailwind CSS, and MVC architecture",
+        "⚙️ Backend: Node.js APIs with automation-driven workflows",
+        "📩 Communication: Interakt WhatsApp automation and SMTP email delivery for report and order updates",
+        "☁️ Background Processing: Google Cloud Tasks for reliable queued delivery workflows",
+        "🎨 Continuous refinement of UI/UX, functionality, and system architecture through multiple production iterations"
+      ],
+      impact: "PerfectCareer's early campaign reached 353K+ impressions, 3.5K+ website clicks, and 2.5K+ link clicks. Built in 5 days under the guidance of Chirag Pachauri as Senior Developer, the project strengthened experience in building scalable web applications, integrating automation services, and delivering production-ready software within tight timelines."
+    },
+    tech: "React, Vite, Tailwind CSS, Node.js",
+    src: "perfectCareer/introPage.webp",
+    images: [
+      "perfectCareer/introPage.webp",
+      "perfectCareer/firstScreen.webp",
+      "perfectCareer/secondScreen.webp"
+    ],
+    previewSrc: "perfectCareer/introPage.webp",
+    previewFit: "contain",
+    githubUrl: "",
+    detailsUrl: "/projects/perfect-career",
+    role: "Full Stack Developer",
+    status: "Completed",
+    timeline: "5 days",
+    liveUrls: [
+      {
+        title: "PerfectCareer Live Platform",
+        url: "https://lnkd.in/g43TY_FE"
+      }
+    ],
+    color: "#DB2777",
+    achievements: [
+      {
+        title: "353K+ Campaign Impressions",
+        icon: "📢",
+        description: "Reached over 353,000 impressions in the early campaign"
+      },
+      {
+        title: "3.5K+ Website Clicks",
+        icon: "👆",
+        description: "Drove 3.5K+ website clicks and 2.5K+ link clicks in the initial results"
       }
     ]
   },
 
   {
-    "title": "Aptos GameVerse",
-    "slug": "aptosgameverse",
-    "description": "Aptos GameVerse revolutionizes Web3 game development as the world's first AI-powered, no-code platform for creating blockchain games. This comprehensive ecosystem combines cutting-edge artificial intelligence with Aptos blockchain technology to democratize GameFi development. The platform features intelligent game generation, automated asset creation, seamless NFT integration, and smart contract deployment - all through an intuitive drag-and-drop interface. With its advanced AI agents and MetaMove integration, Aptos GameVerse reduces game development time by 80% while enabling creators to build, deploy, and monetize Web3 games without coding knowledge. The platform has won the prestigious Move AI Hackathon 2024 with a $13,000 prize and is transforming how developers approach blockchain gaming.",
+    "title": "Ecommerce App & Admin Panel",
+    "slug": "ecommerce-app",
+    "description": "Flutter e-commerce app with a companion admin panel — Razorpay payments, variable products, order & inventory management.",
     "detailedDescription": {
-      "overview": "Aptos GameVerse represents a paradigm shift in the GameFi ecosystem, addressing the critical barriers that have prevented widespread adoption of blockchain gaming. The platform serves as a comprehensive development environment that seamlessly integrates artificial intelligence with Web3 technologies, enabling creators of all skill levels to build sophisticated blockchain games. By leveraging advanced AI agents for content generation, automated smart contract deployment, and intuitive visual programming, Aptos GameVerse eliminates the traditional complexities of blockchain development. The system supports multiple game genres, from RPGs to puzzle games, while providing built-in monetization through NFT marketplaces, token economies, and play-to-earn mechanics. With its real-time collaboration features and instant deployment capabilities, the platform has become the go-to solution for indie developers, gaming studios, and Web3 entrepreneurs looking to capitalize on the growing GameFi market.",
+      "overview": "A full-featured e-commerce mobile app built with Flutter, paired with a companion admin panel for store owners to manage products, orders, categories, and banners in real time. Shoppers can browse branded, categorized products with size and color variations, save favorites, manage multiple delivery addresses, and check out securely via Razorpay or Cash on Delivery. The admin panel gives store owners a live dashboard — sales totals, a weekly revenue chart, order status breakdown, and Razorpay payment/settlement tracking — alongside full management tools for products, categories, brands, and promotional banners.",
       "features": [
-        "🤖 AI Game Generator: Advanced neural networks create complete game mechanics, levels, and storylines based on user preferences and genre specifications",
-        "🎨 Intelligent Asset Creation: AI-powered tools generate sprites, 3D models, animations, sound effects, and music tailored to game themes and styles",
-        "⛓️ Blockchain Integration: Seamless Aptos blockchain integration via MetaMove Move Agent Kit with automated smart contract generation and deployment",
-        "🪙 NFT & Token Economy: Built-in NFT marketplace, token minting, staking mechanisms, and play-to-earn reward systems with customizable tokenomics",
-        "🎮 Multi-Genre Support: Templates and tools for RPGs, puzzle games, action-adventure, strategy games, and custom game mechanics",
-        "🔧 No-Code Visual Editor: Drag-and-drop interface with node-based programming, real-time preview, and collaborative editing capabilities",
-        "🚀 Instant Deployment: One-click deployment to Aptos testnet and mainnet with automatic gas optimization and transaction management",
-        "📊 Analytics Dashboard: Comprehensive game performance metrics, player behavior analysis, and revenue tracking with real-time updates",
-        "👥 Multiplayer Support: Built-in networking for multiplayer games with blockchain-based player authentication and cross-platform compatibility",
-        "🛡️ Security & Testing: Automated smart contract auditing, game balance testing, and vulnerability scanning for secure Web3 game deployment"
+        "🛍️ Store browsing with categories, subcategories, and branded products — single and variable products with size/color variations",
+        "❤️ Favorite products saved locally, plus cart management before checkout",
+        "💳 Razorpay payment gateway and Cash on Delivery, with two-step authentication for account security",
+        "🏠 Address management, order history, and profile management",
+        "🎉 Offer banners and promotional campaigns",
+        "📊 Admin dashboard — sales totals, weekly revenue chart, order status breakdown, and Razorpay payment/settlement tracking",
+        "🗂️ Admin tools to manage products, categories, brands, and banners",
+        "☎️ 24/7 help center for customer support"
       ],
       "technicalDetails": [
-        "🎨 Frontend Architecture: React 18 with TypeScript, Tailwind CSS, and Framer Motion for responsive, interactive UI with real-time collaboration features",
-        "⛓️ Blockchain Stack: Aptos blockchain integration using MetaMove Move Agent Kit, Move language smart contracts, and Aptos SDK for seamless Web3 functionality",
-        "🤖 AI/ML Infrastructure: Custom-trained neural networks for game generation, OpenAI GPT-4 integration for narrative creation, and Stable Diffusion for asset generation",
-        "🔧 Backend Services: Node.js with Express, Redis caching, PostgreSQL database, and WebSocket connections for real-time multiplayer functionality",
-        "☁️ Cloud Infrastructure: Vercel deployment with AWS S3 for asset storage, CloudFront CDN for global distribution, and auto-scaling for high availability",
-        "🔐 Security Implementation: End-to-end encryption, smart contract auditing with automated vulnerability detection, and secure key management",
-        "📊 Analytics & Monitoring: Custom analytics dashboard with player behavior tracking, revenue metrics, and performance monitoring using Grafana",
-        "🎮 Game Engine Integration: Unity WebGL support, Phaser.js for 2D games, and Three.js for 3D game development with blockchain connectivity",
-        "🪙 Token Economics: ERC-20 compatible token standards, NFT marketplace integration, staking mechanisms, and automated reward distribution",
-        "🚀 DevOps & CI/CD: GitHub Actions for automated testing, Docker containerization, and blue-green deployment strategy for zero-downtime updates"
+        "📱 Frontend: Flutter with MVC architecture for both the shopping app and admin panel",
+        "🧠 State Management: GetX for reactive state management",
+        "💾 Local Storage: Hive for offline-first favorites and local caching",
+        "🔥 Backend: Firebase for authentication, data, and real-time sync",
+        "💳 Payments: Razorpay integration for online payments and settlement tracking"
       ],
-      "impact": "Aptos GameVerse has revolutionized the GameFi industry, achieving remarkable success since its launch. The platform has processed over 5,000 game creation requests and facilitated the deployment of 1,200+ Web3 games across various genres. With 2,500+ registered developers and 15,000+ active players, the platform has generated over $2.5M in total game revenue through NFT sales and token transactions. The project won the prestigious Move AI Hackathon 2024, securing the $13,000 first prize in the GameFi track and recognition from industry leaders. Major gaming studios including Ubisoft and Electronic Arts have expressed interest in partnership opportunities. The platform's success has led to a 300% increase in Web3 game development activity and has been featured in top blockchain conferences including DevCon, ETHGlobal, and GameFi Summit. Aptos GameVerse has become the standard for no-code blockchain game development, with its technology being adopted by educational institutions for Web3 gaming courses."
+      "impact": "Built as a complete, production-style e-commerce solution — a Flutter shopping app backed by a real-time admin panel for managing sales, orders, products, and promotions, with secure Razorpay payments and two-step authentication for user accounts."
     },
-    "tech": "APTOS, METAMOVE, AI AGENTS, REACT, TYPESCRIPT, TAILWIND CSS, NODE.JS, POSTGRESQL, REDIS, UNITY, PHASER.JS, THREE.JS, OPENAI GPT-4, STABLE DIFFUSION, NFT, SMART CONTRACTS, GAMEFI, WEB3, BLOCKCHAIN",
-    "src": "aptos_main.png",
+    "tech": "Flutter, GetX, Hive, Firebase, Razorpay",
+    "src": "ecommerce/introPage.webp",
     "images": [
-      "aptos_main.png",
-      "aptos_tool.png",
-      "aptos_snake.jpeg",
-      "aptos_profile.jpeg",
-      "aptos_winner.jpeg"
+      "ecommerce/introPage.webp",
+      "ecommerce/sebIntroPage.webp",
+      "ecommerce/firstScren.webp",
+      "ecommerce/secondScreen.webp",
+      "ecommerce/thirdScreen.webp",
+      "ecommerce/fourthScreen.webp",
+      "ecommerce/fifthScreen.webp",
+      "ecommerce/sixthScreen.webp",
+      "ecommerce/sevenScreen.webp"
     ],
-    certificates: [
-      {
-        title: "Move AI Hackathon GameFi Winner",
-        file: "https://x.com/metamove_/status/1914329504769818627?s=48",
-        image: "/assets/images/projects/aptos_winner.jpeg"
-      }
-    ],
-    "previewSrc": "aptos_main.png",
+    "previewSrc": "ecommerce/introPage.webp",
+    "previewFit": "contain",
     "githubUrl": "",
-    "detailsUrl": "/projects/aptosgameverse",
-    "liveUrls": [
-      {
-        "title": "Aptos GameVerse on Devfolio",
-        "url": "https://devfolio.co/projects/aptosgameverse-5c9b"
-      },
-      {
-        "title": "Aptos GameVerse Live website",
-        "url": "https://aptos-game-verse.vercel.app/dashboard"
-      }
-    ],
-    "color": "#10B981",
+    "detailsUrl": "/projects/ecommerce-app",
+    "role": "Flutter Developer",
+    "status": "Completed",
+    "color": "#1E40AF",
     "achievements": [
       {
-        "title": "🏆 Move AI Hackathon GameFi Winner",
-        "icon": "💰🏅",
-        "description": "Won 1st prize in the GameFi Track of the Move AI Hackathon, receiving a $13,000 award"
+        "title": "Full E-Commerce Ecosystem",
+        "icon": "🛒",
+        "description": "Shopping app and admin panel built together — from product browsing to order fulfillment and payment settlement"
       },
       {
-        "title": "Seamless AI + Blockchain Integration",
-        "icon": "🧠🔗",
-        "description": "Overcame compatibility and latency issues while integrating AI agents with the Aptos blockchain using the MetaMove Move Agent Kit"
-      },
-      {
-        "title": "Empowering GameFi Creators",
-        "icon": "🎮🚀",
-        "description": "Enabled rapid development and deployment of GameFi experiences through no-code tools and automated smart contract support"
-      },
+        "title": "Secure Payments",
+        "icon": "💳",
+        "description": "Razorpay integration with two-step authentication and Cash on Delivery as an alternative payment option"
+      }
     ]
   },
   {
-    "title": "Dori",
-    "slug": "dori",
-    "description": "Dori is a transformative digital platform designed to bridge the gap between local Indian artisans and the global Indian diaspora. It serves as a vibrant, curated marketplace that celebrates the richness of India's diverse cultural heritage through authentic traditional crafts and handmade products. Built with the vision of empowering artisans and reconnecting people with their roots, Dori enables users around the world to explore, discover, and purchase regionally crafted items—from textiles and pottery to jewelry and home décor—each with its own story and tradition.By digitizing the artisan economy, Dori not only provides artisans with wider visibility and market access but also ensures that the values of sustainability, craftsmanship, and heritage are preserved and promoted globally. The platform personalizes the shopping experience through intuitive navigation, artisan profiles, and AI-powered assistance, fostering a meaningful connection between buyers and makers. Dori is more than a marketplace—it's a cultural movement designed to revive, respect, and redefine the legacy of Indian craftsmanship in the modern world.",
+    "title": "GRAH9",
+    "slug": "grah9",
+    "description": "Full-scale CRM + Admin + Analytics system managing 2000+ users across AstroVedansh's product suite.",
     "detailedDescription": {
-      "overview": "Dori serves as a bridge between Indian artisans and the global diaspora, providing a platform where traditional crafts meet contemporary demand. By digitizing the artisan economy, Dori enables users worldwide to discover, purchase, and engage with authentic Indian handicrafts, fostering cultural preservation and economic empowerment.",
+      "overview": "GRAH9 is the centralized CRM and business automation system behind AstroVedansh's entire product suite — Perfect Timing, Perfect Career, AstroTry, and more all run through a single admin platform. It gives the team a real-time view of the business: order and consultation management, campaign performance, and revenue/tax/profit analytics, alongside content tools for managing categories, banners, media, coupons, and consultation pricing across every product from one place. The platform currently manages 2000+ users and handles complete backend operations efficiently.",
       "features": [
-        "Curated marketplace showcasing diverse Indian handicrafts",
-        "User-friendly interface for seamless browsing and purchasing",
-        "Dedicated sections for artisans, users, and government stakeholders",
-        "Chatbot support for customer inquiries and assistance",
-        "Testimonials highlighting diaspora connections and experiences"
+        "🧩 Centralized admin panel managing multiple products (Perfect Timing, Perfect Career/Name, AstroTry) from a single dashboard",
+        "📊 Real-time revenue, tax & profit analytics with Razorpay financials, ROAS, and campaign performance (impressions, clicks, CTR, CPC, CPM)",
+        "📅 Order & consultation management — live order status (successful/failed/initiated), consultation scheduling calendar, and per-product order queues",
+        "🤖 Automated WhatsApp communication workflows to reduce manual operations",
+        "🏷️ Coupon management and configurable consultation pricing (PDF, voice call, video call formats)",
+        "🖼️ Media and category/banner management for content across every connected product"
       ],
       "technicalDetails": [
-        "Frontend developed with modern web technologies for responsive design",
-        "Backend infrastructure supporting dynamic content management",
-        "Integration of chatbot functionality for enhanced user interaction",
-        "Scalable architecture accommodating multiple user roles and interfaces"
+        "📱 Frontend: Flutter Web for a single responsive admin dashboard across devices",
+        "🔥 Backend: Firebase for authentication, data, and real-time sync",
+        "🧠 State Management: GetX for reactive state management",
+        "💳 Integrations: Razorpay for payment/financial analytics, Meta and campaign platforms for marketing analytics, WhatsApp for automated communication"
       ],
-      "impact": "Dori has revitalized the traditional artisan market by providing a global platform for exposure and sales. It empowers artisans by expanding their reach beyond local boundaries, while offering the diaspora a tangible connection to their heritage through authentic crafts."
+      "impact": "GRAH9 currently manages 2000+ users and handles complete backend operations for AstroVedansh's product suite. It improved strategic decision-making with live analytics, increased efficiency through automation-driven workflows, and was built as a scalable system ready for long-term growth."
     },
-    "tech": "React, Node.js, Express, MongoDB, Chatbot Integration",
-    "src": "dori.png",
+    "tech": "Flutter, Firebase, GetX, Razorpay",
+    "src": "grah9/introPage.webp",
     "images": [
-      "dori.png",
-      "dori_main2.png",
-      "dori_shop.png",
-      "dori_events.png",
-      "dori_order.png"
+      "grah9/introPage.webp",
+      "grah9/firstScreen.webp",
+      "grah9/secondScreen.webp",
+      "grah9/thirdScreen.webp"
     ],
-    "previewSrc": "dori.png",
+    "previewSrc": "grah9/introPage.webp",
+    "previewFit": "contain",
     "githubUrl": "",
-    "detailsUrl": "/projects/dori",
-    "liveUrls": [
-      {
-        "title": "Dori Platform",
-        "url": "https://dori-nu.vercel.app/"
-      }
-    ],
-    "color": "#F59E0B",
+    "detailsUrl": "/projects/grah9",
+    "role": "Full Stack Developer",
+    "status": "Completed",
+    "color": "#4F46E5",
     "achievements": [
       {
-        "title": "Cultural Preservation Initiative",
-        "icon": "🎨",
-        "description": "Promoted the preservation of Indian traditional crafts by providing artisans with a global platform."
+        "title": "2000+ Users Managed",
+        "icon": "👥",
+        "description": "Complete CRM handling backend operations for 2000+ users across the AstroVedansh product suite"
       },
       {
-        "title": "Diaspora Engagement",
-        "icon": "🌍",
-        "description": "Strengthened connections between the Indian diaspora and their cultural roots through accessible artisan products."
+        "title": "Multi-Product Platform",
+        "icon": "🧩",
+        "description": "Single admin system centrally managing Perfect Timing, Perfect Career, AstroTry, and other AstroVedansh products"
       }
     ]
   },
-  
+
   {
     title: "NextGen police complaint system",
     slug: "nextgen-complaint",
@@ -479,8 +420,10 @@ export const projects: Project[] = [
       }
     ],
     previewSrc: "covercomplaint.png",
-    githubUrl: "https://github.com/KrishayNair/NextGen-Complaint-System",
+    githubUrl: "https://github.com/yuvaraj8080/NextGen-Complaint-System",
     detailsUrl: "/projects/nextgen-complaint",
+    role: "Full Stack Developer",
+    status: "Completed",
     "liveUrls": [
       {
         "title": " Devfolio link",
@@ -502,11 +445,11 @@ export const projects: Project[] = [
         icon: "🏆",
         description: "Recognized for significantly reducing complaint resolution time"
       }
-      
+
     ]
   },
 
-  
+
   {
     title: "Believe Charity",
     slug: "believe-charity",
@@ -541,8 +484,10 @@ export const projects: Project[] = [
       }
     ],
     previewSrc: "coverbelieve.png",
-    githubUrl: "https://github.com/KrishayNair/Believe-Charity",
+    githubUrl: "https://github.com/yuvaraj8080/Believe-Charity",
     detailsUrl: "/projects/believe-charity",
+    role: "Full Stack Developer",
+    status: "Completed",
     liveUrl: "https://believe-charity.vercel.app",
     color: "#5CC2F2",
     achievements: [
@@ -553,7 +498,7 @@ export const projects: Project[] = [
       }
     ]
   },
- 
+
   {
     title: "SecureClick",
     slug: "secureclick",
@@ -581,8 +526,10 @@ export const projects: Project[] = [
     src: "secureclick 1.png",
     images: ["secureclick 1.png"],
     previewSrc: "secureclick 1.png",
-    githubUrl: "https://github.com/KrishayNair/SecureClick",
+    githubUrl: "https://github.com/yuvaraj8080/SecureClick",
     detailsUrl: "/projects/secureclick",
+    role: "Full Stack Developer",
+    status: "Completed",
     liveUrl: "https://secureclick.vercel.app",
     color: "#E24AA3",
     achievements: [
@@ -598,7 +545,7 @@ export const projects: Project[] = [
       }
     ]
   },
-  
+
 
   {
     title: "ICARUS 2023",
@@ -627,8 +574,10 @@ export const projects: Project[] = [
     src: "covericarus.png",
     images: ["covericarus.png"],
     previewSrc: "covericarus.png",
-    githubUrl: "https://github.com/KrishayNair/ICARUS-2023",
+    githubUrl: "https://github.com/yuvaraj8080/ICARUS-2023",
     detailsUrl: "/projects/icarus-2023",
+    role: "Full Stack Developer",
+    status: "Completed",
     liveUrl: "https://icarus23.netlify.app/",
     color: "#905BF0",
     achievements: [
@@ -671,8 +620,10 @@ export const projects: Project[] = [
     src: "coverpython.png",
     images: ["coverpython.png"],
     previewSrc: "coverpython.png",
-    githubUrl: "https://github.com/KrishayNair/AyurLeaf-AI",
+    githubUrl: "https://github.com/yuvaraj8080/AyurLeaf-AI",
     detailsUrl: "/projects/ayurleaf-ai",
+    role: "Full Stack Developer",
+    status: "Completed",
     liveUrl: "https://ayurleaf-ai.vercel.app",
     color: "#905BF0",
     achievements: [
@@ -715,8 +666,10 @@ export const projects: Project[] = [
     src: "covergdsc.png",
     images: ["covergdsc.png"],
     previewSrc: "covergdsc.png",
-    githubUrl: "https://github.com/KrishayNair/GDSC-RGIT",
+    githubUrl: "https://github.com/yuvaraj8080/GDSC-RGIT",
     detailsUrl: "/projects/gdsc-rgit",
+    role: "Full Stack Developer",
+    status: "Completed",
     liveUrl: "https://gdscrgit.netlify.app",
     color: "#E24AA3",
     achievements: [

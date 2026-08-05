@@ -7,15 +7,6 @@ import { AppImage } from "@/lib/common/AppImage";
 import { Container } from "@/lib/common/Container";
 import { HERO_TECH_STACK, HERO_TITLE } from "@/data/hero";
 
-const techBadgeClasses = cn(
-  "relative mx-1 inline-flex cursor-pointer items-center overflow-hidden rounded-md px-2 py-1",
-  "bg-bg-secondary border border-border-color text-sm font-medium text-text-primary",
-  "transition-all duration-300",
-  "before:absolute before:inset-0 before:opacity-0 before:transition-opacity before:duration-300",
-  "before:bg-[linear-gradient(135deg,rgba(59,130,246,0.15),rgba(37,99,235,0.1))]",
-  "hover:before:opacity-100"
-);
-
 const ctaBaseClasses = cn(
   "relative z-[1] flex cursor-pointer items-center gap-2 overflow-hidden rounded-lg px-6 py-3.5",
   "text-[0.9375rem] font-medium no-underline transition-all duration-300",
@@ -47,7 +38,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-bg-primary py-16 transition-colors duration-300 max-[768px]:min-h-0 max-[768px]:py-8"
+      className="relative flex w-full items-center justify-center overflow-hidden bg-bg-primary py-24 transition-colors duration-300 max-[900px]:py-16"
     >
       <Container className="z-[1] flex items-center justify-center">
         {!hasMounted ? (
@@ -69,7 +60,7 @@ export function Hero() {
               transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
             >
               {titleWords.map((word, index) => {
-                const isName = word === "Krishay" || word === "Nair";
+                const isName = word === "Yuvaraj" || word === "Dekhane";
                 return (
                   <motion.span
                     key={index}
@@ -102,12 +93,12 @@ export function Hero() {
                         <motion.span className="relative inline-block text-accent-blue [filter:drop-shadow(0_0_8px_rgba(59,130,246,0.35))]">
                           {word}
                         </motion.span>
-                        {word === "Krishay" && " "}
+                        {word === "Yuvaraj" && " "}
                       </>
                     ) : (
                       word
                     )}
-                    {index < titleWords.length - 1 && word !== "Krishay" && " "}
+                    {index < titleWords.length - 1 && word !== "Yuvaraj" && " "}
                   </motion.span>
                 );
               })}
@@ -119,34 +110,11 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             >
-              I build reliable systems at scale — from container orchestration
-              and service mesh to observability and secure networking. Working
-              with{" "}
-              {HERO_TECH_STACK.map((tech, index) => (
-                <motion.span
-                  key={tech.name}
-                  className={techBadgeClasses}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{
-                    duration: 0.45,
-                    delay: 0.55 + index * 0.035,
-                    type: "spring",
-                    stiffness: 180,
-                    damping: 18,
-                  }}
-                  whileHover={{
-                    scale: 1.1,
-                    y: -2,
-                    boxShadow: "0 4px 12px rgba(59, 130, 246, 0.35)",
-                    transition: { type: "spring", stiffness: 400, damping: 17 },
-                  }}
-                >
-                  {tech.name}
-                </motion.span>
-              ))}{" "}
-              and cloud-native tooling. Focused on SRE, DevOps, and networking —
-              high availability, performance, and automation.
+              I design and ship production-ready apps across Android, iOS,
+              and the web — from React Native and Flutter apps to full-stack
+              platforms and automation tools. 80+ projects delivered, 25+
+              live in production, including a CRM platform serving 500+
+              active clients.
             </motion.p>
 
             {/* Tech Stack Badges */}
@@ -198,8 +166,8 @@ export function Hero() {
               transition={{ duration: 0.7, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
             >
               <motion.a
-                href="/assets/pdf/Krishay_Nair_Resume.pdf"
-                download="Krishay_Nair_Resume.pdf"
+                href="/assets/pdf/Yuvaraj_Dekhane_Resume.pdf"
+                download="Yuvaraj_Dekhane_Resume.pdf"
                 className={cn(
                   ctaBaseClasses,
                   "bg-bg-primary border border-border-color text-text-primary",
@@ -292,7 +260,7 @@ export function Hero() {
             >
               <motion.a
                 target="_blank"
-                href="https://www.linkedin.com/in/krishay-nair-667313233/"
+                href="https://www.linkedin.com/in/yuvaraj-dekhane-473064297/"
                 className={socialLinkClasses}
                 aria-label="LinkedIn"
                 whileHover={{ scale: 1.2, y: -4, rotate: 5 }}
@@ -313,7 +281,7 @@ export function Hero() {
               </motion.a>
               <motion.a
                 target="_blank"
-                href="https://github.com/KrishayNair"
+                href="https://github.com/yuvaraj8080"
                 className={socialLinkClasses}
                 aria-label="GitHub"
                 whileHover={{ scale: 1.2, y: -4, rotate: -5 }}
@@ -332,7 +300,7 @@ export function Hero() {
                 </motion.svg>
               </motion.a>
               <motion.a
-                href="mailto:krishay958@gmail.com"
+                href="mailto:tech@astrovedansh.com"
                 className={socialLinkClasses}
                 aria-label="Email"
                 whileHover={{ scale: 1.2, y: -4 }}
@@ -356,9 +324,9 @@ export function Hero() {
               <motion.a
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://medium.com/@krishay958"
+                href="https://www.instagram.com/yuvaraj_dekhane/"
                 className={socialLinkClasses}
-                aria-label="Medium"
+                aria-label="Instagram"
                 whileHover={{ scale: 1.2, y: -4 }}
                 whileTap={{ scale: 0.9 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -367,11 +335,15 @@ export function Hero() {
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
-                  fill="currentColor"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <path d="M13.54 12l-5.27-5.27L13.54 1.46 18.81 6.73 13.54 12zm-1.08 0L1.46 22.54l1.27 1.27L13.46 13.27l-1-1.27zm1.08 0l5.27 5.27L13.46 22.54 8.19 17.27l4.27-5.27zm-1.08 0l-1 1.27L2.73 1.46l1.27-1.27L12.46 12z" />
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                 </motion.svg>
               </motion.a>
             </motion.div>

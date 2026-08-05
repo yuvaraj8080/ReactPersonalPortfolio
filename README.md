@@ -1,4 +1,4 @@
-# Portfolio — Krishay Nair
+# Portfolio — Yuvaraj Dekhane
 
 Personal portfolio built with a single, modern stack. See `CLAUDE.md` for the coding rules every component follows.
 

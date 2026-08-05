@@ -1,9 +1,13 @@
+/**
+ * Each key is also the folder name under public/assets/skills/<key>/
+ * that the matching icon files live in.
+ */
 export interface SkillGroups {
-  sreCloudNetworking: string[];
-  languagesAndTools: string[];
-  librariesAndFrameworks: string[];
-  databases: string[];
-  other: string[];
+  languages: string[];
+  framework: string[];
+  database: string[];
+  serviceTools: string[];
+  stateManagement: string[];
 }
 
 export interface MenuLink {

@@ -8,8 +8,8 @@ import { Title } from "@/lib/common/Title";
 import { Text } from "@/lib/common/Text";
 import { Container } from "@/lib/common/Container";
 
-const CAL_COM_USERNAME = "krishaynair";
-const CONTACT_EMAIL = "krishay958@gmail.com";
+const CAL_COM_USERNAME = "yuvaraj8080";
+const CONTACT_EMAIL = "yuvarajdekhane8080@gmail.com";
 
 const ROLE_OPTIONS = [
   "Founder",
@@ -24,13 +24,16 @@ const INQUIRY_OPTIONS = [
 ];
 
 const ctaButtonClasses = cn(
-  "flex cursor-pointer items-center gap-3 rounded-lg px-6 py-3.5",
+  "group flex cursor-pointer items-center gap-3 rounded-lg px-6 py-3.5",
   "bg-bg-secondary border border-border-color text-text-primary",
   "font-sans text-base font-medium no-underline",
   "shadow-[0_2px_8px_rgba(0,0,0,0.1)] transition-all duration-300",
-  "hover:bg-bg-hover hover:border-border-hover hover:shadow-[0_4px_12px_rgba(0,0,0,0.15)] hover:-translate-y-0.5",
+  "hover:bg-bg-hover hover:border-accent-blue hover:shadow-[0_10px_28px_rgba(0,0,0,0.2)]",
   "active:translate-y-0"
 );
+
+const ctaIconClasses =
+  "shrink-0 text-green-400 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5";
 
 const dropdownButtonClasses = cn(
   "flex w-full cursor-pointer items-center justify-between rounded-lg px-4 py-3.5",
@@ -158,28 +161,38 @@ export function ConnectSection() {
         <Container className="flex min-h-[30vh] items-center justify-center bg-bg-primary py-24 transition-colors duration-300 max-[900px]:py-16">
           <motion.div
             className={cn(
-              "flex w-full max-w-[600px] flex-col items-center gap-8 rounded-2xl border-2 border-dashed border-border-color bg-bg-primary px-8 py-12",
+              "flex w-full max-w-[600px] flex-col items-center gap-7 rounded-2xl border-2 border-dashed border-border-color bg-bg-primary px-8 py-12",
               "transition-colors duration-300 hover:border-border-hover",
-              "max-[600px]:px-6 max-[600px]:py-8"
+              "max-[600px]:px-6 max-[600px]:py-9"
             )}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Text className="m-0 text-center font-sans text-lg font-medium text-text-secondary transition-colors duration-300 max-[600px]:text-base">
-              Hey, you scrolled this far, let&apos;s talk.
-            </Text>
+            <div className="flex flex-col items-center gap-3 text-center">
+              <Title
+                level={2}
+                className="m-0 font-display text-2xl font-semibold leading-[1.25] tracking-[0.04em] text-text-primary transition-colors duration-300 max-[600px]:text-xl"
+              >
+                Hey, you scrolled this far — let&apos;s talk
+              </Title>
+              <Text className="m-0 max-w-[440px] font-sans text-base leading-[1.6] text-text-secondary transition-colors duration-300 max-[600px]:text-sm">
+                Open to full-time roles, freelance projects, and technical
+                collaborations — tell me what you&apos;re building and I&apos;ll
+                get back to you.
+              </Text>
+            </div>
             <div className="flex w-full flex-wrap items-center justify-center gap-4">
               <motion.button
                 className={ctaButtonClasses}
                 onClick={handleButtonClick}
-                whileHover={{ scale: 1.05, y: -2 }}
+                whileHover={{ scale: 1.07, y: -3 }}
                 whileTap={{ scale: 0.96 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 <svg
-                  className="shrink-0 text-green-400"
+                  className={ctaIconClasses}
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
@@ -194,12 +207,12 @@ export function ConnectSection() {
               <motion.a
                 href={`mailto:${CONTACT_EMAIL}`}
                 className={cn(ctaButtonClasses, "inline-flex")}
-                whileHover={{ scale: 1.05, y: -2 }}
+                whileHover={{ scale: 1.07, y: -3 }}
                 whileTap={{ scale: 0.96 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 <svg
-                  className="shrink-0 text-green-400"
+                  className={ctaIconClasses}
                   width="20"
                   height="20"
                   viewBox="0 0 24 24"
