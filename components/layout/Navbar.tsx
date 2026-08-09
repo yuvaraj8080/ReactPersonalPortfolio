@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -10,6 +10,7 @@ import { NAV_LINKS } from "@/lib/constants/nav";
 import { useThemeStore } from "@/store/useThemeStore";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { AppImage } from "@/lib/common/AppImage";
+import { goToSection } from "@/lib/section-navigation";
 
 const navElementClasses = cn(
   "m-0 font-sans text-base font-medium text-text-secondary no-underline",
@@ -25,6 +26,7 @@ const iconButtonClasses = cn(
 
 export function Navbar() {
   const router = useRouter();
+  const pathname = usePathname();
   const { theme, toggleTheme, init } = useThemeStore();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHeaderHidden, setIsHeaderHidden] = useState(false);
@@ -76,12 +78,12 @@ export function Navbar() {
     href: string
   ) => {
     e.preventDefault();
-    router.push(href);
+    goToSection(href.replace("/#", ""), pathname, router.push);
   };
 
   const handleMobileNavigate = (href: string) => {
     setIsMobileMenuOpen(false);
-    router.push(href);
+    goToSection(href.replace("/#", ""), pathname, router.push);
   };
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Container } from "@/lib/common/Container";
@@ -9,6 +9,7 @@ import { AppLink } from "@/lib/common/AppLink";
 import { sizes } from "@/lib/constants/styles";
 import { NAV_LINKS } from "@/lib/constants/nav";
 import { SOCIAL_LINKS } from "@/data/socials";
+import { goToSection } from "@/lib/section-navigation";
 
 const CONTACT_EMAIL = "yuvarajdekhane8080@gmail.com";
 
@@ -28,13 +29,14 @@ const socialLogoClasses = cn(
 
 export function Footer() {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleNavigation = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
     e.preventDefault();
-    router.push(href);
+    goToSection(href.replace("/#", ""), pathname, router.push);
   };
 
   return (

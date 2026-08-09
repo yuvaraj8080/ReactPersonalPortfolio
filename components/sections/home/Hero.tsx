@@ -234,7 +234,6 @@ export function Hero() {
                   if (el && window.location.pathname === "/") {
                     e.preventDefault();
                     el.scrollIntoView({ behavior: "smooth", block: "start" });
-                    window.history.replaceState(null, "", "/#contact");
                   }
                 }}
               >

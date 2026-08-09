@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,6 +14,7 @@ import { Text } from "@/lib/common/Text";
 import { TechBadge } from "@/lib/common/TechBadge";
 import { getBriefText, getBriefAchievement } from "@/lib/text";
 import { SITE_URL } from "@/lib/constants/site";
+import { goToSection } from "@/lib/section-navigation";
 import type { Project } from "@/types";
 
 interface ProjectDetailProps {
@@ -48,6 +49,7 @@ const actionButtonSecondaryClasses = cn(
 
 export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const [expandedSections, setExpandedSections] = useState<
     Record<SectionKey, boolean>
   >({
@@ -91,7 +93,7 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
             "font-sans text-base text-accent-blue transition-all duration-300",
             "hover:bg-[rgba(59,130,246,0.1)]"
           )}
-          onClick={() => router.push("/#projects")}
+          onClick={() => goToSection("projects", pathname, router.push)}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -388,6 +390,10 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
           </div>
           <Link
             href="/#projects"
+            onClick={(e) => {
+              e.preventDefault();
+              goToSection("projects", pathname, router.push);
+            }}
             className={cn(
               "mx-auto block max-w-[300px] rounded-lg border border-border-color px-8 py-4 text-center",
               "bg-text-primary font-sans font-semibold text-bg-primary no-underline",
