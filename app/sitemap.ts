@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: SITE_URL, changeFrequency: "weekly", priority: 1 },
     { url: `${SITE_URL}/projects`, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${SITE_URL}/blog`, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${SITE_URL}/all-blogs`, changeFrequency: "weekly", priority: 0.8 },
   ];
 
   const projectRoutes: MetadataRoute.Sitemap = projects.map((project) => ({

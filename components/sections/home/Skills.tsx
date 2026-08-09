@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion } from "framer-motion";
-import { Code2, Layers, Database, GitBranch, Wrench, type LucideIcon } from "lucide-react";
+import { Layers, Database, Wrench, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Title } from "@/lib/common/Title";
 import { Container } from "@/lib/common/Container";
@@ -93,7 +93,7 @@ function SkillTile({
         type: "spring",
         stiffness: 260,
         damping: 20,
-        delay: index * 0.03,
+        delay: Math.min(index, 12) * 0.03,
       }}
       whileHover={{ scale: 1.12, y: -6 }}
       whileTap={{ scale: 0.95 }}
@@ -129,17 +129,16 @@ function SkillTile({
 }
 
 interface SkillGroupConfig {
-  key: keyof typeof SKILLS;
+  keys: (keyof typeof SKILLS)[];
   label: string;
   icon: LucideIcon;
 }
 
+/** Categories combined here render as one card, sharing a single heading and icon grid. */
 const SKILL_GROUPS: SkillGroupConfig[] = [
-  { key: "languages", label: "Languages", icon: Code2 },
-  { key: "framework", label: "Frameworks & Libraries", icon: Layers },
-  { key: "database", label: "Databases & Cloud", icon: Database },
-  { key: "stateManagement", label: "State Management", icon: GitBranch },
-  { key: "serviceTools", label: "Tools & Services", icon: Wrench },
+  { keys: ["languages", "framework"], label: "Languages & Frameworks", icon: Layers },
+  { keys: ["database", "stateManagement"], label: "Databases & State", icon: Database },
+  { keys: ["serviceTools"], label: "Tools & Services", icon: Wrench },
 ];
 
 function SkillCategoryCard({
@@ -150,7 +149,9 @@ function SkillCategoryCard({
   groupIndex: number;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const skills = SKILLS[group.key];
+  const skills = group.keys.flatMap((key) =>
+    SKILLS[key].map((skill) => ({ group: key, skill }))
+  );
   const Icon = group.icon;
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
@@ -195,9 +196,6 @@ function SkillCategoryCard({
         >
           {group.label}
         </Title>
-        <span className="font-sans text-sm text-text-secondary">
-          {skills.length}
-        </span>
         <motion.span
           className="ml-2 hidden h-px flex-1 bg-border-color transition-colors duration-300 sm:block"
           style={{ transformOrigin: "left" }}
@@ -208,13 +206,15 @@ function SkillCategoryCard({
         />
       </div>
       <div
-        className={cn(
-          "relative z-[1] grid grid-cols-[repeat(auto-fill,minmax(56px,1fr))]",
-          sizes.gap
-        )}
+        className={cn("relative z-[1] flex flex-wrap justify-start", sizes.gap)}
       >
-        {skills.map((skill, index) => (
-          <SkillTile key={skill} group={group.key} skill={skill} index={index} />
+        {skills.map(({ group: skillGroup, skill }, index) => (
+          <SkillTile
+            key={`${skillGroup}-${skill}`}
+            group={skillGroup}
+            skill={skill}
+            index={index}
+          />
         ))}
       </div>
     </motion.div>
@@ -228,17 +228,17 @@ export function Skills() {
       className="relative w-full bg-bg-primary py-16 transition-colors duration-300 max-[768px]:py-12 max-[480px]:py-8"
     >
       <Container className="flex flex-col gap-8">
-        <div className="mb-4 flex items-center justify-center">
+        <div className="mb-4 flex items-center justify-start">
           <Title
             level={2}
-            className="m-0 text-center font-display text-3xl font-bold leading-[1.2] tracking-[-0.02em] text-text-primary transition-colors duration-300 max-[768px]:text-[2.5rem] max-[480px]:text-[2rem]"
+            className="m-0 text-left font-display text-3xl font-bold leading-[1.2] tracking-[-0.02em] text-text-primary transition-colors duration-300 max-[768px]:text-[2.5rem] max-[480px]:text-[2rem]"
           >
             My Skills
           </Title>
         </div>
         <div className="flex flex-col gap-5 md:gap-6">
           {SKILL_GROUPS.map((group, groupIndex) => (
-            <SkillCategoryCard key={group.key} group={group} groupIndex={groupIndex} />
+            <SkillCategoryCard key={group.label} group={group} groupIndex={groupIndex} />
           ))}
         </div>
       </Container>

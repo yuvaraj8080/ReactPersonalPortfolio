@@ -1,12 +1,27 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "@/lib/constants/site";
 import { AllBlogsContent } from "@/components/sections/blog/AllBlogsContent";
 
+const title = "Blog — Yuvaraj Dekhane";
+const description =
+  "Notes on AI-assisted development, shipping production apps fast, and the tools and workflows behind them.";
+
 export const metadata: Metadata = {
-  title: "Blog — Yuvaraj Dekhane",
-  description:
-    "Notes on AI-assisted development, shipping production apps fast, and the tools and workflows behind them.",
+  title,
+  description,
   alternates: {
-    canonical: "/blog",
+    canonical: "/all-blogs",
+  },
+  openGraph: {
+    title,
+    description,
+    url: `${SITE_URL}/all-blogs`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
   },
 };
 

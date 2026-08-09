@@ -22,7 +22,7 @@ export const projects: Project[] = [
       ],
       "impact": "Delivered a production-ready website in just 3 days through rapid iteration, continuous feedback, and close team collaboration with the MagicMond Magicians Team — demonstrating how modern development practices can significantly accelerate product delivery, without cutting corners on quality or reliability."
     },
-    "tech": "React, Vite, Tailwind CSS, Framer Motion",
+    "tech": "React, Vite, HTML, CSS, Tailwind CSS, Framer Motion, Redux Toolkit, SEO Optimization",
     "src": "magicmond/introPage.webp",
     "images": [
       "magicmond/introPage.webp",
@@ -45,7 +45,6 @@ export const projects: Project[] = [
         "url": "https://magicmond.com/"
       }
     ],
-    "color": "#7C3AED",
     "achievements": [
       {
         "title": "Shipped in 3 Days",
@@ -81,7 +80,7 @@ export const projects: Project[] = [
       ],
       impact: "Delivered with the MagicMond Magicians Team, bringing together modern technology, production-ready design, and business goals into one digital experience. Production-ready design contributions from Kunal Naskar and Abhishek Saini helped solve complex UI/UX challenges through close design-development collaboration."
     },
-    tech: "React, Vite, Tailwind CSS, Zustand",
+    tech: "React, Vite, Tailwind CSS, Zustand, Framer Motion, MVC",
     src: "sreeYamunaInfra/introPage.webp",
     images: [
       "sreeYamunaInfra/introPage.webp",
@@ -96,8 +95,7 @@ export const projects: Project[] = [
     detailsUrl: "/projects/shri-yamuna-infra",
     role: "Frontend Developer",
     status: "Completed",
-    liveUrls: [{ title: "Shri Yamuna Infra Website", url: "https://lnkd.in/gqJ23XzG" }],
-    color: "#B45309",
+    liveUrls: [{ title: "Shri Yamuna Infra Website", url: "https://shriyamunainfra.com/" }],
     achievements: [
       {
         title: "Trust-First Real Estate Platform",
@@ -147,7 +145,12 @@ export const projects: Project[] = [
     detailsUrl: "/projects/dosha-detector",
     role: "Flutter Developer",
     status: "Completed",
-    color: "#F0B429",
+    liveUrls: [
+      {
+        title: "Play Store",
+        url: "https://play.google.com/store/apps/details?id=com.DoshaDetector.app&hl=en_IN"
+      }
+    ],
     achievements: [
       {
         title: "500+ Downloads",
@@ -184,7 +187,7 @@ export const projects: Project[] = [
       ],
       impact: "PerfectTiming launched with 1.56M+ campaign impressions and 1,000+ conversions in its initial launch cycle, delivering 18,000+ personalized reports in its first month alone. Built under the guidance of Rajat Vallabh, with Prem Patel leading automation workflows, and supported by the full AstroVedansh team of astrologers, designers, and analysts."
     },
-    tech: "Flutter Web, Firebase, GetX, Cloud Functions",
+    tech: "Flutter, Firebase, GetX, Cloud Functions, Razorpay, OpenAI, Interakt",
     src: "perfectTiming/introPage.webp",
     images: [
       "perfectTiming/introPage.webp",
@@ -202,10 +205,9 @@ export const projects: Project[] = [
     liveUrls: [
       {
         title: "PerfectTiming Web App",
-        url: "https://lnkd.in/dUXJdMtc"
+        url: "https://perfect-timing.astrovedansh.com/#/landing"
       }
     ],
-    color: "#2563EB",
     achievements: [
       {
         title: "1.56M+ Campaign Impressions",
@@ -259,10 +261,9 @@ export const projects: Project[] = [
     liveUrls: [
       {
         title: "PerfectCareer Live Platform",
-        url: "https://lnkd.in/g43TY_FE"
+        url: "https://perfect-career.astrovedansh.com/"
       }
     ],
-    color: "#DB2777",
     achievements: [
       {
         title: "353K+ Campaign Impressions",
@@ -321,7 +322,6 @@ export const projects: Project[] = [
     "detailsUrl": "/projects/ecommerce-app",
     "role": "Flutter Developer",
     "status": "Completed",
-    "color": "#1E40AF",
     "achievements": [
       {
         "title": "Full E-Commerce Ecosystem",
@@ -371,7 +371,6 @@ export const projects: Project[] = [
     "detailsUrl": "/projects/grah9",
     "role": "Full Stack Developer",
     "status": "Completed",
-    "color": "#4F46E5",
     "achievements": [
       {
         "title": "2000+ Users Managed",
@@ -385,304 +384,4 @@ export const projects: Project[] = [
       }
     ]
   },
-
-  {
-    title: "NextGen police complaint system",
-    slug: "nextgen-complaint",
-    description: "Introducing a complaint system on Polygon blockchain for seamless and transparent complaint submission and management. Benefit from rapid transactions, low fees, and enhanced security, ensuring swift resolution and accountability. Goodbye to bureaucratic delays with our blockchain-powered solution.",
-    detailedDescription: {
-      overview: "The NextGen Police Complaint System revolutionizes the traditional complaint filing process by leveraging blockchain technology. It ensures transparency, immutability, and efficiency in handling police complaints while maintaining complete privacy and security.",
-      features: [
-        "Blockchain-based complaint submission",
-        "Real-time complaint tracking",
-        "Secure and immutable records",
-        "Automated status updates",
-        "Transparent resolution process",
-        "Low transaction fees using Polygon"
-      ],
-      technicalDetails: [
-        "Built on Polygon blockchain network",
-        "Smart contracts for complaint management",
-        "Secure user authentication",
-        "Real-time status tracking system",
-        "Responsive web interface"
-      ],
-      impact: "This system significantly reduces bureaucratic delays and increases transparency in the complaint resolution process, leading to better public trust and more efficient law enforcement."
-    },
-    tech: "FLASK, HTML, CSS, PYTHON, ML",
-    src: "next_main.jpeg",
-    images: ["next_main.jpeg", "next_bot.jpeg", "next_complaint.jpeg", "next_complaint2.jpeg"],
-    certificates: [
-      {
-        title: "Top 10 in IIIT Pune Ideathon",
-        file: "/assets/pdf/next_certificate.pdf",
-        image: "/assets/images/projects/covercomplaint.png"
-      }
-    ],
-    previewSrc: "covercomplaint.png",
-    githubUrl: "https://github.com/yuvaraj8080/NextGen-Complaint-System",
-    detailsUrl: "/projects/nextgen-complaint",
-    role: "Full Stack Developer",
-    status: "Completed",
-    "liveUrls": [
-      {
-        "title": " Devfolio link",
-        "url": "https://devfolio.co/projects/aptosgameverse-5c9b"
-      },
-      {
-        "title": "Video Demo Link",
-        "url": "https://youtu.be/rKCAytXvgBc?si=FGz49MEJnfSCzQaC"
-      },
-      {
-        "title": "Live Website Link",
-        "url": "https://nextgen-police-complaint-system.vercel.app/"
-      }
-    ],
-    color: "#E24AA3",
-    achievements: [
-      {
-        title: "Top 10 in IIIT Pune Ideathon",
-        icon: "🏆",
-        description: "Recognized for significantly reducing complaint resolution time"
-      }
-
-    ]
-  },
-
-
-  {
-    title: "Believe Charity",
-    slug: "believe-charity",
-    description: "Empower charitable giving with our Ethereum blockchain crowdfunding system. Utilizing smart contracts, we offer a transparent, secure platform for seamless donations and impact tracking. Revolutionize philanthropy with blockchain's transparency and efficiency.",
-    detailedDescription: {
-      overview: "Believe Charity is a revolutionary blockchain-based crowdfunding platform that brings transparency and trust to charitable giving. It enables donors to track their contributions and see the real impact of their donations through smart contracts.",
-      features: [
-        "Ethereum blockchain integration",
-        "Smart contract-based donations",
-        "Transparent fund tracking",
-        "Real-time impact visualization",
-        "Secure payment processing",
-        "Donor recognition system"
-      ],
-      technicalDetails: [
-        "Ethereum smart contracts",
-        "Web3 integration",
-        "Secure payment gateway",
-        "Real-time transaction tracking",
-        "Responsive frontend design"
-      ],
-      impact: "Believe Charity has successfully facilitated numerous charitable campaigns, bringing transparency and trust to the donation process while ensuring funds reach their intended recipients."
-    },
-    tech: "FLASK, HTML, CSS, PYTHON, ML",
-    src: "coverbelieve.png",
-    images: ["coverbelieve.png", "believe_org.jpeg"],
-    certificates: [
-      {
-        title: "Best project on Social Impact Award",
-        file: "/assets/images/projects/believe_certificate.jpeg",
-        image: "/assets/images/projects/believe_winner.jpeg"
-      }
-    ],
-    previewSrc: "coverbelieve.png",
-    githubUrl: "https://github.com/yuvaraj8080/Believe-Charity",
-    detailsUrl: "/projects/believe-charity",
-    role: "Full Stack Developer",
-    status: "Completed",
-    liveUrl: "https://believe-charity.vercel.app",
-    color: "#5CC2F2",
-    achievements: [
-      {
-        title: "Best project on Social Impact Award",
-        icon: "🏆",
-        description: "Recognized for innovative use of blockchain in philanthropy"
-      }
-    ]
-  },
-
-  {
-    title: "SecureClick",
-    slug: "secureclick",
-    description: "To combat rising phishing threats, we propose an AI and ML-powered solution using WHOIS databases for domain insights. Our tool distinguishes phishing from legitimate domains through backend analysis and integrates advanced email/SMS spam detection for comprehensive defense.",
-    detailedDescription: {
-      overview: "SecureClick is an advanced security solution that leverages artificial intelligence and machine learning to protect users from phishing attacks and spam. It provides real-time analysis of domains and communications to ensure safe browsing and messaging experiences.",
-      features: [
-        "Real-time domain analysis using WHOIS databases",
-        "AI-powered phishing detection",
-        "Advanced email and SMS spam filtering",
-        "Instant threat alerts and notifications",
-        "User-friendly security dashboard",
-        "Comprehensive security reports"
-      ],
-      technicalDetails: [
-        "Built with Flask for backend and modern HTML/CSS for frontend",
-        "Machine learning models for threat detection",
-        "Integration with WHOIS databases",
-        "Real-time analysis and processing",
-        "Secure API endpoints for threat checking"
-      ],
-      impact: "SecureClick provides a crucial layer of security in today's digital landscape, helping users and organizations protect themselves from sophisticated phishing attacks and spam."
-    },
-    tech: "FLASK, HTML, CSS, PYTHON, ML",
-    src: "secureclick 1.png",
-    images: ["secureclick 1.png"],
-    previewSrc: "secureclick 1.png",
-    githubUrl: "https://github.com/yuvaraj8080/SecureClick",
-    detailsUrl: "/projects/secureclick",
-    role: "Full Stack Developer",
-    status: "Completed",
-    liveUrl: "https://secureclick.vercel.app",
-    color: "#E24AA3",
-    achievements: [
-      {
-        title: "Hackathon Winner",
-        icon: "🏆",
-        description: "Recognized as an innovative security solution in multiple hackathons"
-      },
-      {
-        title: "User Adoption",
-        icon: "👥",
-        description: "Successfully deployed and used by multiple organizations for security enhancement"
-      }
-    ]
-  },
-
-
-  {
-    title: "ICARUS 2023",
-    slug: "icarus-2023",
-    description: "Introducing the Icarus Fest 2023 website: your gateway to RGITS Technical Fest. Crafted in React.js, our user-friendly platform lets you effortlessly explore events, register, and stay updated with real-time information. Immerse yourself in a visually appealing, responsive, and intuitive UI design for an unforgettable fest experience.",
-    detailedDescription: {
-      overview: "ICARUS 2023 is a comprehensive technical fest website that serves as the central hub for RGITS's annual technical festival. It provides an engaging platform for students to explore, register, and participate in various technical events.",
-      features: [
-        "Event registration system",
-        "Real-time updates and notifications",
-        "Interactive event schedule",
-        "Participant dashboard",
-        "Live results tracking",
-        "Responsive design for all devices"
-      ],
-      technicalDetails: [
-        "Built with React.js",
-        "Modern UI/UX design",
-        "Real-time data updates",
-        "Secure authentication system",
-        "Optimized performance"
-      ],
-      impact: "The ICARUS 2023 website successfully managed the registration and participation of thousands of students across multiple technical events, making it the most successful technical fest in RGITS history."
-    },
-    tech: "FLASK, HTML, CSS, PYTHON, ML",
-    src: "covericarus.png",
-    images: ["covericarus.png"],
-    previewSrc: "covericarus.png",
-    githubUrl: "https://github.com/yuvaraj8080/ICARUS-2023",
-    detailsUrl: "/projects/icarus-2023",
-    role: "Full Stack Developer",
-    status: "Completed",
-    liveUrl: "https://icarus23.netlify.app/",
-    color: "#905BF0",
-    achievements: [
-      {
-        title: "Best Technical Website",
-        icon: "🌐",
-        description: "Awarded for outstanding web design and functionality"
-      },
-      {
-        title: "User Engagement",
-        icon: "📊",
-        description: "Achieved record-breaking user engagement during the fest"
-      }
-    ]
-  },
-  {
-    title: "AyurLeaf AI",
-    slug: "ayurleaf-ai",
-    description: "Introducing a deep learning-based website revolutionizing Ayurvedic medicine by automating the identification and understanding of medicinal leaves. Traditional methods are time-consuming and error-prone; our platform provides quick and accurate analysis, eliminating the need for expert knowledge.",
-    detailedDescription: {
-      overview: "AyurLeaf AI is an innovative platform that combines deep learning with traditional Ayurvedic knowledge to provide accurate identification and information about medicinal plants. It helps bridge the gap between traditional medicine and modern technology.",
-      features: [
-        "AI-powered leaf identification",
-        "Comprehensive plant database",
-        "Medicinal properties information",
-        "Usage guidelines and precautions",
-        "Image processing capabilities",
-        "Multi-language support"
-      ],
-      technicalDetails: [
-        "Deep learning models for image recognition",
-        "Flask backend with Python",
-        "Responsive web interface",
-        "Image processing pipeline",
-        "Secure data storage"
-      ],
-      impact: "AyurLeaf AI has made significant contributions to preserving and modernizing Ayurvedic knowledge, making it more accessible to both practitioners and the general public."
-    },
-    tech: "FLASK, HTML, CSS, PYTHON, ML",
-    src: "coverpython.png",
-    images: ["coverpython.png"],
-    previewSrc: "coverpython.png",
-    githubUrl: "https://github.com/yuvaraj8080/AyurLeaf-AI",
-    detailsUrl: "/projects/ayurleaf-ai",
-    role: "Full Stack Developer",
-    status: "Completed",
-    liveUrl: "https://ayurleaf-ai.vercel.app",
-    color: "#905BF0",
-    achievements: [
-      {
-        title: "AI Innovation Award",
-        icon: "🤖",
-        description: "Recognized for innovative use of AI in traditional medicine"
-      },
-      {
-        title: "Healthcare Impact",
-        icon: "🏥",
-        description: "Successfully deployed in multiple healthcare institutions"
-      }
-    ]
-  },
-  {
-    title: "GDSC RGIT",
-    slug: "gdsc-rgit",
-    description: "Introducing the GDSC (RGIT) website: a community informative platform built on ReactJS and Styled components. Showcase events and community details with a focus on responsiveness and UI friendliness. Created by the GDSC RGIT web team, it features carousels and comprehensive activity details.",
-    detailedDescription: {
-      overview: "The GDSC RGIT website serves as the digital hub for the Google Developer Student Club at RGIT, providing a platform for students to learn about upcoming events, workshops, and community activities.",
-      features: [
-        "Event management system",
-        "Community member profiles",
-        "Activity calendar",
-        "Resource sharing platform",
-        "News and updates section",
-        "Interactive UI components"
-      ],
-      technicalDetails: [
-        "React.js frontend",
-        "Styled components for styling",
-        "Responsive design",
-        "Dynamic content management",
-        "Performance optimization"
-      ],
-      impact: "The website has successfully increased community engagement and participation in GDSC activities, making it easier for students to stay connected and informed about tech events and opportunities."
-    },
-    tech: "FLASK, HTML, CSS, PYTHON, ML",
-    src: "covergdsc.png",
-    images: ["covergdsc.png"],
-    previewSrc: "covergdsc.png",
-    githubUrl: "https://github.com/yuvaraj8080/GDSC-RGIT",
-    detailsUrl: "/projects/gdsc-rgit",
-    role: "Full Stack Developer",
-    status: "Completed",
-    liveUrl: "https://gdscrgit.netlify.app",
-    color: "#E24AA3",
-    achievements: [
-      {
-        title: "Community Excellence",
-        icon: "👥",
-        description: "Recognized as one of the most active GDSC chapters"
-      },
-      {
-        title: "Design Award",
-        icon: "🎨",
-        description: "Awarded for outstanding UI/UX design"
-      }
-    ]
-  }
 ];

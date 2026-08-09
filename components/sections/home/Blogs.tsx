@@ -62,7 +62,7 @@ export function Blogs() {
             Blog
           </Title>
           <AppLink
-            href="/blog"
+            href="/all-blogs"
             className={cn(
               "inline-flex shrink-0 items-center gap-1.5 font-sans text-sm font-semibold text-text-primary no-underline",
               "transition-all duration-200 hover:text-accent-blue hover:translate-x-[3px]"
@@ -79,6 +79,7 @@ export function Blogs() {
           ref={scrollRef}
           className={cn(
             "w-full min-w-0 cursor-grab overflow-x-auto overflow-y-hidden [scroll-behavior:auto] active:cursor-grabbing",
+            "max-[768px]:w-screen max-[768px]:ml-[calc(50%-50vw)]",
             "[scrollbar-width:thin] [-webkit-overflow-scrolling:touch]",
             "[&::-webkit-scrollbar]:h-1.5",
             "[&::-webkit-scrollbar-track]:rounded-[3px] [&::-webkit-scrollbar-track]:bg-bg-secondary",

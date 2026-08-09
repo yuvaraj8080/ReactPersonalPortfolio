@@ -11,7 +11,9 @@ import { ProjectGallery } from "@/components/sections/projects/ProjectGallery";
 import { ExpandableSection } from "@/components/sections/projects/ExpandableSection";
 import { Title } from "@/lib/common/Title";
 import { Text } from "@/lib/common/Text";
+import { TechBadge } from "@/lib/common/TechBadge";
 import { getBriefText, getBriefAchievement } from "@/lib/text";
+import { SITE_URL } from "@/lib/constants/site";
 import type { Project } from "@/types";
 
 interface ProjectDetailProps {
@@ -53,7 +55,7 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
   });
 
   const techStack = project.tech
-    ? project.tech.split(",").map((t) => t.trim().replace(/\./g, ""))
+    ? project.tech.split(",").map((t) => t.trim())
     : [];
 
   const toggleSection = (section: SectionKey) => {
@@ -62,8 +64,26 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
 
   const hasStats = project.timeline || project.role || project.status;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: project.title,
+    description: getBriefText(project.description),
+    url: `${SITE_URL}${project.detailsUrl}`,
+    ...(project.previewSrc && {
+      image: `${SITE_URL}/assets/images/projects/${project.previewSrc}`,
+    }),
+    ...(techStack.length > 0 && { keywords: techStack.join(", ") }),
+    author: { "@type": "Person", name: "Yuvaraj Dekhane" },
+  };
+
   return (
     <div className="min-h-screen bg-bg-primary transition-colors duration-300">
+      {/* GEO/SEO: structured data so search + AI answer engines can parse this project directly. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Container className="min-h-screen py-8 text-text-primary transition-colors duration-300 max-[768px]:py-4">
         <motion.button
           className={cn(
@@ -161,12 +181,7 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
             <Title level={2} className={sectionTitleClasses}>Technology Stack</Title>
             <div className="flex flex-wrap gap-3">
               {techStack.slice(0, 8).map((tech, index) => (
-                <span
-                  key={index}
-                  className="rounded-lg border border-border-color bg-bg-secondary px-4 py-2 font-sans text-[0.9rem] text-text-primary"
-                >
-                  {tech}
-                </span>
+                <TechBadge key={index} tech={tech} />
               ))}
               {techStack.length > 8 && (
                 <span className="rounded-lg border border-border-color bg-bg-secondary px-4 py-2 font-sans text-[0.9rem] text-text-primary">
@@ -322,7 +337,7 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
           >
             Related Projects
           </Title>
-          <div className="mb-12 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-8 max-[768px]:grid-cols-1">
+          <div className="mb-12 grid grid-cols-1 gap-8">
             {relatedProjects.map((relatedProject) => (
               <Link
                 key={relatedProject.slug}
@@ -334,12 +349,12 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
                   "hover:-translate-y-1 hover:border-accent-blue hover:shadow-[0_10px_30px_rgba(59,130,246,0.12)]"
                 )}
               >
-                <div className="relative h-[200px] w-full bg-bg-secondary">
+                <div className="relative aspect-[16/9] w-full bg-bg-secondary">
                   <Image
                     src={`/assets/images/projects/${relatedProject.src || relatedProject.previewSrc}`}
                     alt={relatedProject.title}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
                 <div className="flex flex-col gap-3 p-6">
@@ -358,15 +373,10 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
                         .split(",")
                         .slice(0, 3)
                         .map((tech, i) => (
-                          <span
-                            key={i}
-                            className="rounded-lg border border-border-color bg-bg-secondary px-3 py-1 text-[0.8rem] text-text-secondary"
-                          >
-                            {tech.trim()}
-                          </span>
+                          <TechBadge key={i} tech={tech.trim()} />
                         ))}
                       {relatedProject.tech.split(",").length > 3 && (
-                        <span className="rounded-lg border border-border-color bg-bg-secondary px-3 py-1 text-[0.8rem] text-text-secondary">
+                        <span className="rounded-lg border border-border-color bg-bg-secondary px-4 py-2 text-[0.9rem] text-text-secondary">
                           +{relatedProject.tech.split(",").length - 3}
                         </span>
                       )}

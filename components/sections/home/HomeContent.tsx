@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { layout } from "@/lib/constants/styles";
 import { useHashNavigation } from "@/hooks/useHashNavigation";
+import { Title } from "@/lib/common/Title";
 import { Footer } from "@/components/layout/Footer";
 import { Hero } from "@/components/sections/home/Hero";
 import { ExperienceSection } from "@/components/sections/home/ExperienceSection";
@@ -23,16 +24,20 @@ export function HomeContent() {
       <Hero />
       <ExperienceSection />
       <main className={layout.container}>
-        <motion.h1
+        <motion.div
           id="projects"
-          className="mb-12 mt-12 text-left font-display text-4xl font-semibold leading-[1.2] tracking-[0.04em] text-text-primary"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          Projects
-        </motion.h1>
+          <Title
+            level={2}
+            className="mb-12 mt-12 text-left font-display text-4xl font-semibold leading-[1.2] tracking-[0.04em] text-text-primary"
+          >
+            Projects
+          </Title>
+        </motion.div>
         <ProjectsGrid projects={projects} singleColumn />
       </main>
       <Skills />

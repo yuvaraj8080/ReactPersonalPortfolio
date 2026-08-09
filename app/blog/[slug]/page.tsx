@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { SITE_URL } from "@/lib/constants/site";
 import { blogs } from "@/data/blogs";
 import { BlogDetail } from "@/components/sections/blog/BlogDetail";
 
@@ -16,7 +17,9 @@ export async function generateMetadata({
 }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const blog = blogs.find((b) => b.slug === slug);
-  if (!blog) return { title: "Post not found" };
+  if (!blog) {
+    return { title: "Post not found", robots: { index: false, follow: false } };
+  }
 
   return {
     title: `${blog.title} — Yuvaraj Dekhane`,
@@ -27,9 +30,16 @@ export async function generateMetadata({
     openGraph: {
       title: blog.title,
       description: blog.excerpt,
+      url: `${SITE_URL}/blog/${blog.slug}`,
       type: "article",
       publishedTime: blog.date,
       tags: blog.tags,
+      images: blog.coverImage ? [blog.coverImage] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: blog.title,
+      description: blog.excerpt,
       images: blog.coverImage ? [blog.coverImage] : undefined,
     },
   };

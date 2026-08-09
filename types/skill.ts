@@ -9,8 +9,3 @@ export interface SkillGroups {
   serviceTools: string[];
   stateManagement: string[];
 }
-
-export interface MenuLink {
-  name: string;
-  ref: string;
-}

@@ -34,8 +34,8 @@ export function Navbar() {
     init();
   }, [init]);
 
-  // Mobile-only auto-hide header: hides on scroll down, reveals on scroll up,
-  // always visible at the very top of the page. Desktop is unaffected.
+  // Auto-hide header on both mobile and desktop: hides on scroll down,
+  // reveals on scroll up, always visible at the very top of the page.
   // A minimum-delta threshold ignores the sub-pixel jitter that
   // `scroll-behavior: smooth` (app/globals.css) produces.
   useEffect(() => {
@@ -43,11 +43,6 @@ export function Navbar() {
     const DIRECTION_THRESHOLD = 8;
 
     const handleScroll = () => {
-      if (window.innerWidth >= 768) {
-        setIsHeaderHidden(false);
-        lastScrollY.current = window.scrollY;
-        return;
-      }
       const currentScrollY = window.scrollY;
       const delta = currentScrollY - lastScrollY.current;
       if (currentScrollY <= 10) {
@@ -62,15 +57,9 @@ export function Navbar() {
       }
     };
 
-    const handleResize = () => {
-      if (window.innerWidth >= 768) setIsHeaderHidden(false);
-    };
-
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -97,11 +86,11 @@ export function Navbar() {
 
   return (
     <>
-      {/* Mobile-only spacer: the real header below is fixed, so this reserves
-          its layout space (position: sticky is unreliable here because
-          app/globals.css sets overflow-x: hidden on html/body). */}
-      <div className="h-[74px] md:hidden" aria-hidden="true" />
-      <div className="fixed inset-x-0 top-0 z-[100] md:relative md:inset-x-auto md:top-auto">
+      {/* Spacer: the real header below is fixed on all breakpoints, so this
+          reserves its layout space (position: sticky is unreliable here
+          because app/globals.css sets overflow-x: hidden on html/body). */}
+      <div className="h-[74px] md:h-[81px]" aria-hidden="true" />
+      <div className="fixed inset-x-0 top-0 z-[100]">
         <motion.header
           className={cn(
             layout.container,
@@ -127,11 +116,11 @@ export function Navbar() {
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
               <AppImage
-                src="/assets/logo/yd-logo-icon.png"
+                src="/assets/logo/YD_Logo.webp"
                 alt="YD logo"
                 fill
                 sizes="48px"
-                className="object-contain"
+                className="object-cover"
                 priority
               />
             </motion.div>
@@ -202,9 +191,9 @@ export function Navbar() {
 
             {/* Desktop: full "Download CV" pill */}
             <motion.a
-              href="/assets/pdf/resume.pdf"
+              href="/assets/pdf/YuvarajDekhane_09_Aug.pdf"
               className="z-[3] hidden md:inline-block"
-              download="resume"
+              download="Yuvaraj_Dekhane_Resume.pdf"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -223,9 +212,9 @@ export function Navbar() {
 
             {/* Mobile: compact icon-only "Download CV" */}
             <motion.a
-              href="/assets/pdf/resume.pdf"
+              href="/assets/pdf/YuvarajDekhane_09_Aug.pdf"
               className={cn(iconButtonClasses, "md:hidden")}
-              download="resume"
+              download="Yuvaraj_Dekhane_Resume.pdf"
               aria-label="Download CV"
               whileHover={{ scale: 1.08 }}
               whileTap={{ scale: 0.92 }}

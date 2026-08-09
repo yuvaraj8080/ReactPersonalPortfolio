@@ -9,8 +9,7 @@ export const blogs: Blog[] = [
     category: "AI & Development",
     date: "2026-07-28",
     tags: ["Vibe Coding", "AI", "Developer Workflow"],
-    featured: true,
-    coverImage: "/assets/images/blog/VibeCoading.png",
+    coverImage: "/assets/images/blog/VibeCoading.webp",
     keyTakeaways: [
       "Vibe coding means directing an AI coding agent with **plain-language intent** and iterating on its output, instead of hand-writing every line yourself.",
       "It's fastest for **scaffolding, UI sections, and repetitive patterns** — not a substitute for reviewing architecture or security-sensitive code.",
@@ -98,8 +97,7 @@ export const blogs: Blog[] = [
     category: "Tools & Workflow",
     date: "2026-07-12",
     tags: ["Claude Code", "Cursor", "AI Agents"],
-    featured: false,
-    coverImage: "/assets/images/blog/AgentWorkflow.png",
+    coverImage: "/assets/images/blog/AgentWorkflow.webp",
     keyTakeaways: [
       "An AI coding agent's loop is: **read the relevant code, propose a change, apply it, verify it** — the same loop a careful human engineer follows, just faster at the reading and typing steps.",
       "**Claude Code** is agent-first and CLI-native — good for larger, multi-file changes and running its own verification (build, browser checks) before handing back.",
@@ -125,7 +123,7 @@ export const blogs: Blog[] = [
       },
       {
         type: "image",
-        src: "/assets/images/blog/AgentWorkflow.png",
+        src: "/assets/images/blog/AgentWorkflow.webp",
         alt: "Infographic of the seven-step AI agent workflow: ideation & planning, code & build with Cursor, deep thinking & complex logic with Claude Code, terminal & automation, testing & debugging, review & polish, and commit & deploy",
         caption: "The full loop end to end — Cursor for speed and flow, Claude Code for depth and execution.",
         fit: "contain",
@@ -173,7 +171,7 @@ export const blogs: Blog[] = [
       },
       {
         type: "image",
-        src: "/assets/images/blog/AgentArchitecture.png",
+        src: "/assets/images/blog/AgentArchitecture.webp",
         alt: "Claude Code architecture and integration flow: the AI assistant core and context management connect through an extension bridge into Cursor's IDE, with user input flowing through the extension to the Claude API and back",
         caption: "Same request/response loop under the hood, whichever editor it's running in.",
         fit: "contain",
@@ -194,7 +192,6 @@ export const blogs: Blog[] = [
     category: "Case Study",
     date: "2026-06-30",
     tags: ["Case Study", "React", "Vibe Coding"],
-    featured: false,
     coverImage: "/assets/images/projects/magicmond/introPage.webp",
     keyTakeaways: [
       "MagicMond Global is the agency's own marketing site — Design x Growth x Tech x AI — shipped in **3 days** with the MagicMond Magicians Team.",
@@ -257,8 +254,7 @@ export const blogs: Blog[] = [
       "Google Tag Manager",
       "Meta Pixel",
     ],
-    featured: false,
-    coverImage: "/assets/images/blog/CaseReactCover.png",
+    coverImage: "/assets/images/blog/CaseReactCover.webp",
     relatedProjectSlugs: ["perfect-career"],
     keyTakeaways: [
       "Built with guidance from **Chirag Pachauri** as Senior Developer, on a tight, fixed timeline from day one.",
@@ -288,7 +284,7 @@ export const blogs: Blog[] = [
       },
       {
         type: "image",
-        src: "/assets/images/blog/ReactRendering.png",
+        src: "/assets/images/blog/ReactRendering.webp",
         alt: "How client-side rendering works: the browser requests a site, the server sends HTML with JS links, the browser downloads and executes the JS, then loads the site",
         caption: "The client-side rendering flow this platform's frontend runs on.",
         fit: "contain",
@@ -369,8 +365,7 @@ export const blogs: Blog[] = [
       "Pie Chart",
       "Pagination",
     ],
-    featured: false,
-    coverImage: "/assets/images/blog/CaseFlutterCover.png",
+    coverImage: "/assets/images/blog/CaseFlutterCover.webp",
     relatedProjectSlugs: ["dosha-detector", "grah9", "ecommerce-app"],
     keyTakeaways: [
       "**Dosha Detector** — a Flutter astrology app with **500+ downloads** on the Play Store, detecting 10+ types of doshas from a birth chart with personalized remedies.",
@@ -385,7 +380,7 @@ export const blogs: Blog[] = [
       },
       {
         type: "image",
-        src: "/assets/images/blog/FlutterWorkFlow.png",
+        src: "/assets/images/blog/FlutterWorkFlow.webp",
         alt: "How Flutter works: Dart code drives Widgets, a Render Engine, and Platform Channels, which talk to the platform's Canvas, Events, and native APIs like Camera, Audio, Location, and Sensors",
         caption: "App code, Flutter's engine, and the native platform — how a Flutter app actually runs.",
         fit: "contain",

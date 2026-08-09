@@ -2,6 +2,7 @@
 
 import { Fragment } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Container } from "@/lib/common/Container";
@@ -11,6 +12,8 @@ import { AppImage } from "@/lib/common/AppImage";
 import { BlogCard } from "@/components/sections/blog/BlogCard";
 import { Footer } from "@/components/layout/Footer";
 import { getTechIconPath } from "@/lib/tech-icons";
+import { getBriefText } from "@/lib/text";
+import { projects } from "@/data/projects";
 import type { Blog, BlogContentBlock } from "@/types";
 
 interface BlogDetailProps {
@@ -274,6 +277,10 @@ export function BlogDetail({ blog, relatedBlogs }: BlogDetailProps) {
     author: { "@type": "Person", name: "Yuvaraj Dekhane" },
   };
 
+  const relatedProjects = blog.relatedProjectSlugs
+    ? projects.filter((project) => blog.relatedProjectSlugs?.includes(project.slug))
+    : [];
+
   const faqBlock = blog.content.find(
     (block): block is Extract<BlogContentBlock, { type: "faq" }> => block.type === "faq"
   );
@@ -310,7 +317,7 @@ export function BlogDetail({ blog, relatedBlogs }: BlogDetailProps) {
               "font-sans text-base text-accent-blue transition-all duration-300",
               "hover:bg-[rgba(59,130,246,0.1)]"
             )}
-            onClick={() => router.push("/blog")}
+            onClick={() => router.push("/all-blogs")}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -379,6 +386,56 @@ export function BlogDetail({ blog, relatedBlogs }: BlogDetailProps) {
             ))}
           </div>
         </div>
+
+        {relatedProjects.length > 0 && (
+          <section className="mx-auto mb-16 mt-20">
+            <Title level={2} className="mb-8 font-display text-2xl font-semibold text-text-primary">
+              Related Projects
+            </Title>
+            <div className="flex flex-col gap-4">
+              {relatedProjects.map((project) => (
+                <Link
+                  key={project.slug}
+                  href={`/projects/${project.slug}`}
+                  className={cn(
+                    "group flex items-center gap-5 overflow-hidden rounded-2xl border border-border-color bg-bg-secondary p-5 no-underline",
+                    "transition-all duration-300 hover:border-accent-blue hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(59,130,246,0.15)]",
+                    "max-[600px]:flex-col max-[600px]:items-stretch max-[600px]:text-center"
+                  )}
+                >
+                  <div className="relative h-[72px] w-[110px] shrink-0 overflow-hidden rounded-lg bg-bg-hover max-[600px]:h-[140px] max-[600px]:w-full">
+                    <AppImage
+                      src={`/assets/images/projects/${project.src || project.previewSrc}`}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="flex min-w-0 flex-1 flex-col justify-center gap-1">
+                    <span className="text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-accent-blue">
+                      Project
+                    </span>
+                    <span className="truncate font-sans text-lg font-semibold text-text-primary">
+                      {project.title}
+                    </span>
+                    <span className="line-clamp-1 text-sm text-text-secondary">
+                      {getBriefText(project.description)}
+                    </span>
+                  </div>
+                  <span
+                    className={cn(
+                      "inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-[rgba(59,130,246,0.4)] bg-[rgba(59,130,246,0.1)]",
+                      "px-4 py-2 font-sans text-sm font-semibold text-accent-blue transition-colors duration-300",
+                      "group-hover:bg-accent-blue group-hover:text-white max-[600px]:justify-center"
+                    )}
+                  >
+                    View Project →
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {relatedBlogs.length > 0 && (
           <section className="mx-auto mb-16 mt-20">

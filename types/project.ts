@@ -37,8 +37,6 @@ export interface Project {
   githubUrl: string;
   detailsUrl: string;
   liveUrls?: ProjectLiveUrl[];
-  liveUrl?: string;
-  color: string;
   achievements: ProjectAchievement[];
   /** How long the project took, e.g. "2 months". Omit if unknown — the detail page hides the stat rather than guessing. */
   timeline?: string;

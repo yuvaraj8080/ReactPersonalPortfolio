@@ -26,7 +26,6 @@ export interface Blog {
   category: string;
   date: string;
   tags: string[];
-  featured: boolean;
   /** Card thumbnail + OG image. Omit to fall back to a category-label placeholder. */
   coverImage?: string;
   /** Quotable summary shown near the top of the detail page (GEO: what an AI answer engine would cite). */

@@ -153,14 +153,9 @@ export function ProjectsGrid({
                     Technologies
                   </span>
                   <div className="flex min-w-0 flex-wrap content-start items-center gap-[0.4rem]">
-                    {techList.slice(0, 6).map((tech, techIndex) => (
+                    {techList.map((tech, techIndex) => (
                       <TechIcon key={techIndex} tech={tech} />
                     ))}
-                    {techList.length > 6 && (
-                      <span className="px-1 text-xs text-text-secondary">
-                        +{techList.length - 6}
-                      </span>
-                    )}
                   </div>
                 </div>
                 <div className="mt-auto flex pt-1">

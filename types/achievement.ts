@@ -5,7 +5,6 @@ export interface Achievement {
   description: string;
   category: string;
   year: string;
-  highlight: string;
   /** Photo for the card (e.g. bootcamp/hackathon photo). Falls back to the icon when omitted. */
   image?: string;
 }

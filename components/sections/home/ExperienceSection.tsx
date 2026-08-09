@@ -118,12 +118,13 @@ export function ExperienceSection() {
                             {exp.role}
                           </span>
                         </div>
-                        <div className="flex shrink-0 items-center gap-3">
-                          <span className="whitespace-nowrap font-sans text-sm text-text-secondary transition-colors duration-300 max-[480px]:text-[0.8rem]">
-                            {exp.startDate} - {exp.endDate}
-                          </span>
-                          <div className="flex shrink-0 items-center gap-2">
-                            {exp.website && (
+                        <div className="flex shrink-0 flex-col items-start gap-1">
+                          <div className="flex shrink-0 items-center gap-3">
+                            <span className="whitespace-nowrap font-sans text-sm text-text-secondary transition-colors duration-300 max-[480px]:text-[0.8rem]">
+                              {exp.startDate} - {exp.endDate}
+                            </span>
+                            <div className="flex shrink-0 items-center gap-2">
+                              {exp.website && (
                               <a
                                 href={exp.website}
                                 target="_blank"
@@ -189,6 +190,10 @@ export function ExperienceSection() {
                               </svg>
                             </button>
                           </div>
+                          </div>
+                          <span className="whitespace-nowrap font-sans text-sm text-text-secondary transition-colors duration-300 max-[480px]:text-[0.8rem]">
+                            {exp.employmentType}
+                          </span>
                         </div>
                       </div>
                     </div>

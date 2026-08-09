@@ -24,12 +24,12 @@ const INQUIRY_OPTIONS = [
 ];
 
 const ctaButtonClasses = cn(
-  "group flex cursor-pointer items-center gap-3 rounded-lg px-6 py-3.5",
+  "group flex w-full cursor-pointer items-center justify-center gap-3 rounded-lg px-6 py-3.5",
   "bg-bg-secondary border border-border-color text-text-primary",
   "font-sans text-base font-medium no-underline",
   "shadow-[0_2px_8px_rgba(0,0,0,0.1)] transition-all duration-300",
   "hover:bg-bg-hover hover:border-accent-blue hover:shadow-[0_10px_28px_rgba(0,0,0,0.2)]",
-  "active:translate-y-0"
+  "active:translate-y-0 md:w-auto"
 );
 
 const ctaIconClasses =
@@ -183,7 +183,7 @@ export function ConnectSection() {
                 get back to you.
               </Text>
             </div>
-            <div className="flex w-full flex-wrap items-center justify-center gap-4">
+            <div className="flex w-full flex-col items-stretch gap-4 md:flex-row md:flex-wrap md:items-center md:justify-center">
               <motion.button
                 className={ctaButtonClasses}
                 onClick={handleButtonClick}
@@ -206,7 +206,7 @@ export function ConnectSection() {
               </motion.button>
               <motion.a
                 href={`mailto:${CONTACT_EMAIL}`}
-                className={cn(ctaButtonClasses, "inline-flex")}
+                className={ctaButtonClasses}
                 whileHover={{ scale: 1.07, y: -3 }}
                 whileTap={{ scale: 0.96 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}

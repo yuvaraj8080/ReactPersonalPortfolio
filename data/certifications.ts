@@ -2,88 +2,64 @@ export interface Certification {
   id: string | number;
   title: string;
   issuer: string;
-  date: string;
-  expires: string | null;
-  credentialId: string;
-  icon: "kubernetes" | "oracle" | "google";
-  skills: string[];
+  /** Omit for certificates that don't print a date. */
+  date?: string;
+  expires?: string | null;
+  credentialId?: string;
+  icon: "kubernetes" | "oracle" | "google" | "hackathon" | "paper";
+  /** Short blurb shown on hackathon/competition-style cards. */
+  description?: string;
   url: string;
 }
 
 export const certifications: Certification[] = [
   {
-    id: "cka",
-    title: "CKA: Certified Kubernetes Administrator",
-    issuer: "The Linux Foundation",
-    date: "Issued Apr 2026",
-    expires: "Apr 2028",
-    credentialId: "LF-erz3raamov",
-    icon: "kubernetes",
-    skills: [
-      "Kubernetes",
-      "Cluster administration",
-      "Container orchestration",
-      "Linux",
-    ],
-    url: "https://www.credly.com/badges/747a88db-75e0-479b-8777-364881262ab4/linked_in_profile",
+    id: "imagine-hackathon",
+    title: "Imagine Hackathon",
+    issuer: "PanIIT Alumni India",
+    icon: "hackathon",
+    description:
+      "Participated as Team Loading, representing Rajiv Gandhi Institute of Technology (RGIT), Mumbai.",
+    url: "https://drive.google.com/file/d/1Oh3EVbB8zFoN1rqK5SLaN0dd1qsZH2XI/view?usp=sharing",
   },
   {
-    id: 1,
-    title: "Oracle Cloud Infrastructure 2025 Certified Foundations Associate",
-    issuer: "Oracle",
-    date: "Oct 2025",
-    expires: "Oct 2027",
-    credentialId: "OC7481909",
-    icon: "oracle",
-    skills: ["Cloud", "Oracle Cloud", "Computer Networking", "Databases"],
-    url: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=E9C20B9E66B20A75AA42D96AB9D00DE0CF0886F7776AFC227C3E55701FAB2A40",
+    id: "sharkathon-2024",
+    title: "SHARK-A-THON 2024",
+    issuer: "ABIT, RGIT Mumbai",
+    date: "26 Mar 2024",
+    icon: "hackathon",
+    description:
+      "Certificate of Appreciation for participating in SHARK-A-THON 2024, held at Rajiv Gandhi Institute of Technology.",
+    url: "https://drive.google.com/file/d/1N7IJCwnyrP7EmcwvLuGU_hEgZsUqK_rR/view?usp=sharing",
   },
   {
-    id: 2,
-    title:
-      "Oracle Cloud Infrastructure 2025 Certified Generative AI Professional",
-    issuer: "Oracle",
-    date: "Oct 2025",
-    expires: "Oct 2027",
-    credentialId: "323242784OCI25GAIOCP",
-    icon: "oracle",
-    skills: [
-      "Large Language Models (LLM)",
-      "OCI Generative AI Service",
-      "Retrieval-Augmented Generation (RAG)",
-      "Chatbot Development",
-      "Artificial Intelligence (AI)",
-    ],
-    url: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=3CD2C9D4F500B8C06C362EB4C6FD99908D6E157E9C66311616893266D49D7548",
+    id: "spit-hackathon-2024",
+    title: "S.P.I.T. Hackathon 2024",
+    issuer: "Sardar Patel Institute of Technology",
+    date: "10–11 Feb 2024",
+    icon: "hackathon",
+    description:
+      "Participated as Team Coding Ninjas in the S.P.I.T. Hackathon, hosted by C.S.I. S.P.I.T.",
+    url: "https://drive.google.com/file/d/1YHUG-EnydLiVcaoMLrZyf289HpNoB0tr/view?usp=sharing",
   },
   {
-    id: 3,
-    title:
-      "Oracle Cloud Infrastructure 2025 Certified Multicloud Architect Professional",
-    issuer: "Oracle",
-    date: "Oct 2025",
-    expires: "Oct 2027",
-    credentialId: "323242784OCI2025MCAOCP",
-    icon: "oracle",
-    skills: [
-      "OCI-Azure",
-      "Oracle Database@Azure",
-      "Oracle Database@Google Cloud",
-      "Oracle Interconnect for Google Cloud",
-      "Oracle Cloud Infrastructure (OCI) core services",
-      "multicloud architectures on the OCI platform",
-    ],
-    url: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=E77DC08386F64B06BE4B0F7F35B02CD18D3A169B282FFA7FF1A8CFB938FC35D0",
+    id: "ideathon-24",
+    title: "IDEATHON'24",
+    issuer: "IIC RGIT",
+    date: "28–29 Feb 2024",
+    icon: "hackathon",
+    description:
+      "Certificate of Participation for pitching an idea at IDEATHON 2024, an idea-pitching and presentation competition.",
+    url: "https://drive.google.com/file/d/1gfySlJHgapfb6HvvtVlgw8tMXSeH8Y36/view?usp=sharing",
   },
   {
-    id: 4,
-    title: "Google Cloud career readiness Associate Cloud Engineer track",
-    issuer: "Google Cloud Skills Boost",
-    date: "Apr 2024",
-    expires: null,
-    credentialId: "MqlywduJ",
-    icon: "google",
-    skills: ["Google Cloud Platform (GCP)"],
-    url: "#",
+    id: "irfsr-icsecs",
+    title: "Chat Fusion: An Integrated Approach for Social Media Application",
+    issuer: "International Research Forum for Scientific Research (IRFSR)",
+    date: "17 Apr 2026",
+    icon: "paper",
+    description:
+      "Presented a research paper at the International Conference on Software Engineering and Computer Science (ICSECS), Mumbai.",
+    url: "https://drive.google.com/file/d/1_s9moGHLj5ivjREB12MV54biia7ODBmS/view?usp=sharing",
   },
 ];

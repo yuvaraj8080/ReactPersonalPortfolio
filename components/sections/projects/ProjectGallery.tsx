@@ -1,154 +1,136 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { AppImage } from "@/lib/common/AppImage";
 
 interface ProjectGalleryProps {
   title: string;
   images: string[];
 }
 
-const carouselButtonClasses = cn(
-  "z-10 flex h-[50px] w-[50px] shrink-0 cursor-pointer items-center justify-center rounded-full text-2xl",
-  "bg-[rgba(59,130,246,0.12)] border border-[rgba(59,130,246,0.3)] text-accent-blue",
-  "transition-all duration-300",
-  "hover:bg-accent-blue hover:text-white hover:scale-110 hover:shadow-[0_0_20px_rgba(59,130,246,0.4)]",
+const AUTO_ADVANCE_MS = 4000;
+/** Fallback ratio (height/width) used only until the first image reports its real size. */
+const DEFAULT_RATIO = 9 / 16;
+/** Clamp so one unusually tall/wide image can't blow out the layout — object-contain covers any edge case beyond this. */
+const MIN_RATIO = 0.45;
+const MAX_RATIO = 1.15;
+
+const arrowButtonClasses = cn(
+  "flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-full",
+  "bg-bg-secondary border border-border-color text-text-primary",
+  "transition-all duration-200 hover:bg-bg-hover hover:border-border-hover hover:scale-110",
   "active:scale-95"
 );
 
 export function ProjectGallery({ title, images }: ProjectGalleryProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const [ratio, setRatio] = useState(DEFAULT_RATIO);
+  const touchStartX = useRef<number | null>(null);
+
+  const goToNext = () =>
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  const goToPrev = () =>
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+
+  useEffect(() => {
+    if (isPaused || images.length <= 1) return;
+    const intervalId = setInterval(goToNext, AUTO_ADVANCE_MS);
+    return () => clearInterval(intervalId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPaused, images.length]);
+
+  // Measure the real image dimensions directly (next/image's onLoad can silently
+  // never fire when the browser serves the image from cache before the listener attaches).
+  useEffect(() => {
+    if (!images[currentImageIndex]) return;
+    const img = new window.Image();
+    const applyRatio = () => {
+      if (img.naturalWidth && img.naturalHeight) {
+        setRatio(img.naturalHeight / img.naturalWidth);
+      }
+    };
+    img.src = `/assets/images/projects/${images[currentImageIndex]}`;
+    if (img.complete) {
+      applyRatio();
+    } else {
+      img.onload = applyRatio;
+    }
+    return () => {
+      img.onload = null;
+    };
+  }, [currentImageIndex, images]);
 
   if (!images || images.length === 0) return null;
 
-  const nextImage = () =>
-    setCurrentImageIndex((prev) => (prev + 1) % images.length);
-  const prevImage = () =>
-    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
-    if (distance > 50) nextImage();
-    if (distance < -50) prevImage();
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowLeft") prevImage();
-    else if (e.key === "ArrowRight") nextImage();
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const distance = touchStartX.current - e.changedTouches[0].clientX;
+    if (distance > 50) goToNext();
+    else if (distance < -50) goToPrev();
+    touchStartX.current = null;
   };
 
   return (
     <div className="mb-20">
-      {/* Desktop / tablet — arrow-button carousel, one image at a time */}
       <div
-        className="hidden outline-none md:block focus-visible:rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-accent-blue"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
+        className="relative w-full overflow-hidden rounded-2xl bg-bg-hover transition-[padding-top] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        style={{ paddingTop: `${Math.min(Math.max(ratio, MIN_RATIO), MAX_RATIO) * 100}%` }}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={(e) => {
+          setIsPaused(true);
+          touchStartX.current = e.targetTouches[0].clientX;
+        }}
+        onTouchEnd={(e) => {
+          setIsPaused(false);
+          handleTouchEnd(e);
+        }}
       >
-        <div className="relative mb-6 flex items-center gap-4">
+        {images.map((src, index) => (
+          <div
+            key={src + index}
+            className={cn(
+              "absolute inset-0 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]",
+              index === currentImageIndex ? "z-[1] opacity-100" : "z-0 opacity-0"
+            )}
+            aria-hidden={index !== currentImageIndex}
+          >
+            <AppImage
+              src={`/assets/images/projects/${src}`}
+              alt={`${title} screenshot ${index + 1}`}
+              fill
+              sizes="(max-width: 768px) 100vw, 1200px"
+              className="object-contain"
+              priority={index === 0}
+            />
+          </div>
+        ))}
+      </div>
+
+      {images.length > 1 && (
+        <div className="mt-4 flex items-center justify-between">
           <button
-            className={carouselButtonClasses}
-            onClick={prevImage}
+            className={arrowButtonClasses}
+            onClick={goToPrev}
             aria-label="Previous image"
           >
-            ←
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </button>
-
-          <div className="relative h-[600px] w-full overflow-hidden rounded-2xl border border-border-color bg-bg-secondary shadow-[0_20px_60px_rgba(0,0,0,0.15)] max-[1024px]:h-[500px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentImageIndex}
-                className="relative h-full w-full"
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Image
-                  src={`/assets/images/projects/${images[currentImageIndex]}`}
-                  alt={`${title} screenshot ${currentImageIndex + 1}`}
-                  fill
-                  className="!object-contain object-center"
-                  priority={currentImageIndex === 0}
-                />
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
           <button
-            className={carouselButtonClasses}
-            onClick={nextImage}
+            className={arrowButtonClasses}
+            onClick={goToNext}
             aria-label="Next image"
           >
-            →
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </button>
         </div>
-
-        {images.length > 1 && (
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {images.map((_, index) => (
-              <button
-                key={index}
-                className={cn(
-                  "h-2.5 w-2.5 cursor-pointer rounded-full border-none bg-border-color p-0 transition-all duration-300",
-                  "hover:scale-120 hover:bg-[rgba(59,130,246,0.5)]",
-                  "focus:outline-2 focus:outline-offset-2 focus:outline-accent-blue",
-                  index === currentImageIndex &&
-                    "h-3 w-3 bg-accent-blue shadow-[0_0_10px_rgba(59,130,246,0.5)]"
-                )}
-                onClick={() => setCurrentImageIndex(index)}
-                aria-label={`Go to image ${index + 1}`}
-              />
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Mobile — horizontally scrolling list, no arrow buttons. No padding of
-          its own — the page's <Container> ancestor already supplies the inset. */}
-      <div
-        className={cn(
-          "w-full snap-x snap-mandatory overflow-x-auto pb-2 md:hidden",
-          "[-webkit-overflow-scrolling:touch] [scrollbar-width:thin]",
-          "[&::-webkit-scrollbar]:h-1.5",
-          "[&::-webkit-scrollbar-track]:rounded-[3px] [&::-webkit-scrollbar-track]:bg-bg-secondary",
-          "[&::-webkit-scrollbar-thumb]:rounded-[3px] [&::-webkit-scrollbar-thumb]:bg-border-hover"
-        )}
-      >
-        <div className="flex w-max flex-row gap-4">
-          {images.map((image, index) => (
-            <div
-              key={image + index}
-              className="relative aspect-video w-[85vw] max-w-[420px] shrink-0 snap-center overflow-hidden rounded-2xl border border-border-color bg-bg-secondary shadow-[0_10px_30px_rgba(0,0,0,0.15)]"
-            >
-              <Image
-                src={`/assets/images/projects/${image}`}
-                alt={`${title} screenshot ${index + 1}`}
-                fill
-                className="object-cover object-top"
-                priority={index === 0}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
+      )}
     </div>
   );
 }

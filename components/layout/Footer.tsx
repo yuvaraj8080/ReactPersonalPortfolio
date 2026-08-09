@@ -54,27 +54,29 @@ export function Footer() {
           className={cn(
             "grid grid-cols-[1.3fr_1fr_1fr]",
             sizes.gap,
-            "max-[768px]:grid-cols-1 max-[768px]:text-center"
+            "max-[768px]:grid-cols-2 max-[768px]:gap-x-6 max-[768px]:gap-y-8 max-[768px]:text-left"
           )}
         >
           {/* Brand */}
-          <div className="flex flex-col items-start gap-3 max-[768px]:items-center">
-            <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl">
-              <AppImage
-                src="/assets/logo/yd-logo-icon.png"
-                alt="YD logo"
-                fill
-                sizes="40px"
-                className="object-contain"
-              />
-            </div>
-            <div>
-              <p className="m-0 font-display text-lg font-semibold text-text-primary transition-colors duration-300">
-                Yuvaraj Dekhane
-              </p>
-              <p className="m-0 mt-1 font-sans text-sm text-text-secondary transition-colors duration-300">
-                Full-Stack Developer &amp; Flutter Specialist
-              </p>
+          <div className="flex flex-col items-start gap-3 max-[768px]:col-span-2 max-[768px]:items-center max-[768px]:text-center">
+            <div className="flex flex-row items-center gap-3">
+              <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl">
+                <AppImage
+                  src="/assets/logo/YD_Logo.webp"
+                  alt="YD logo"
+                  fill
+                  sizes="40px"
+                  className="object-cover"
+                />
+              </div>
+              <div className="flex flex-col items-start max-[768px]:items-center">
+                <p className="m-0 font-display text-lg font-semibold text-text-primary transition-colors duration-300">
+                  Yuvaraj Dekhane
+                </p>
+                <p className="m-0 font-sans text-sm text-text-secondary transition-colors duration-300">
+                  Full-Stack Developer &amp; Flutter Specialist
+                </p>
+              </div>
             </div>
             <AppLink
               href={`mailto:${CONTACT_EMAIL}`}
@@ -85,11 +87,11 @@ export function Footer() {
           </div>
 
           {/* Navigation */}
-          <div className="flex flex-col items-start gap-3 max-[768px]:items-center">
+          <div className="flex flex-col items-start gap-3 max-[768px]:items-start max-[768px]:border-t max-[768px]:border-border-color max-[768px]:pt-6">
             <span className={columnHeadingClasses}>Navigation</span>
             <nav
               aria-label="Footer navigation"
-              className="flex flex-col items-start gap-2.5 max-[768px]:items-center"
+              className="flex flex-col items-start gap-2.5 max-[768px]:gap-3"
             >
               {NAV_LINKS.map((link) => (
                 <a
@@ -105,9 +107,9 @@ export function Footer() {
           </div>
 
           {/* Follow Me */}
-          <div className="flex flex-col items-start gap-3 max-[768px]:items-center">
+          <div className="flex flex-col items-start gap-3 max-[768px]:items-start max-[768px]:border-t max-[768px]:border-border-color max-[768px]:pt-6">
             <span className={columnHeadingClasses}>Follow Me</span>
-            <div className="flex flex-row items-center gap-3">
+            <div className="flex flex-row flex-wrap items-center gap-3">
               {SOCIAL_LINKS.map((social) => (
                 <AppLink
                   key={social.name}

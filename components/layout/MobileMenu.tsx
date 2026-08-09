@@ -51,8 +51,8 @@ export function MobileMenu({ isOpen, links, onNavigate }: MobileMenuProps) {
 
             <div className="mt-3 border-t border-border-color pt-4">
               <a
-                href="/assets/pdf/resume.pdf"
-                download="resume"
+                href="/assets/pdf/YuvarajDekhane_09_Aug.pdf"
+                download="Yuvaraj_Dekhane_Resume.pdf"
                 className={cn(
                   "flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-lg",
                   "bg-bg-primary border border-border-color text-text-primary",

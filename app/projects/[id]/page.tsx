@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { SITE_URL } from "@/lib/constants/site";
 import { projects } from "@/data/projects";
 import { ProjectDetail } from "@/components/sections/projects/ProjectDetail";
 import { getBriefText } from "@/lib/text";
@@ -19,7 +20,9 @@ export async function generateMetadata({
 }: ProjectPageProps): Promise<Metadata> {
   const { id } = await params;
   const project = projects.find((p) => p.slug === id);
-  if (!project) return { title: "Project not found" };
+  if (!project) {
+    return { title: "Project not found", robots: { index: false, follow: false } };
+  }
   const description = getBriefText(project.description);
   const previewImage = `/assets/images/projects/${project.previewSrc}`;
   return {
@@ -31,11 +34,14 @@ export async function generateMetadata({
     openGraph: {
       title: project.title,
       description,
+      url: `${SITE_URL}/projects/${project.slug}`,
       type: "website",
       images: [previewImage],
     },
     twitter: {
       card: "summary_large_image",
+      title: project.title,
+      description,
       images: [previewImage],
     },
   };

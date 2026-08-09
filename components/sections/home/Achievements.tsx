@@ -7,7 +7,7 @@ import { AppImage } from "@/lib/common/AppImage";
 import { Title } from "@/lib/common/Title";
 import { Text } from "@/lib/common/Text";
 import { Container } from "@/lib/common/Container";
-import { achievements } from "@/data/achievements";
+import { beyondTheCode } from "@/data/beyondTheCode";
 
 const AUTO_SCROLL_SPEED = 1;
 const AUTO_SCROLL_INTERVAL_MS = 25;
@@ -46,17 +46,18 @@ export function Achievements() {
     >
       <Title
         level={2}
-        className="mb-[0.35rem] text-center font-display text-2xl font-semibold leading-[1.2] tracking-[0.04em] !text-text-primary transition-colors duration-300 max-[768px]:text-[1.5rem] max-[480px]:text-[1.35rem]"
+        className="mb-[0.35rem] text-left font-display text-2xl font-semibold leading-[1.2] tracking-[0.04em] !text-text-primary transition-colors duration-300 max-[768px]:text-[1.5rem] max-[480px]:text-[1.35rem]"
       >
-        Hall of Fame
+        Beyond the Code
       </Title>
-      <Text className="m-0 mb-5 text-center text-sm text-text-secondary">
-        Extra curricular &amp; achievements — hover to pause
+      <Text className="m-0 mb-5 text-left text-sm text-text-secondary">
+        Bootcamps, client wins, and team moments — hover to pause
       </Text>
       <div
         ref={scrollRef}
         className={cn(
           "mx-auto w-full min-w-0 max-w-[1200px] cursor-grab overflow-x-auto overflow-y-hidden [scroll-behavior:auto] active:cursor-grabbing",
+          "max-[768px]:w-screen max-[768px]:max-w-none max-[768px]:ml-[calc(50%-50vw)]",
           "[scrollbar-width:thin] [-webkit-overflow-scrolling:touch]",
           "[&::-webkit-scrollbar]:h-1.5",
           "[&::-webkit-scrollbar-track]:rounded-[3px] [&::-webkit-scrollbar-track]:bg-bg-secondary",
@@ -67,16 +68,16 @@ export function Achievements() {
         onTouchStart={() => setIsPaused(true)}
         onTouchEnd={() => setIsPaused(false)}
       >
-        <div className="flex w-max flex-row gap-5 pb-6 pt-2 max-[768px]:gap-4">
-          {achievements.map((achievement, index) => (
+        <div className="flex w-full flex-row items-start gap-5 pb-6 pt-2 max-[768px]:w-max max-[768px]:gap-4">
+          {beyondTheCode.map((achievement, index) => (
             <motion.article
               key={`${achievement.id}-${index}`}
               className={cn(
-                "group relative flex flex-[0_0_min(300px,78vw)] flex-col overflow-hidden rounded-xl",
+                "group relative flex flex-1 flex-col overflow-hidden rounded-xl",
                 "bg-bg-secondary border border-border-color",
                 "transition-[border-color,box-shadow] duration-[250ms]",
                 "hover:border-border-hover hover:shadow-[0_12px_28px_rgba(0,0,0,0.12)]",
-                "max-[768px]:flex-[0_0_min(260px,85vw)]"
+                "max-[768px]:flex-[0_0_min(320px,88vw)]"
               )}
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -84,14 +85,14 @@ export function Achievements() {
               transition={{ duration: 0.3, delay: index * 0.03 }}
               whileHover={{ y: -3 }}
             >
-              <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-bg-hover">
+              <div className="relative aspect-[3/2] w-full shrink-0 overflow-hidden bg-bg-hover max-[768px]:aspect-[4/3]">
                 {achievement.image ? (
                   <AppImage
                     src={achievement.image}
                     alt={achievement.title}
                     fill
-                    sizes="(max-width: 768px) 260px, 300px"
-                    className="object-cover transition-transform duration-[400ms] group-hover:scale-105"
+                    sizes="(max-width: 768px) 320px, 280px"
+                    className="object-cover"
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center text-[2.5rem]">
@@ -108,11 +109,11 @@ export function Achievements() {
                 </span>
                 <Title
                   level={3}
-                  className="m-0 line-clamp-2 font-display text-[1.05rem] font-semibold leading-[1.35] text-text-primary max-[768px]:text-base"
+                  className="m-0 line-clamp-2 text-left font-display text-[1.05rem] font-semibold leading-[1.35] text-text-primary max-[768px]:text-base"
                 >
                   {achievement.title}
                 </Title>
-                <Text className="m-0 line-clamp-2 text-sm leading-[1.5] text-text-secondary">
+                <Text className="m-0 line-clamp-2 text-left text-sm leading-[1.5] text-text-secondary">
                   {achievement.description}
                 </Text>
               </div>

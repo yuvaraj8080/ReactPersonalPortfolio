@@ -6,12 +6,12 @@ export interface Experience {
   /** Background color used when rendering initials instead of an image. */
   logoColor: string;
   role: string;
+  employmentType: "Full-time" | "Internship";
   startDate: string;
   endDate: string;
   location: string;
   locationType: string;
   website?: string;
-  twitter?: string;
   linkedin?: string;
   technologies: string[];
   description: string[];
