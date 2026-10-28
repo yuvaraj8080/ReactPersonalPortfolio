@@ -189,7 +189,7 @@ Note the vertical padding (`py-16 ...`) lives directly on the `<section>`, while
 - **JSON-LD is rendered by the server `JsonLd` widget from `page.tsx`**, never from a `"use client"` component. Builders live in `lib/seo.ts` (`siteJsonLd` = Person + WebSite in the layout; per-page `projectJsonLd`, `blogPostJsonLd`, `blogFaqJsonLd`, `breadcrumbJsonLd`, …). Site identity (URL, name, email, location) comes from `lib/constants/site.ts`; social URLs from `data/socials.ts` — one source each.
 - **Share images are 1200×630 JPEGs under 300 KB in `public/assets/og/`** (`home.jpg`, `projects/<slug>.jpg`, `blog/<slug>.jpg`). WhatsApp drops larger images. **When you add a project or post, add its image too** — until you do, `ogImageFor()` falls back to `home.jpg` (nothing breaks, the card is just generic). The master banner is `public/assets/logo/CoverBanner.png`.
 - New project/post: also set `seoTitle` (≤42 chars, keyword-led, e.g. "Dosha Detector — Flutter Astrology App") and, for posts, `seoDescription` (150–160 chars). One `<h1>` per page, FAQ block on posts, `relatedProjectSlugs` for two-way internal links.
-- Set `GOOGLE_SITE_VERIFICATION` in the host env to emit the Search Console meta tag. `SITE_URL` is `https://yuvarajdekhane.me`.
+- Set `GOOGLE_SITE_VERIFICATION` in the host env to emit the Search Console meta tag. `SITE_URL` is `https://www.yuvarajdekhane.me` — it must match the primary domain set in Vercel (the bare domain redirects to `www`), or canonicals and the sitemap will point at a redirecting URL.
 
 ### 6.0 Content pages that exist for ranking
 

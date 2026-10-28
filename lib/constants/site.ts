@@ -1,5 +1,5 @@
 /** Every SEO surface (sitemap, robots, canonical/OG URLs) reads from this one constant. */
-export const SITE_URL = "https://yuvarajdekhane.me";
+export const SITE_URL = "https://www.yuvarajdekhane.me";
 
 export const SITE_NAME = "Yuvaraj Dekhane";
 /** Home <title> — keyword-led, ≤60 chars. */
