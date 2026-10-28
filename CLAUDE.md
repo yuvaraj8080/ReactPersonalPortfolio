@@ -16,7 +16,7 @@ Read this before writing ANY code. This portfolio's target quality bar is a **se
 2. **One tool per job:** UI kit = none currently (plain Tailwind + hand-built markup — shadcn/ui was scaffolded but never adopted, so it was removed; see §0.5) · Icons = lucide-react · Animation = Framer Motion · State = Zustand. Never install a duplicate library for something already covered.
 3. **UI never changes without being asked** — this is a maintained site, not a redesign sandbox. Verify pixel-parity on mobile AND desktop after every change.
 4. **Fonts local only** — `next/font/local` from `public/assets/fonts/` via `lib/constants/fonts.ts`. Never a Google Fonts CDN link.
-5. **Reuse first** — `lib/common/` widgets (`Container`, `Title`, `Text`, `AppImage`, `AppLink` — this is the complete current list) + `lib/constants/` tokens. Copy-pasted className strings = wrong.
+5. **Reuse first** — `lib/common/` widgets (`Container`, `Title`, `Text`, `AppImage`, `AppLink`, `JsonLd`, `TechBadge`, `Breadcrumbs`, `FaqList` — this is the complete current list) + `lib/constants/` tokens. Copy-pasted className strings = wrong.
 6. **No string constants** — content lives in `data/*.ts`; section copy stays inline in the section component.
 
 ## 2. Responsive System — Mobile vs Desktop
@@ -183,7 +183,32 @@ Note the vertical padding (`py-16 ...`) lives directly on the `<section>`, while
 - Heavy below-the-fold widgets (GitHub graph, Cal.com): `next/dynamic`.
 - The persistent header (`components/layout/Navbar.tsx`) is rendered once from `app/layout.tsx`, not per-page — never re-add `<Navbar />` inside a page's content component.
 
-## 6. Definition of Done (per change)
+## 6. SEO — how pages are wired (don't bypass this)
+
+- **Every route's metadata goes through `buildMetadata()` in `lib/seo.ts`.** A page-level `openGraph`/`twitter` *replaces* the layout's (it is not deep-merged) and file-based `opengraph-image` is NOT inherited by child routes — a hand-rolled `metadata` object silently ships a page with no share image. Titles are ≤60 chars via `buildTitle()`, descriptions 150–160.
+- **JSON-LD is rendered by the server `JsonLd` widget from `page.tsx`**, never from a `"use client"` component. Builders live in `lib/seo.ts` (`siteJsonLd` = Person + WebSite in the layout; per-page `projectJsonLd`, `blogPostJsonLd`, `blogFaqJsonLd`, `breadcrumbJsonLd`, …). Site identity (URL, name, email, location) comes from `lib/constants/site.ts`; social URLs from `data/socials.ts` — one source each.
+- **Share images are 1200×630 JPEGs under 300 KB in `public/assets/og/`** (`home.jpg`, `projects/<slug>.jpg`, `blog/<slug>.jpg`). WhatsApp drops larger images. **When you add a project or post, add its image too** — until you do, `ogImageFor()` falls back to `home.jpg` (nothing breaks, the card is just generic). The master banner is `public/assets/logo/CoverBanner.png`.
+- New project/post: also set `seoTitle` (≤42 chars, keyword-led, e.g. "Dosha Detector — Flutter Astrology App") and, for posts, `seoDescription` (150–160 chars). One `<h1>` per page, FAQ block on posts, `relatedProjectSlugs` for two-way internal links.
+- Set `GOOGLE_SITE_VERIFICATION` in the host env to emit the Search Console meta tag. `SITE_URL` is `https://yuvarajdekhane.me`.
+
+### 6.0 Content pages that exist for ranking
+
+- **`/hire-me`** (freelance landing page): copy lists live in `data/hireMe.ts`, every claim must trace to `data/projects.ts` or the hero copy. No prices are published (quote on request) — don't add numbers the owner hasn't given. Linked from the navbar, mobile menu and footer.
+- **FAQs** (home, `/hire-me`, every project page): visible `<FaqList>` and `faqPageJsonLd()` are fed the *same* array, so markup and structured data can't drift. Home FAQ: `data/faq.ts`; project FAQ: `buildProjectFaq()` in `lib/project-faq.ts` (built only from the project's own fields). Answers use no pronouns. Google no longer shows FAQ dropdowns for most sites — the value is long-tail matching and AI answers.
+- **Projects carry a `client`** (`{ name, url? }`) when the data names one; it drives the visible "Built by Yuvaraj Dekhane · role · for client" byline and the `publisher` in structured data. **Blog posts carry `updated`** (ISO date of the last real edit) → "Updated" label + `dateModified`; only set it when the content really changed.
+- Detail pages show `<Breadcrumbs>` (real links to `/projects` / `/all-blogs`); new routes also need a sitemap entry and a `public/assets/og/*.jpg` share image.
+
+### 6.1 Performance guardrails (each one fixed a real regression — home page was 9 MB, LCP 13 s)
+
+- **Skill icons** (`public/assets/skills/**.svg`) must be run through SVGO and must not embed a raster larger than ~192 px (one Figma export embedded a 4.4 MB PNG). Check `du -sk public/assets/skills` stays under ~1 MB.
+- **Images** go through `AppImage` with a real `sizes` attr — never a raw `<img>`. Source files ≤1920 px wide (blog covers ≤1600), WebP. Below-the-fold images are `loading="lazy"`; `eager`/`priority` makes Next emit a preload that fights the hero's LCP.
+- **Above-the-fold copy must paint without JS.** Hero entrance animation is CSS (`animate-hero-rise` / `animate-hero-pop` in `globals.css`); Framer Motion there is for hover/tap only. Never start hero text at `initial={{ opacity: 0 }}` — it stays invisible until hydration finishes.
+- **Third-party code loads on interaction**, not on mount (Cal.com embed is `import()`ed when the booking step opens).
+- **Secrets never use `NEXT_PUBLIC_`.** GitHub data comes from `app/api/github-contributions/route.ts` (server, `GITHUB_TOKEN`, CDN-cached 1 h); the client only fetches that route.
+- **Framer Motion uses the slim `m` elements**: `import * as m from "framer-motion/m"` and `<m.div>` — never `motion.*`. `MotionProvider` (in `app/layout.tsx`) loads `domAnimation` once with `strict`, so a stray `motion.*` throws instead of quietly re-bundling the full library. Drag/layout animations would need `domMax`.
+- `/assets/*` is served with a 30-day `Cache-Control` (`vercel.json`) — if you replace an image, change its filename.
+
+## 7. Definition of Done (per change)
 
 - [ ] Builds with zero TS/ESLint errors
 - [ ] Checked at **375px** (mobile), **768px** (tablet), **1280px+** (desktop) — in both light and dark theme

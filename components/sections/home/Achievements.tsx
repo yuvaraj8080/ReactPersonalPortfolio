@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import * as m from "framer-motion/m";
 import { cn } from "@/lib/utils";
 import { AppImage } from "@/lib/common/AppImage";
 import { Title } from "@/lib/common/Title";
@@ -70,7 +70,7 @@ export function Achievements() {
       >
         <div className="flex w-full flex-row items-start gap-5 pb-6 pt-2 max-[768px]:w-max max-[768px]:gap-4">
           {beyondTheCode.map((achievement, index) => (
-            <motion.article
+            <m.article
               key={`${achievement.id}-${index}`}
               className={cn(
                 "group relative flex flex-1 flex-col overflow-hidden rounded-xl",
@@ -117,7 +117,7 @@ export function Achievements() {
                   {achievement.description}
                 </Text>
               </div>
-            </motion.article>
+            </m.article>
           ))}
         </div>
       </div>

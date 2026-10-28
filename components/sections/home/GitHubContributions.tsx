@@ -1,13 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import * as m from "framer-motion/m";
 import { cn } from "@/lib/utils";
 import { Title } from "@/lib/common/Title";
 import { Text } from "@/lib/common/Text";
 import { Container } from "@/lib/common/Container";
-
-const GITHUB_USERNAME = "yuvaraj8080";
+import { GITHUB_USERNAME } from "@/lib/constants/site";
 
 interface ContributionDay {
   date: string;
@@ -82,145 +81,27 @@ export function GitHubContributions() {
 
   useEffect(() => {
     let cancelled = false;
-    const headers: Record<string, string> = {
-      "Content-Type": "application/json",
-      ...(process.env.NEXT_PUBLIC_GITHUB_TOKEN && {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-      }),
-    };
-
-    async function ghGraphql(
-      query: string,
-      variables: Record<string, unknown>
-    ) {
-      const res = await fetch("https://api.github.com/graphql", {
-        method: "POST",
-        headers,
-        body: JSON.stringify({
-          query,
-          variables: { username: GITHUB_USERNAME, ...variables },
-        }),
-      });
-      const json = await res.json();
-      if (json.errors)
-        throw new Error(json.errors[0]?.message || "GraphQL error");
-      return json.data;
-    }
 
     async function fetchContributions() {
-      const to = new Date();
-      const fromCalendar = new Date(to);
-      fromCalendar.setDate(fromCalendar.getDate() - 364);
-      const fromStr = fromCalendar.toISOString().slice(0, 10) + "T00:00:00Z";
-      const toStr = to.toISOString().slice(0, 10) + "T23:59:59Z";
-
-      const calendarQuery = `
-        query($username: String!, $from: DateTime!, $to: DateTime!) {
-          user(login: $username) {
-            repositories(privacy: PUBLIC, ownerAffiliations: OWNER) {
-              totalCount
-            }
-            contributionsCollection(from: $from, to: $to) {
-              contributionCalendar {
-                totalContributions
-                weeks {
-                  contributionDays {
-                    date
-                    contributionCount
-                  }
-                }
-              }
-            }
-          }
-        }
-      `;
-
-      const totalOnlyQuery = `
-        query($username: String!, $from: DateTime!, $to: DateTime!) {
-          user(login: $username) {
-            contributionsCollection(from: $from, to: $to) {
-              contributionCalendar { totalContributions }
-            }
-          }
-        }
-      `;
-
       try {
-        const data = await ghGraphql(calendarQuery, {
-          from: fromStr,
-          to: toStr,
-        });
+        const res = await fetch("/api/github-contributions");
+        if (!res.ok) throw new Error(`Request failed with ${res.status}`);
+        const data: {
+          days: { date: string; count: number }[];
+          publicRepos: number;
+          totalContributions: number;
+        } = await res.json();
         if (cancelled) return;
 
-        const calendar =
-          data?.user?.contributionsCollection?.contributionCalendar;
-        if (!calendar) {
-          setError("User not found or no contribution data");
-          setLoading(false);
-          return;
-        }
-
-        const countByDate: Record<string, number> = {};
-        for (const week of calendar.weeks || []) {
-          for (const day of week.contributionDays || []) {
-            countByDate[day.date] = day.contributionCount;
-          }
-        }
-
-        const list: { date: string; count: number }[] = [];
-        for (let i = 364; i >= 0; i--) {
-          const d = new Date(to);
-          d.setDate(d.getDate() - i);
-          const dateStr = d.toISOString().slice(0, 10);
-          list.push({ date: dateStr, count: countByDate[dateStr] ?? 0 });
-        }
-
-        const maxInList = Math.max(...list.map((d) => d.count), 1);
+        const maxInList = Math.max(...data.days.map((d) => d.count), 1);
         setContributions(
-          list.map((d) => ({ ...d, level: getLevel(d.count, maxInList) }))
+          data.days.map((d) => ({ ...d, level: getLevel(d.count, maxInList) }))
         );
-        setStreaks(computeStreaks(list));
-        setPublicRepos(data?.user?.repositories?.totalCount ?? 0);
-
-        let allTimeTotal = 0;
-        const createdAtRes = await ghGraphql(
-          `query($username: String!) { user(login: $username) { createdAt } }`,
-          {}
-        );
-        if (cancelled) return;
-
-        const createdAt = createdAtRes?.user?.createdAt;
-        const currentYear = to.getFullYear();
-        const startYear = createdAt
-          ? new Date(createdAt).getFullYear()
-          : currentYear - 10;
-
-        for (let year = startYear; year < currentYear; year++) {
-          const yearData = await ghGraphql(totalOnlyQuery, {
-            from: `${year}-01-01T00:00:00Z`,
-            to: `${year}-12-31T23:59:59Z`,
-          });
-          if (cancelled) return;
-          allTimeTotal +=
-            yearData?.user?.contributionsCollection?.contributionCalendar
-              ?.totalContributions ?? 0;
-        }
-        const currentYearData = await ghGraphql(totalOnlyQuery, {
-          from: `${currentYear}-01-01T00:00:00Z`,
-          to: toStr,
-        });
-        if (!cancelled) {
-          allTimeTotal +=
-            currentYearData?.user?.contributionsCollection?.contributionCalendar
-              ?.totalContributions ?? 0;
-          setTotalContributions(allTimeTotal);
-        }
-      } catch (err) {
-        if (!cancelled) {
-          setError(
-            err instanceof Error ? err.message : "Failed to load contributions"
-          );
-        }
+        setStreaks(computeStreaks(data.days));
+        setPublicRepos(data.publicRepos);
+        setTotalContributions(data.totalContributions);
+      } catch {
+        if (!cancelled) setError("Couldn't load GitHub contributions right now.");
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -252,16 +133,8 @@ export function GitHubContributions() {
           <Title level={2} className={headingClasses}>GitHub Contributions</Title>
           <div className="p-16 text-center text-[1.2rem] text-text-secondary">
             <Text>{error}</Text>
-            <Text className="mx-auto mt-4 max-w-[420px] text-[0.9rem] leading-normal">
-              Unauthenticated requests are limited. Add{" "}
-              <code className="rounded bg-bg-secondary px-1.5 py-0.5 text-[0.85em]">
-                NEXT_PUBLIC_GITHUB_TOKEN
-              </code>{" "}
-              in{" "}
-              <code className="rounded bg-bg-secondary px-1.5 py-0.5 text-[0.85em]">
-                .env.local
-              </code>{" "}
-              for reliable access, or try again later.
+            <Text className="mx-auto my-4 max-w-[420px] text-[0.9rem] leading-normal">
+              You can still browse my full activity on GitHub.
             </Text>
             <a
               href={`https://github.com/${GITHUB_USERNAME}`}
@@ -280,7 +153,7 @@ export function GitHubContributions() {
   return (
     <div id="github-contributions" className={outerSectionClasses}>
       <Container>
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -290,9 +163,9 @@ export function GitHubContributions() {
           <Text className="mb-12 text-left font-sans text-lg font-medium leading-[1.7] text-text-secondary transition-colors duration-300">
             My coding activity and contributions
           </Text>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -333,9 +206,9 @@ export function GitHubContributions() {
               </div>
             </div>
           ))}
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -354,22 +227,19 @@ export function GitHubContributions() {
               ))}
             </div>
             <div className="mb-4 grid grid-cols-[repeat(53,1fr)] gap-[3px]">
-              {contributions.map((contribution, index) => {
+              {contributions.map((contribution) => {
                 const date = new Date(contribution.date);
                 return (
-                  <motion.div
+                  // Plain div + CSS hover: one Framer Motion component per cell (365 of them) is needless hydration work.
+                  <div
                     key={contribution.date}
                     className={cn(
                       "relative h-3 w-3 cursor-pointer rounded-[2px] border transition-all duration-200",
-                      "hover:shadow-[0_0_12px_rgba(59,130,246,0.4)] hover:!border-accent-blue",
+                      "hover:z-10 hover:scale-[1.2] hover:shadow-[0_0_12px_rgba(59,130,246,0.4)] hover:!border-accent-blue",
                       "max-[768px]:h-2.5 max-[768px]:w-2.5",
                       levelClasses[contribution.level]
                     )}
-                    whileHover={{ scale: 1.2, zIndex: 10 }}
                     title={`${contribution.count} contributions on ${date.toLocaleDateString()}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: index * 0.001 }}
                   />
                 );
               })}
@@ -395,9 +265,9 @@ export function GitHubContributions() {
               More
             </span>
           </div>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -412,7 +282,7 @@ export function GitHubContributions() {
           >
             View on GitHub →
           </a>
-        </motion.div>
+        </m.div>
       </Container>
     </div>
   );

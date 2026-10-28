@@ -21,4 +21,6 @@ export const playfair = localFont({
   ],
   variable: "--font-playfair",
   display: "swap",
+  // Not used by any rendered text yet — don't make every page preload four font files for it.
+  preload: false,
 });

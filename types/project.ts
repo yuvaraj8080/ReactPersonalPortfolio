@@ -22,9 +22,17 @@ export interface ProjectDetailedDescription {
   impact: string;
 }
 
+/** The fields a project card in the home grid renders — everything else stays on the server. */
+export type ProjectCardData = Pick<
+  Project,
+  "slug" | "title" | "description" | "tech" | "src" | "previewSrc" | "detailsUrl" | "liveUrls" | "previewFit"
+>;
+
 export interface Project {
   title: string;
   slug: string;
+  /** Keyword-led <title> text (≤42 chars so the " | Yuvaraj Dekhane" suffix fits in 60). Falls back to `title`. */
+  seoTitle?: string;
   description: string;
   detailedDescription: ProjectDetailedDescription;
   /** Comma-separated tech list, e.g. "NEXT.js, FASTAPI, …" */
@@ -43,6 +51,8 @@ export interface Project {
   /** e.g. "Full Stack Developer" */
   role?: string;
   status?: "Completed" | "In Progress" | "Archived";
+  /** Who the project was built for — shown as the byline and in the project's structured data. Omit when unknown. */
+  client?: { name: string; url?: string };
   /** "contain" shows the grid card's preview image in full (letterboxed, no cropping) instead of the default cover-crop. Use for composite/poster-style images where cropping would cut off meaningful content. */
   previewFit?: "cover" | "contain";
 }

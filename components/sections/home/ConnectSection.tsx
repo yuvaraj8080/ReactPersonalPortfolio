@@ -1,15 +1,16 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { getCalApi } from "@calcom/embed-react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { AnimatePresence } from "framer-motion";
+import * as m from "framer-motion/m";
 import { cn } from "@/lib/utils";
 import { Title } from "@/lib/common/Title";
 import { Text } from "@/lib/common/Text";
 import { Container } from "@/lib/common/Container";
+import { CAL_COM_USERNAME, CONTACT_EMAIL, whatsappUrl } from "@/lib/constants/site";
+import { WhatsAppIcon } from "@/lib/common/WhatsAppIcon";
 
-const CAL_COM_USERNAME = "yuvaraj-dekhane-h4iqhf";
-const CONTACT_EMAIL = "yuvarajdekhane8080@gmail.com";
 
 const ROLE_OPTIONS = [
   "Founder",
@@ -84,7 +85,7 @@ function Dropdown({
           </svg>
         </button>
         {isOpen && (
-          <motion.div
+          <m.div
             className="absolute inset-x-0 top-full z-10 mt-1 overflow-hidden rounded-lg border border-border-color bg-bg-primary shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -104,7 +105,7 @@ function Dropdown({
                 {option}
               </button>
             ))}
-          </motion.div>
+          </m.div>
         )}
       </div>
     </div>
@@ -119,21 +120,12 @@ export function ConnectSection() {
     role: false,
     inquiryType: false,
   });
-  const calInitialized = useRef(false);
 
-  useEffect(() => {
-    (async function () {
-      if (!calInitialized.current) {
-        const cal = await getCalApi({ namespace: "secret" });
-        cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
-        calInitialized.current = true;
-      }
-    })();
-  }, []);
-
+  // Cal's embed script (third-party JS + cookie) loads only when the booking step opens, not on every page view.
   useEffect(() => {
     if (step === 3 && isModalOpen) {
       (async function () {
+        const { getCalApi } = await import("@calcom/embed-react");
         const cal = await getCalApi({ namespace: "secret" });
         cal("ui", { hideEventTypeDetails: false, layout: "month_view" });
       })();
@@ -159,9 +151,9 @@ export function ConnectSection() {
     <>
       <section id="contact" className="scroll-mt-24">
         <Container className="flex min-h-[30vh] items-center justify-center bg-bg-primary py-24 transition-colors duration-300 max-[900px]:py-16">
-          <motion.div
+          <m.div
             className={cn(
-              "flex w-full max-w-[600px] flex-col items-center gap-7 rounded-2xl border-2 border-dashed border-border-color bg-bg-primary px-8 py-12",
+              "flex w-full max-w-[680px] flex-col items-center gap-7 rounded-2xl border-2 border-dashed border-border-color bg-bg-primary px-8 py-12",
               "transition-colors duration-300 hover:border-border-hover",
               "max-[600px]:px-6 max-[600px]:py-9"
             )}
@@ -178,13 +170,19 @@ export function ConnectSection() {
                 Hey, you scrolled this far — let&apos;s talk
               </Title>
               <Text className="m-0 max-w-[440px] font-sans text-base leading-[1.6] text-text-secondary transition-colors duration-300 max-[600px]:text-sm">
-                Open to full-time roles, freelance projects, and technical
-                collaborations — tell me what you&apos;re building and I&apos;ll
-                get back to you.
+                Open to full-time roles,{" "}
+                <Link
+                  href="/hire-me"
+                  className="font-medium text-accent-blue underline-offset-4 hover:underline"
+                >
+                  freelance projects
+                </Link>
+                , and technical collaborations — tell me what you&apos;re
+                building and I&apos;ll get back to you.
               </Text>
             </div>
             <div className="flex w-full flex-col items-stretch gap-4 md:flex-row md:flex-wrap md:items-center md:justify-center">
-              <motion.button
+              <m.button
                 className={ctaButtonClasses}
                 onClick={handleButtonClick}
                 whileHover={{ scale: 1.07, y: -3 }}
@@ -203,8 +201,8 @@ export function ConnectSection() {
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                 </svg>
                 <span>Book a Free Call</span>
-              </motion.button>
-              <motion.a
+              </m.button>
+              <m.a
                 href={`mailto:${CONTACT_EMAIL}`}
                 className={ctaButtonClasses}
                 whileHover={{ scale: 1.07, y: -3 }}
@@ -225,23 +223,35 @@ export function ConnectSection() {
                   <polyline points="22,6 12,13 2,6" />
                 </svg>
                 <span>Email me</span>
-              </motion.a>
+              </m.a>
+              <m.a
+                href={whatsappUrl("Hi Yuvaraj, I found your portfolio (yuvarajdekhane.me) and would like to talk.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={ctaButtonClasses}
+                whileHover={{ scale: 1.07, y: -3 }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <WhatsAppIcon className={ctaIconClasses} />
+                <span>WhatsApp me</span>
+              </m.a>
             </div>
-          </motion.div>
+          </m.div>
         </Container>
       </section>
 
       <AnimatePresence>
         {isModalOpen && (
           <>
-            <motion.div
+            <m.div
               className="fixed inset-0 z-[9998] bg-[rgba(0,0,0,0.7)] backdrop-blur-sm"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={handleCloseModal}
             />
-            <motion.div
+            <m.div
               className={cn(
                 "fixed left-1/2 top-1/2 z-[9999] m-0 max-h-[90vh] w-[90%] max-w-[500px] overflow-y-auto rounded-2xl p-8",
                 "bg-bg-primary border border-border-color shadow-[0_20px_60px_rgba(0,0,0,0.3)]",
@@ -367,7 +377,7 @@ export function ConnectSection() {
                   </button>
                 </div>
               )}
-            </motion.div>
+            </m.div>
           </>
         )}
       </AnimatePresence>

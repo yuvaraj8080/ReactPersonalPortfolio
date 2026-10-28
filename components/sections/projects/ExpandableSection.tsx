@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import * as m from "framer-motion/m";
 import { cn } from "@/lib/utils";
 import { Title } from "@/lib/common/Title";
 import { Text } from "@/lib/common/Text";
@@ -54,7 +55,7 @@ export function ExpandableSection({
           <Text className="mb-4">{brief}</Text>
           <AnimatePresence>
             {expanded && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
@@ -62,7 +63,7 @@ export function ExpandableSection({
                 className="mt-4 overflow-hidden"
               >
                 <Text>{text}</Text>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
           {hasMore && (
@@ -98,7 +99,7 @@ export function ExpandableSection({
         </ul>
         <AnimatePresence>
           {expanded && rest.length > 0 && (
-            <motion.ul
+            <m.ul
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
@@ -110,7 +111,7 @@ export function ExpandableSection({
                   {item.replace(/^[^\s]+\s/, "")}
                 </li>
               ))}
-            </motion.ul>
+            </m.ul>
           )}
         </AnimatePresence>
         {rest.length > 0 && (

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import { useScroll, useSpring } from "framer-motion";
+import * as m from "framer-motion/m";
 
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();
@@ -18,7 +19,7 @@ export function ScrollProgress() {
   }, []);
 
   return (
-    <motion.div
+    <m.div
       className="scroll-progress-bar fixed inset-x-0 top-0 z-[9999] h-[3px] origin-left bg-[linear-gradient(90deg,var(--accent-blue),#2563eb)]"
       style={{ scaleX }}
     />

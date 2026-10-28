@@ -1,6 +1,8 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
+import { AnimatePresence } from "framer-motion";
+import * as m from "framer-motion/m";
 import { cn } from "@/lib/utils";
 
 interface MobileMenuLink {
@@ -10,8 +12,12 @@ interface MobileMenuLink {
 
 interface MobileMenuProps {
   isOpen: boolean;
+  /** In-page section links — scroll via `onNavigate`. */
   links: MobileMenuLink[];
+  /** Real routes — rendered as crawlable <a> links. */
+  pageLinks?: MobileMenuLink[];
   onNavigate: (href: string) => void;
+  onClose: () => void;
 }
 
 const menuLinkClasses = cn(
@@ -20,11 +26,11 @@ const menuLinkClasses = cn(
 );
 
 /** Mobile nav dropdown: link list + Download CV, shown below the header on <768px. */
-export function MobileMenu({ isOpen, links, onNavigate }: MobileMenuProps) {
+export function MobileMenu({ isOpen, links, pageLinks = [], onNavigate, onClose }: MobileMenuProps) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
+        <m.div
           id="mobile-menu"
           className={cn(
             "absolute inset-x-0 top-full z-[99] overflow-hidden md:hidden",
@@ -47,6 +53,11 @@ export function MobileMenu({ isOpen, links, onNavigate }: MobileMenuProps) {
               >
                 {link.name}
               </button>
+            ))}
+            {pageLinks.map((link) => (
+              <Link key={link.name} href={link.href} className={menuLinkClasses} onClick={onClose}>
+                {link.name}
+              </Link>
             ))}
 
             <div className="mt-3 border-t border-border-color pt-4">
@@ -78,7 +89,7 @@ export function MobileMenu({ isOpen, links, onNavigate }: MobileMenuProps) {
               </a>
             </div>
           </nav>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

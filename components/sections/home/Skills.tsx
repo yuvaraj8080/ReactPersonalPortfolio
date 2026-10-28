@@ -1,59 +1,14 @@
 "use client";
 
 import { useRef } from "react";
-import { motion } from "framer-motion";
+import * as m from "framer-motion/m";
 import { Layers, Database, Wrench, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Title } from "@/lib/common/Title";
 import { Container } from "@/lib/common/Container";
 import { sizes } from "@/lib/constants/styles";
 import { SKILLS } from "@/data/skills";
-
-/** Overrides for skill names that don't format cleanly via title-casing alone. */
-const SKILL_DISPLAY_NAMES: Record<string, string> = {
-  googleai: "Google AI",
-  googleanalytics: "Google Analytics",
-  googleads: "Google Ads",
-  googlemaps: "Google Maps",
-  appstore: "App Store",
-  playstore: "Play Store",
-  zegocloud: "ZegoCloud",
-  tensorflow: "TensorFlow",
-  "redux-toolkit": "Redux Toolkit",
-  "chakra-ui": "Chakra UI",
-  antdesign: "Ant Design",
-  vscode: "VS Code",
-  nodejs: "Node.js",
-  nextjs: "Next.js",
-  tailwindcss: "Tailwind CSS",
-  cpp: "C++",
-  postgresql: "PostgreSQL",
-  mysql: "MySQL",
-  aws: "AWS",
-  getx: "GetX",
-  bloc: "BLoC",
-  openai: "OpenAI",
-  aptos: "Aptos",
-  html: "HTML5",
-  css: "CSS3",
-  "claude-code": "Claude Code",
-  "desktop-development": "Desktop Development",
-  "local-storage": "Local Storage",
-  "microsoft-clarity": "Microsoft Clarity",
-  revenuecat: "RevenueCat",
-  "website-development": "Website Development",
-  websocket: "WebSocket",
-};
-
-/** Format skill name for the tooltip. */
-function formatSkillName(skill: string) {
-  if (SKILL_DISPLAY_NAMES[skill]) return SKILL_DISPLAY_NAMES[skill];
-  return skill
-    .replace(/-/g, " ")
-    .replace(/([A-Z])/g, " $1")
-    .replace(/^./, (str) => str.toUpperCase())
-    .trim();
-}
+import { formatSkillName } from "@/lib/skill-names";
 
 function SkillIcon({ group, skill }: { group: string; skill: string }) {
   const src = `/assets/skills/${group}/${skill}.svg`;
@@ -65,6 +20,8 @@ function SkillIcon({ group, skill }: { group: string; skill: string }) {
       alt={skill}
       width={40}
       height={40}
+      loading="lazy"
+      decoding="async"
       className="relative z-[1] h-7 w-7 object-contain transition-transform duration-300 group-hover:scale-110 md:h-8 md:w-8"
     />
   );
@@ -80,7 +37,7 @@ function SkillTile({
   index: number;
 }) {
   return (
-    <motion.div
+    <m.div
       className={cn(
         "group relative flex h-14 w-14 shrink-0 cursor-pointer items-center justify-center rounded-xl md:h-16 md:w-16",
         "border border-border-color bg-bg-primary transition-colors duration-300",
@@ -124,7 +81,7 @@ function SkillTile({
           {formatSkillName(skill)}
         </span>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -163,7 +120,7 @@ function SkillCategoryCard({
   }
 
   return (
-    <motion.div
+    <m.div
       ref={cardRef}
       onMouseMove={handleMouseMove}
       className={cn(
@@ -196,7 +153,7 @@ function SkillCategoryCard({
         >
           {group.label}
         </Title>
-        <motion.span
+        <m.span
           className="ml-2 hidden h-px flex-1 bg-border-color transition-colors duration-300 sm:block"
           style={{ transformOrigin: "left" }}
           initial={{ scaleX: 0 }}
@@ -217,7 +174,7 @@ function SkillCategoryCard({
           />
         ))}
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 

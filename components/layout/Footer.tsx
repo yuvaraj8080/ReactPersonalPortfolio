@@ -1,17 +1,17 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import * as m from "framer-motion/m";
 import { cn } from "@/lib/utils";
 import { Container } from "@/lib/common/Container";
 import { AppImage } from "@/lib/common/AppImage";
 import { AppLink } from "@/lib/common/AppLink";
 import { sizes } from "@/lib/constants/styles";
-import { NAV_LINKS } from "@/lib/constants/nav";
+import { NAV_LINKS, PAGE_LINKS } from "@/lib/constants/nav";
+import { CONTACT_EMAIL, WHATSAPP_DISPLAY, whatsappUrl } from "@/lib/constants/site";
+import { WhatsAppIcon } from "@/lib/common/WhatsAppIcon";
 import { SOCIAL_LINKS } from "@/data/socials";
 import { goToSection } from "@/lib/section-navigation";
-
-const CONTACT_EMAIL = "yuvarajdekhane8080@gmail.com";
 
 const columnHeadingClasses =
   "m-0 font-display text-sm font-semibold uppercase tracking-[0.08em] text-text-primary transition-colors duration-300";
@@ -40,7 +40,7 @@ export function Footer() {
   };
 
   return (
-    <motion.footer
+    <m.footer
       className={cn(
         "mt-8 w-full rounded-t-[2rem] border-t border-border-color bg-bg-secondary pb-8 pt-12",
         "shadow-[0_-4px_32px_rgba(0,0,0,0.1)] transition-colors duration-300",
@@ -86,6 +86,14 @@ export function Footer() {
             >
               {CONTACT_EMAIL}
             </AppLink>
+            <AppLink
+              href={whatsappUrl("Hi Yuvaraj, I found your portfolio and would like to talk.")}
+              external
+              className={cn(footerLinkClasses, "inline-flex min-h-10 items-center gap-2")}
+            >
+              <WhatsAppIcon className="h-4 w-4 text-green-400" />
+              WhatsApp {WHATSAPP_DISPLAY}
+            </AppLink>
           </div>
 
           {/* Navigation */}
@@ -104,6 +112,11 @@ export function Footer() {
                 >
                   {link.name}
                 </a>
+              ))}
+              {PAGE_LINKS.map((link) => (
+                <AppLink key={link.name} href={link.href} className={footerLinkClasses}>
+                  {link.name}
+                </AppLink>
               ))}
             </nav>
           </div>
@@ -137,9 +150,11 @@ export function Footer() {
           <p className="m-0 font-display text-sm font-medium text-text-secondary transition-colors duration-300">
             Designed and created by{" "}
             <span className="text-text-primary">Yuvaraj Dekhane</span>
+            <span className="max-[480px]:hidden"> · </span>
+            <span className="max-[480px]:block">also spelled Yuvraj Dekhane</span>
           </p>
         </div>
       </Container>
-    </motion.footer>
+    </m.footer>
   );
 }

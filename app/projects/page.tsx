@@ -1,30 +1,42 @@
 import type { Metadata } from "next";
-import { SITE_URL } from "@/lib/constants/site";
+import { SITE_NAME } from "@/lib/constants/site";
+import {
+  breadcrumbJsonLd,
+  buildMetadata,
+  buildTitle,
+  clampDescription,
+  ogImage,
+  projectsPageJsonLd,
+} from "@/lib/seo";
+import { JsonLd } from "@/lib/common/JsonLd";
+import { projects } from "@/data/projects";
 import { AllProjectsContent } from "@/components/sections/projects/AllProjectsContent";
 
-const title = "All Projects — Yuvaraj Dekhane";
-const description =
-  "Browse all projects by Yuvaraj Dekhane — production apps across Android, iOS, web, and desktop.";
+const title = buildTitle("Flutter Apps & React Websites Portfolio");
+const description = clampDescription(
+  `Browse ${projects.length} projects by ${SITE_NAME}: Flutter apps, React websites and full-stack platforms for Android, iOS and web, with case studies and live links.`
+);
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title,
   description,
-  alternates: {
-    canonical: "/projects",
-  },
-  openGraph: {
-    title,
-    description,
-    url: `${SITE_URL}/projects`,
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-  },
-};
+  path: "/projects",
+  image: ogImage("home.jpg", `Projects by ${SITE_NAME} — Flutter apps and React websites`),
+});
 
 export default function AllProjectsPage() {
-  return <AllProjectsContent />;
+  return (
+    <>
+      <JsonLd
+        data={[
+          projectsPageJsonLd(projects, title, description),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Projects", path: "/projects" },
+          ]),
+        ]}
+      />
+      <AllProjectsContent />
+    </>
+  );
 }

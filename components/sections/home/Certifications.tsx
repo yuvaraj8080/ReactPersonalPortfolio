@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import * as m from "framer-motion/m";
 import { cn } from "@/lib/utils";
 import { Title } from "@/lib/common/Title";
 import { Text } from "@/lib/common/Text";
@@ -118,7 +118,7 @@ export function Certifications() {
       className="relative bg-bg-primary py-24 max-[900px]:py-16"
     >
       <Container>
-        <motion.div
+        <m.div
           className="mb-12 max-[600px]:mb-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -131,11 +131,11 @@ export function Certifications() {
           >
             Certifications
           </Title>
-        </motion.div>
+        </m.div>
 
         <div className={cn("flex flex-col", sizes.gap)}>
           {certifications.map((cert, index) => (
-            <motion.a
+            <m.a
               key={cert.id}
               href={cert.url}
               target="_blank"
@@ -213,7 +213,7 @@ export function Certifications() {
                   />
                 </svg>
               </span>
-            </motion.a>
+            </m.a>
           ))}
         </div>
       </Container>

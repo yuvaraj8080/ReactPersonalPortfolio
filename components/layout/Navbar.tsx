@@ -2,18 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import * as m from "framer-motion/m";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { layout } from "@/lib/constants/styles";
-import { NAV_LINKS } from "@/lib/constants/nav";
+import { HIRE_LINK, NAV_LINKS } from "@/lib/constants/nav";
 import { useThemeStore } from "@/store/useThemeStore";
 import { MobileMenu } from "@/components/layout/MobileMenu";
 import { AppImage } from "@/lib/common/AppImage";
 import { goToSection } from "@/lib/section-navigation";
 
 const navElementClasses = cn(
-  "m-0 font-sans text-base font-medium text-text-secondary no-underline",
+  "m-0 whitespace-nowrap font-sans text-base font-medium text-text-secondary no-underline",
   "border-b-2 border-transparent pb-0.5 transition-colors duration-200",
   "hover:text-text-primary hover:border-text-primary focus:text-text-primary focus:border-text-primary"
 );
@@ -93,7 +93,7 @@ export function Navbar() {
           because app/globals.css sets overflow-x: hidden on html/body). */}
       <div className="h-[74px] md:h-[81px]" aria-hidden="true" />
       <div className="fixed inset-x-0 top-0 z-[100]">
-        <motion.header
+        <m.header
           className={cn(
             layout.container,
             "flex items-center justify-between py-4",
@@ -106,7 +106,7 @@ export function Navbar() {
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
         >
           <Link href="/" className="inline-block no-underline">
-            <motion.div
+            <m.div
               className={cn(
                 "relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl",
                 "shadow-[0_2px_8px_rgba(59,130,246,0.2)] transition-shadow duration-300",
@@ -125,16 +125,16 @@ export function Navbar() {
                 className="object-cover"
                 priority
               />
-            </motion.div>
+            </m.div>
           </Link>
 
           {/* Desktop nav — hidden on mobile, replaced by hamburger menu */}
           <div className="hidden items-center justify-between p-2 md:flex">
-            <nav aria-label="Main Navigation" className="z-[3] rounded-xl px-8 py-2 text-white">
-              <ul className="m-0 flex list-none gap-6 p-0">
+            <nav aria-label="Main Navigation" className="z-[3] rounded-xl px-8 py-2 text-white max-[1000px]:px-2">
+              <ul className="m-0 flex list-none gap-6 p-0 max-[1000px]:gap-4">
                 {NAV_LINKS.map((link) => (
                   <li key={link.name}>
-                    <motion.a
+                    <m.a
                       className={navElementClasses}
                       href={link.href}
                       onClick={(e) => handleNavigation(e, link.href)}
@@ -142,15 +142,20 @@ export function Navbar() {
                       whileTap={{ scale: 0.98 }}
                     >
                       {link.name}
-                    </motion.a>
+                    </m.a>
                   </li>
                 ))}
+                <li>
+                  <Link className={navElementClasses} href={HIRE_LINK.href}>
+                    {HIRE_LINK.name}
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
 
           <div className="flex items-center gap-3 md:gap-4">
-            <motion.button
+            <m.button
               className={iconButtonClasses}
               onClick={toggleTheme}
               aria-label="Toggle theme"
@@ -189,10 +194,10 @@ export function Navbar() {
                   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
               )}
-            </motion.button>
+            </m.button>
 
             {/* Desktop: full "Download CV" pill */}
-            <motion.a
+            <m.a
               href="/assets/pdf/YuvarajDekhane_09_Aug.pdf"
               className="z-[3] hidden md:inline-block"
               download="Yuvaraj_Dekhane_Resume.pdf"
@@ -210,10 +215,10 @@ export function Navbar() {
               >
                 Download CV
               </span>
-            </motion.a>
+            </m.a>
 
             {/* Mobile: compact icon-only "Download CV" */}
-            <motion.a
+            <m.a
               href="/assets/pdf/YuvarajDekhane_09_Aug.pdf"
               className={cn(iconButtonClasses, "md:hidden")}
               download="Yuvaraj_Dekhane_Resume.pdf"
@@ -236,7 +241,7 @@ export function Navbar() {
                 <line x1="16" y1="17" x2="8" y2="17"></line>
                 <polyline points="10 9 9 9 8 9"></polyline>
               </svg>
-            </motion.a>
+            </m.a>
 
             {/* Mobile hamburger / close toggle */}
             <button
@@ -270,12 +275,14 @@ export function Navbar() {
               </svg>
             </button>
           </div>
-        </motion.header>
+        </m.header>
 
         <MobileMenu
           isOpen={isMobileMenuOpen}
           links={NAV_LINKS}
+          pageLinks={[HIRE_LINK]}
           onNavigate={handleMobileNavigate}
+          onClose={() => setIsMobileMenuOpen(false)}
         />
       </div>
     </>

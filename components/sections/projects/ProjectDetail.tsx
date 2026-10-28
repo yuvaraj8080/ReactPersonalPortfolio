@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import * as m from "framer-motion/m";
 import { cn } from "@/lib/utils";
 import { Container } from "@/lib/common/Container";
 import { ProjectGallery } from "@/components/sections/projects/ProjectGallery";
@@ -12,14 +13,22 @@ import { ExpandableSection } from "@/components/sections/projects/ExpandableSect
 import { Title } from "@/lib/common/Title";
 import { Text } from "@/lib/common/Text";
 import { TechBadge } from "@/lib/common/TechBadge";
+import { Breadcrumbs } from "@/lib/common/Breadcrumbs";
+import { FaqList } from "@/lib/common/FaqList";
+import { SITE_NAME } from "@/lib/constants/site";
 import { getBriefText, getBriefAchievement } from "@/lib/text";
-import { SITE_URL } from "@/lib/constants/site";
 import { goToSection } from "@/lib/section-navigation";
-import type { Project } from "@/types";
+import type { Blog, FaqItem, Project } from "@/types";
+
+type RelatedPost = Pick<Blog, "slug" | "title" | "excerpt" | "category" | "coverImage">;
 
 interface ProjectDetailProps {
   project: Project;
   relatedProjects: Project[];
+  /** Blog posts that cover this project — rendered as descriptive internal links. */
+  relatedPosts: RelatedPost[];
+  /** Built by buildProjectFaq() in the page, which also emits the matching FAQPage JSON-LD. */
+  faq: FaqItem[];
 }
 
 type SectionKey = "achievements";
@@ -47,7 +56,7 @@ const actionButtonSecondaryClasses = cn(
   "max-[768px]:w-full max-[768px]:justify-center"
 );
 
-export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) {
+export function ProjectDetail({ project, relatedProjects, relatedPosts, faq }: ProjectDetailProps) {
   const router = useRouter();
   const pathname = usePathname();
   const [expandedSections, setExpandedSections] = useState<
@@ -66,28 +75,17 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
 
   const hasStats = project.timeline || project.role || project.status;
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    name: project.title,
-    description: getBriefText(project.description),
-    url: `${SITE_URL}${project.detailsUrl}`,
-    ...(project.previewSrc && {
-      image: `${SITE_URL}/assets/images/projects/${project.previewSrc}`,
-    }),
-    ...(techStack.length > 0 && { keywords: techStack.join(", ") }),
-    author: { "@type": "Person", name: "Yuvaraj Dekhane" },
-  };
-
   return (
     <div className="min-h-screen bg-bg-primary transition-colors duration-300">
-      {/* GEO/SEO: structured data so search + AI answer engines can parse this project directly. */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
       <Container className="min-h-screen py-8 text-text-primary transition-colors duration-300 max-[768px]:py-4">
-        <motion.button
+        <Breadcrumbs
+          items={[
+            { name: "Home", href: "/" },
+            { name: "Projects", href: "/projects" },
+            { name: project.title },
+          ]}
+        />
+        <m.button
           className={cn(
             "mb-8 cursor-pointer rounded-lg border-none bg-transparent px-4 py-2",
             "font-sans text-base text-accent-blue transition-all duration-300",
@@ -98,7 +96,7 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
           whileTap={{ scale: 0.95 }}
         >
           ← Back to Projects
-        </motion.button>
+        </m.button>
 
         {/* Hero */}
         <div className="mb-16">
@@ -112,6 +110,30 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
             <Text className="mb-8 font-sans text-xl leading-[1.6] text-[var(--secondary-text)] max-[768px]:text-[1.1rem]">
               {getBriefText(project.description)}
             </Text>
+            <p className="mb-8 mt-0 font-sans text-base text-[var(--secondary-text)]">
+              Built by{" "}
+              <Link href="/" className="font-semibold text-accent-blue no-underline hover:underline">
+                {SITE_NAME}
+              </Link>
+              {project.role && ` · ${project.role}`}
+              {project.client && project.client.name !== project.title && (
+                <>
+                  {" · for "}
+                  {project.client.url ? (
+                    <a
+                      href={project.client.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-semibold text-accent-blue no-underline hover:underline"
+                    >
+                      {project.client.name}
+                    </a>
+                  ) : (
+                    <span className="font-semibold text-[var(--primary-text)]">{project.client.name}</span>
+                  )}
+                </>
+              )}
+            </p>
 
             {hasStats && (
               <div className="mb-8 flex flex-wrap gap-8 max-[768px]:gap-4">
@@ -230,7 +252,7 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
             <Title level={2} className={sectionTitleClasses}>Achievements</Title>
             <div className="mb-6 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 max-[1024px]:grid-cols-1">
               {project.achievements.map((achievement, index) => (
-                <motion.div
+                <m.div
                   key={index}
                   className={cn(
                     "flex gap-4 rounded-xl p-6",
@@ -257,7 +279,7 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
                     </Text>
                     <AnimatePresence>
                       {expandedSections.achievements && (
-                        <motion.p
+                        <m.p
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
@@ -265,11 +287,11 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
                           className="mt-2 text-[0.9rem] leading-[1.5] text-[var(--secondary-text)]"
                         >
                           {achievement.description}
-                        </motion.p>
+                        </m.p>
                       )}
                     </AnimatePresence>
                   </div>
-                </motion.div>
+                </m.div>
               ))}
             </div>
             <button
@@ -328,6 +350,75 @@ export function ProjectDetail({ project, relatedProjects }: ProjectDetailProps) 
                 </div>
               ))}
             </div>
+          </section>
+        )}
+
+        {/* Related posts — two-way internal links with the blog's case studies */}
+        {relatedPosts.length > 0 && (
+          <section className="mb-16 mt-24">
+            <Title
+              level={2}
+              className="mb-8 font-display text-[2rem] font-semibold !text-[var(--primary-text)]"
+            >
+              Read More About This Project
+            </Title>
+            <div className="flex flex-col gap-4">
+              {relatedPosts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className={cn(
+                    "group flex items-center gap-5 overflow-hidden rounded-2xl border border-border-color bg-bg-secondary p-5 no-underline",
+                    "transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-blue hover:shadow-[0_16px_40px_rgba(59,130,246,0.15)]",
+                    "max-[600px]:flex-col max-[600px]:items-stretch"
+                  )}
+                >
+                  {post.coverImage && (
+                    <div className="relative h-[72px] w-[110px] shrink-0 overflow-hidden rounded-lg bg-bg-hover max-[600px]:h-[140px] max-[600px]:w-full">
+                      <Image
+                        src={post.coverImage}
+                        alt={`Cover image for ${post.title}`}
+                        fill
+                        sizes="(max-width: 600px) 100vw, 110px"
+                        className="object-cover"
+                      />
+                    </div>
+                  )}
+                  <div className="flex min-w-0 flex-1 flex-col justify-center gap-1">
+                    <span className="text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-accent-blue">
+                      {post.category}
+                    </span>
+                    <span className="line-clamp-2 font-sans text-lg font-semibold text-text-primary">
+                      {post.title}
+                    </span>
+                    <span className="line-clamp-1 text-sm text-text-secondary">{post.excerpt}</span>
+                  </div>
+                  <span
+                    className={cn(
+                      "inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-[rgba(59,130,246,0.4)] bg-[rgba(59,130,246,0.1)]",
+                      "px-4 py-2 font-sans text-sm font-semibold text-accent-blue transition-colors duration-300",
+                      "group-hover:bg-accent-blue group-hover:text-white max-[600px]:justify-center"
+                    )}
+                  >
+                    Read Article →
+                    <span className="sr-only">: {post.title}</span>
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* FAQ — same items as the FAQPage JSON-LD */}
+        {faq.length > 0 && (
+          <section className="mb-16 mt-24">
+            <Title
+              level={2}
+              className="mb-8 font-display text-[2rem] font-semibold !text-[var(--primary-text)]"
+            >
+              Frequently Asked Questions
+            </Title>
+            <FaqList items={faq} className="max-w-[860px]" />
           </section>
         )}
 

@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion, type Variants } from "framer-motion";
+import { type Variants } from "framer-motion";
+import * as m from "framer-motion/m";
 import { cn } from "@/lib/utils";
 import { layout } from "@/lib/constants/styles";
 import { Footer } from "@/components/layout/Footer";
@@ -91,7 +92,7 @@ function ProjectRow({ project, reverse }: ProjectRowProps) {
   );
 
   return (
-    <motion.article
+    <m.article
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
@@ -106,7 +107,7 @@ function ProjectRow({ project, reverse }: ProjectRowProps) {
           reverse && "md:flex-row-reverse"
         )}
       >
-        <motion.div
+        <m.div
           variants={imageVariants}
           className="relative aspect-[16/9] w-full shrink-0 overflow-hidden bg-bg-hover md:w-1/2"
         >
@@ -130,9 +131,9 @@ function ProjectRow({ project, reverse }: ProjectRowProps) {
           ) : (
             image
           )}
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           variants={textVariants}
           className="flex flex-col items-start gap-3 p-5 md:w-1/2 md:p-8"
         >
@@ -171,13 +172,14 @@ function ProjectRow({ project, reverse }: ProjectRowProps) {
             )}
           >
             View Details
-            <span className="transition-transform duration-200 group-hover:translate-x-[3px]">
+            <span className="sr-only"> of {project.title}</span>
+            <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-[3px]">
               →
             </span>
           </Link>
-        </motion.div>
+        </m.div>
       </div>
-    </motion.article>
+    </m.article>
   );
 }
 

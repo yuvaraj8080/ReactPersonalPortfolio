@@ -22,4 +22,4 @@ export const HERO_TECH_STACK: HeroTech[] = [
 ];
 
 export const HERO_TITLE =
-  "Hi, I'm Yuvaraj Dekhane — Full-Stack Developer, 80+ Apps Built";
+  "Hi, I'm Yuvaraj Dekhane — Flutter, React Native & Full-Stack Developer, 80+ Apps Built";

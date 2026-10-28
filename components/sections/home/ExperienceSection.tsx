@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, Fragment } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
+import * as m from "framer-motion/m";
 import { cn } from "@/lib/utils";
 import { AppImage } from "@/lib/common/AppImage";
 import { Title } from "@/lib/common/Title";
@@ -43,7 +44,7 @@ export function ExperienceSection() {
       className="w-full bg-bg-primary py-16 transition-colors duration-300 max-[768px]:py-12 max-[480px]:py-8"
     >
       <Container>
-        <motion.h2
+        <m.h2
           className="m-0 mb-12 text-left font-display text-3xl font-bold leading-[1.2] tracking-[-0.02em] text-text-primary transition-colors duration-300 max-[768px]:text-[2.5rem] max-[480px]:text-[2rem]"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,12 +52,12 @@ export function ExperienceSection() {
           transition={{ duration: 0.5 }}
         >
           Experience
-        </motion.h2>
+        </m.h2>
         <div className="flex flex-col gap-5">
           {experiences.map((exp, index) => {
             const isExpanded = expandedItems[index];
             return (
-              <motion.div
+              <m.div
                 key={index}
                 className={cn(
                   "rounded-2xl border border-border-color bg-bg-secondary p-5 transition-all duration-300",
@@ -239,7 +240,7 @@ export function ExperienceSection() {
                 {/* Description — expandable */}
                 <AnimatePresence>
                   {isExpanded && (
-                    <motion.div
+                    <m.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -259,10 +260,10 @@ export function ExperienceSection() {
                           </li>
                         ))}
                       </ul>
-                    </motion.div>
+                    </m.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

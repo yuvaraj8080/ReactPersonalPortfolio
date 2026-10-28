@@ -2,19 +2,23 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import * as m from "framer-motion/m";
 import { cn } from "@/lib/utils";
 import { AppImage } from "@/lib/common/AppImage";
 import { Title } from "@/lib/common/Title";
 import { Text } from "@/lib/common/Text";
 import { getTechIcon } from "@/lib/tech-icons";
-import type { Project } from "@/types";
+import type { ProjectCardData } from "@/types";
 
 interface ProjectsGridProps {
-  projects: Project[];
+  projects: ProjectCardData[];
   singleColumn?: boolean;
-  showAllProjects?: boolean;
+  /** Show the "View all projects" button (when more projects exist than the grid displays). */
+  showViewAll?: boolean;
 }
+
+/** Preview box: full width below 900px, otherwise ≤720px (single column) or about half the container. Always lazy — the grid sits below the hero, so eager images only compete with LCP. */
+const previewSizes = "(max-width: 900px) 100vw, 720px";
 
 function TechIcon({ tech }: { tech: string }) {
   const [failed, setFailed] = useState(false);
@@ -48,10 +52,8 @@ function TechIcon({ tech }: { tech: string }) {
 export function ProjectsGrid({
   projects,
   singleColumn = false,
-  showAllProjects = false,
+  showViewAll = false,
 }: ProjectsGridProps) {
-  const displayedProjects = showAllProjects ? projects : projects.slice(0, 4);
-
   return (
     <>
       <div
@@ -62,7 +64,7 @@ export function ProjectsGrid({
             : "grid-cols-2 max-[900px]:grid-cols-1"
         )}
       >
-        {displayedProjects.map((project, index) => {
+        {projects.map((project, index) => {
           const techList = project.tech
             ? project.tech.split(",").map((t) => t.trim())
             : [];
@@ -70,7 +72,7 @@ export function ProjectsGrid({
           const liveUrl = project.liveUrls?.[0]?.url;
 
           return (
-            <motion.article
+            <m.article
               key={project.slug || index}
               className={cn(
                 "flex flex-col items-stretch overflow-hidden rounded-xl",
@@ -86,7 +88,7 @@ export function ProjectsGrid({
             >
               <div
                 className={cn(
-                  "w-full shrink-0 overflow-hidden bg-bg-secondary [aspect-ratio:16/10]",
+                  "relative w-full shrink-0 overflow-hidden bg-bg-secondary [aspect-ratio:16/10]",
                   singleColumn && project.previewFit === "contain"
                     ? "w-auto max-w-[720px] flex-[0_0_68%] self-start max-[900px]:w-full max-[900px]:max-w-none max-[900px]:flex-none max-[900px]:self-auto"
                     : singleColumn &&
@@ -106,30 +108,32 @@ export function ProjectsGrid({
                       rel="noopener noreferrer"
                       className="group relative block h-full w-full text-inherit no-underline"
                     >
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
+                      <AppImage
                         src={`/assets/images/projects/${imageSrc}`}
                         alt={project.title}
+                        fill
+                        sizes={previewSizes}
                         className={cn(
-                          "block h-full w-full object-center",
+                          "object-center",
                           project.previewFit === "contain" ? "object-contain" : "object-cover"
                         )}
-                        loading={index < 2 ? "eager" : "lazy"}
+                        loading="lazy"
                       />
                       <span className="absolute inset-x-0 bottom-0 bg-[rgba(0,0,0,0.7)] px-3 py-2 text-[0.8rem] font-medium text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                         View live site →
                       </span>
                     </a>
                   ) : (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
+                    <AppImage
                       src={`/assets/images/projects/${imageSrc}`}
                       alt={project.title}
+                      fill
+                      sizes={previewSizes}
                       className={cn(
-                        "block h-full w-full object-center",
+                        "object-center",
                         project.previewFit === "contain" ? "object-contain" : "object-cover"
                       )}
-                      loading={index < 2 ? "eager" : "lazy"}
+                      loading="lazy"
                     />
                   )
                 ) : (
@@ -169,6 +173,7 @@ export function ProjectsGrid({
                     )}
                   >
                     View Details
+                    <span className="sr-only"> of {project.title}</span>
                     <svg
                       width="14"
                       height="14"
@@ -182,19 +187,19 @@ export function ProjectsGrid({
                   </Link>
                 </div>
               </div>
-            </motion.article>
+            </m.article>
           );
         })}
       </div>
 
-      {!showAllProjects && projects.length > 4 && (
-        <motion.div
+      {showViewAll && (
+        <m.div
           className="mt-4 flex items-center justify-center p-8"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <motion.div
+          <m.div
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -210,8 +215,8 @@ export function ProjectsGrid({
             >
               View all projects
             </Link>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       )}
     </>
   );

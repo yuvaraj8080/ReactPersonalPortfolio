@@ -4,6 +4,8 @@ export const blogs: Blog[] = [
   {
     title: "Vibe Coding Explained: What It Is, What It Isn't, and When to Use It",
     slug: "vibe-coding-explained",
+    seoTitle: "Vibe Coding Explained: When to Use It",
+    seoDescription: "Vibe coding means directing an AI coding agent with plain-language intent and reviewing its output. See what it is, where it works well, and when not to use it.",
     excerpt:
       "Vibe coding means directing an AI coding agent with plain-language intent and iterating on its output, instead of hand-writing every line yourself. Here's what that actually looks like in practice, and where it earns its keep.",
     category: "AI & Development",
@@ -92,10 +94,13 @@ export const blogs: Blog[] = [
   {
     title: "Inside My AI Agent Workflow: Claude Code, Cursor, and How I Actually Use Them",
     slug: "ai-coding-agent-workflow-claude-code-cursor",
+    seoTitle: "Claude Code vs Cursor Coding Workflow",
+    seoDescription: "How Claude Code and Cursor fit into a real development loop: planning, tool calls, verification, and where I still step in by hand. A practitioner's workflow.",
     excerpt:
       "A practitioner's breakdown of how Claude Code and Cursor fit into a real development loop — planning, tool calls, verification, and where I still step in by hand.",
     category: "Tools & Workflow",
     date: "2026-07-12",
+    updated: "2026-10-28",
     tags: ["Claude Code", "Cursor", "AI Agents"],
     coverImage: "/assets/images/blog/AgentWorkflow.webp",
     keyTakeaways: [
@@ -182,15 +187,49 @@ export const blogs: Blog[] = [
         variant: "tip",
         text: "The single habit that improves agent output the most: front-load the constraints (existing tokens, breakpoint conventions, component patterns already in the codebase) instead of describing the feature in isolation and fixing the mismatches afterward.",
       },
+      { type: "heading", level: 2, text: "Frequently asked questions" },
+      {
+        type: "faq",
+        items: [
+          {
+            question: "What loop does an AI coding agent follow?",
+            answer:
+              "Read the relevant code, plan the approach for anything non-trivial, make the smallest change the task allows, then verify it: run the build, check the browser at the breakpoints that matter, and read the diff back. It is the same loop a careful engineer follows, just faster at the reading and typing steps.",
+          },
+          {
+            question: "When should I use Claude Code instead of Cursor?",
+            answer:
+              "Use Claude Code for larger, cross-file work such as a new page, a data-model change that touches several components, or a full section redesign, because it can plan the change, execute it, and run its own verification before handing back. Cursor suits tight, local edits where you want to watch the diff form line by line.",
+          },
+          {
+            question: "Where do AI coding agents still fall short?",
+            answer:
+              "They will happily improve nearby code beyond what you asked unless told to stay scoped, they are much better at extending an existing pattern than inventing a new one, and context does not fully survive between sessions, so small details like a ruled-out debugging path have to be re-established by hand.",
+          },
+          {
+            question: "Do I need an AI agent for a one-line fix?",
+            answer:
+              "No. For genuine one-liners such as a typo, an import path, or a stray console.log, opening an agent is more overhead than the change itself.",
+          },
+          {
+            question: "What habit improves AI agent output the most?",
+            answer:
+              "Front-load the constraints, meaning the existing tokens, breakpoint conventions, and component patterns already in the codebase, instead of describing the feature in isolation and fixing the mismatches afterward.",
+          },
+        ],
+      },
     ],
   },
   {
     title: "From Idea to Production in 3 Days: The MagicMond Global Case Study",
     slug: "magicmond-3-day-case-study",
+    seoTitle: "MagicMond Global Case Study: 3 Days",
+    seoDescription: "How MagicMond Global, the agency's own marketing site, went from a blank repo to live in 3 days: the React and Vite stack, the vibe-coding workflow, the result.",
     excerpt:
       "A full breakdown of building MagicMond Global — the agency's own marketing site — end-to-end in 3 days with the MagicMond Magicians Team: the stack, the workflow, and the live result.",
     category: "Case Study",
     date: "2026-06-30",
+    updated: "2026-10-28",
     tags: ["Case Study", "React", "Vibe Coding"],
     coverImage: "/assets/images/projects/magicmond/introPage.webp",
     keyTakeaways: [
@@ -236,15 +275,44 @@ export const blogs: Blog[] = [
         description: "Tech stack, all screenshots, and the complete feature list on the project page.",
         image: "/assets/images/projects/magicmond/DetailsPage.webp",
       },
+      { type: "heading", level: 2, text: "Frequently asked questions" },
+      {
+        type: "faq",
+        items: [
+          {
+            question: "How long did it take to build MagicMond Global?",
+            answer:
+              "Three days. The agency's own marketing site went from a blank repo to a live site at magicmond.com, built with the MagicMond Magicians Team.",
+          },
+          {
+            question: "What tech stack is MagicMond Global built with?",
+            answer:
+              "React with Vite for fast dev and build tooling, Tailwind CSS for a clean, reusable component architecture, and Framer Motion for scroll and interaction animation.",
+          },
+          {
+            question: "What does the MagicMond Global website include?",
+            answer:
+              "A multi-brand marketing site for Design, Growth, Tech and AI services, dedicated InfraEdge and Sports partnerships pages, a service showcase, and a full Reidius Infra case study alongside client logos such as KFC, Western Union, My11Circle, Dalmia Cement, and Etihad.",
+          },
+          {
+            question: "How was a production-ready site delivered in three days?",
+            answer:
+              "Through an AI-agent-driven (vibe coding) workflow with rapid iteration, continuous feedback, and close team collaboration, without cutting corners on responsiveness or polish.",
+          },
+        ],
+      },
     ],
   },
   {
     title: "React Case Studies: PerfectCareer, Reidius Infra Global & Landing Page",
     slug: "react-case-studies",
+    seoTitle: "React Case Studies: PerfectCareer & More",
+    seoDescription: "Three React builds in production: PerfectCareer's automation-driven platform and two Reidius Infra sites, plus client-side vs server-side rendering explained.",
     excerpt:
       "Three React builds in production: PerfectCareer's automation-driven platform, Reidius Infra Global's Dubai villa-construction site, and the Reidius Infra lead-gen landing page — same stack, same fast-shipping discipline.",
     category: "Case Study",
     date: "2026-08-03",
+    updated: "2026-10-28",
     tags: [
       "React",
       "Automation",
@@ -346,15 +414,49 @@ export const blogs: Blog[] = [
         type: "paragraph",
         text: "This shipped with guidance from Chirag Pachauri as Senior Developer — the same collaborator who guided the MagicMond Global build. Different companies, different stacks, same discipline: describe the change, review it, ship it.",
       },
+      { type: "heading", level: 2, text: "Frequently asked questions" },
+      {
+        type: "faq",
+        items: [
+          {
+            question: "What stack is PerfectCareer built with?",
+            answer:
+              "The frontend uses React, Vite, Tailwind CSS, shadcn/ui, Redux Toolkit, and MVC architecture. The backend is Node.js APIs with automation-driven workflows instead of manual order handling.",
+          },
+          {
+            question: "How long did the PerfectCareer platform take to build?",
+            answer:
+              "The core platform was built in 5 days, followed by continuous enhancements, automation, and production improvements.",
+          },
+          {
+            question: "How are PerfectCareer reports and orders delivered?",
+            answer:
+              "Through Interakt WhatsApp automation in Hindi and English, with SMTP email as a parallel channel, and Google Cloud Tasks handling queued background processing so report requests reliably complete.",
+          },
+          {
+            question: "What is the difference between client-side and server-side rendering?",
+            answer:
+              "With client-side rendering the server sends a mostly empty HTML shell plus JavaScript, and the browser builds the page after the script runs. With server-side rendering the server produces the HTML for each request first, so the browser can paint real content immediately and then hydrate it, which gives a faster first paint and stronger out-of-the-box SEO.",
+          },
+          {
+            question: "What results did the PerfectCareer launch push achieve?",
+            answer:
+              "Early results were 353K+ campaign impressions, 3.5K+ website clicks, and 2.5K+ link clicks.",
+          },
+        ],
+      },
     ],
   },
   {
     title: "Flutter Case Studies: Dosha Detector, GRAH9 & E-Commerce App",
     slug: "flutter-case-studies",
+    seoTitle: "Flutter Case Studies: Dosha Detector",
+    seoDescription: "Three Flutter apps in production: Dosha Detector, the GRAH9 CRM managing 2000+ users, and a full e-commerce app with admin panel, on Flutter, GetX and Firebase.",
     excerpt:
       "Three Flutter apps in production — Dosha Detector's AI-powered astrology insights, GRAH9's CRM managing 2000+ users, and a full e-commerce app + admin panel — all built on Flutter, GetX, and Firebase.",
     category: "Case Study",
     date: "2026-08-04",
+    updated: "2026-10-28",
     tags: [
       "Flutter",
       "GetX",
@@ -442,6 +544,32 @@ export const blogs: Blog[] = [
       {
         type: "paragraph",
         text: "Three different products, three different jobs — a consumer app, an internal CRM, and a full commerce platform — built on the same Flutter/GetX/Firebase foundation, with each one reusing patterns the last one already proved out.",
+      },
+      { type: "heading", level: 2, text: "Frequently asked questions" },
+      {
+        type: "faq",
+        items: [
+          {
+            question: "What is Dosha Detector?",
+            answer:
+              "A consumer Flutter astrology app published under Astro Vedansh Innovations, with 500+ downloads on the Play Store. It detects 10+ dosha types from a Janam Kundali, explains each one, recommends personalized remedies, and offers live video consultations with astrologers.",
+          },
+          {
+            question: "What does GRAH9 do?",
+            answer:
+              "GRAH9 is the internal Flutter admin panel and CRM that manages 2000+ users across AstroVedansh's products from one dashboard, with Interakt WhatsApp template automation, revenue and campaign analytics, and order, consultation, and coupon management.",
+          },
+          {
+            question: "What features does the Flutter e-commerce app have?",
+            answer:
+              "Razorpay payments and Cash on Delivery with two-step authentication, single and variable products with size and color options, categories, brands, favorites saved with Hive, address and order management, and a companion admin panel with live sales totals and a weekly revenue chart.",
+          },
+          {
+            question: "What tech stack do these Flutter apps share?",
+            answer:
+              "Flutter and Dart with GetX for state management and Firebase as the backend, built in an MVVM-style architecture.",
+          },
+        ],
       },
     ],
   },

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import * as m from "framer-motion/m";
 import { cn } from "@/lib/utils";
 import { Title } from "@/lib/common/Title";
 import { Container } from "@/lib/common/Container";
@@ -48,7 +48,7 @@ export function Blogs() {
       className="w-full bg-bg-primary py-24 transition-colors duration-300 max-[900px]:py-16"
     >
       <Container className="flex flex-col gap-6">
-        <motion.div
+        <m.div
           className="flex items-center justify-between gap-4"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -73,7 +73,7 @@ export function Blogs() {
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </AppLink>
-        </motion.div>
+        </m.div>
 
         <div
           ref={scrollRef}

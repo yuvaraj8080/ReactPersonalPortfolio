@@ -19,6 +19,11 @@ export const typography = {
   /** .sub-heading */
   subHeading:
     "text-center text-lg font-medium leading-relaxed text-[var(--text-secondary)] mb-12 transition-colors duration-300",
+  /** Left-aligned heading + subheading used by the newer home sections and /hire-me (matches GitHub Contributions). */
+  pageHeading:
+    "mb-3 text-left font-display text-3xl font-semibold leading-[1.2] tracking-[0.04em] text-text-primary transition-colors duration-300",
+  pageSubheading:
+    "mb-12 text-left font-sans text-lg font-medium leading-[1.7] text-text-secondary transition-colors duration-300",
   body: "text-base leading-[1.7] text-[var(--secondary-text)]",
   caption: "text-sm text-[var(--text-secondary)]",
 } as const;
@@ -29,4 +34,13 @@ export const sizes = {
   iconLg: "h-6 w-6",
   gap: "gap-4 md:gap-6 lg:gap-8",
   card: "rounded-xl p-4 md:p-6",
+} as const;
+
+/** Hand-styled CTA buttons for links (see CLAUDE.md §2.4); ≥44px tall, full-width on mobile. */
+export const buttons = {
+  base: "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-6 py-3 font-sans text-[0.9375rem] font-medium no-underline transition-all duration-300 max-[768px]:w-full",
+  primary:
+    "border border-text-primary bg-text-primary text-bg-primary hover:border-accent-blue hover:bg-accent-blue hover:text-white",
+  secondary:
+    "border border-border-color bg-bg-secondary text-text-primary hover:border-accent-blue hover:bg-bg-hover",
 } as const;

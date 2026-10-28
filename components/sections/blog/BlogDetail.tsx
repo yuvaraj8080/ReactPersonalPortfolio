@@ -1,20 +1,24 @@
 "use client";
 
 import { Fragment } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import * as m from "framer-motion/m";
 import { cn } from "@/lib/utils";
 import { Container } from "@/lib/common/Container";
 import { Title } from "@/lib/common/Title";
 import { Text } from "@/lib/common/Text";
 import { AppImage } from "@/lib/common/AppImage";
+import { Breadcrumbs } from "@/lib/common/Breadcrumbs";
+import { SITE_NAME } from "@/lib/constants/site";
+import { AuthorBox } from "@/components/sections/blog/AuthorBox";
 import { BlogCard } from "@/components/sections/blog/BlogCard";
 import { Footer } from "@/components/layout/Footer";
 import { getTechIconPath } from "@/lib/tech-icons";
 import { getBriefText } from "@/lib/text";
 import { projects } from "@/data/projects";
 import type { Blog, BlogContentBlock } from "@/types";
+
+const MotionLink = m.create(Link);
 
 interface BlogDetailProps {
   blog: Blog;
@@ -265,64 +269,33 @@ function ContentBlock({ block }: { block: BlogContentBlock }) {
 }
 
 export function BlogDetail({ blog, relatedBlogs }: BlogDetailProps) {
-  const router = useRouter();
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: blog.title,
-    description: blog.excerpt,
-    datePublished: blog.date,
-    keywords: blog.tags.join(", "),
-    author: { "@type": "Person", name: "Yuvaraj Dekhane" },
-  };
-
   const relatedProjects = blog.relatedProjectSlugs
     ? projects.filter((project) => blog.relatedProjectSlugs?.includes(project.slug))
     : [];
 
-  const faqBlock = blog.content.find(
-    (block): block is Extract<BlogContentBlock, { type: "faq" }> => block.type === "faq"
-  );
-  const faqJsonLd = faqBlock
-    ? {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: faqBlock.items.map((item) => ({
-          "@type": "Question",
-          name: item.question,
-          acceptedAnswer: { "@type": "Answer", text: item.answer },
-        })),
-      }
-    : null;
-
   return (
     <div className="min-h-screen bg-bg-primary transition-colors duration-300">
-      {/* GEO/SEO: structured data so search + AI answer engines can parse this post directly. */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      {faqJsonLd && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        />
-      )}
       <Container className="min-h-screen py-8 text-text-primary transition-colors duration-300 max-[768px]:py-4">
         <div className="mx-auto">
-          <motion.button
+          <Breadcrumbs
+            items={[
+              { name: "Home", href: "/" },
+              { name: "Blog", href: "/all-blogs" },
+              { name: blog.title },
+            ]}
+          />
+          <MotionLink
+            href="/all-blogs"
             className={cn(
-              "mb-8 -ml-4 cursor-pointer appearance-none rounded-lg border-none bg-transparent px-4 py-2",
+              "mb-8 -ml-4 inline-block cursor-pointer rounded-lg bg-transparent px-4 py-2 no-underline",
               "font-sans text-base text-accent-blue transition-all duration-300",
               "hover:bg-[rgba(59,130,246,0.1)]"
             )}
-            onClick={() => router.push("/all-blogs")}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             ← Back to Blog
-          </motion.button>
+          </MotionLink>
 
           <div className="mb-6 flex flex-wrap items-center gap-3 text-[0.85rem]">
             <span className="font-semibold uppercase tracking-[0.06em] text-accent-blue">
@@ -334,6 +307,22 @@ export function BlogDetail({ blog, relatedBlogs }: BlogDetailProps) {
                 day: "numeric",
                 year: "numeric",
               })}
+            </span>
+            {blog.updated && (
+              <span className="text-text-secondary">
+                Updated{" "}
+                {new Date(blog.updated).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </span>
+            )}
+            <span className="text-text-secondary">
+              By{" "}
+              <Link href="/" className="font-semibold text-text-primary no-underline hover:text-accent-blue">
+                {SITE_NAME}
+              </Link>
             </span>
           </div>
 
@@ -385,6 +374,8 @@ export function BlogDetail({ blog, relatedBlogs }: BlogDetailProps) {
               <ContentBlock key={i} block={block} />
             ))}
           </div>
+
+          <AuthorBox />
         </div>
 
         {relatedProjects.length > 0 && (
@@ -430,6 +421,7 @@ export function BlogDetail({ blog, relatedBlogs }: BlogDetailProps) {
                     )}
                   >
                     View Project →
+                    <span className="sr-only">: {project.title}</span>
                   </span>
                 </Link>
               ))}

@@ -18,7 +18,7 @@ export const beyondTheCode: Achievement[] = [
     id: "connect-with-me",
     title: "Let's Build Something Innovative",
     icon: "🤝",
-    image: "/assets/images/fame/connectWithMe.webp",
+    image: "/assets/images/fame/letsBuildInnovative.webp",
     description: "Got an idea worth building? Connect with me and let's turn it into a real, shipped product together.",
     category: "Let's Connect",
     year: "2026",

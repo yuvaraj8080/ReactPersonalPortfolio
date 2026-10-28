@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { type Variants } from "framer-motion";
+import * as m from "framer-motion/m";
 import { cn } from "@/lib/utils";
 import { layout } from "@/lib/constants/styles";
 import { Footer } from "@/components/layout/Footer";
@@ -45,7 +46,7 @@ function BlogRow({ blog, reverse, index }: BlogRowProps) {
   };
 
   return (
-    <motion.article
+    <m.article
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
@@ -61,7 +62,7 @@ function BlogRow({ blog, reverse, index }: BlogRowProps) {
           reverse && "md:flex-row-reverse"
         )}
       >
-        <motion.div
+        <m.div
           variants={imageVariants}
           className="relative aspect-[16/9] w-full shrink-0 overflow-hidden rounded-xl bg-bg-hover md:w-1/2"
         >
@@ -93,9 +94,9 @@ function BlogRow({ blog, reverse, index }: BlogRowProps) {
           >
             {String(index + 1).padStart(2, "0")}
           </span>
-        </motion.div>
+        </m.div>
 
-        <motion.div variants={textVariants} className="flex flex-col items-start gap-3 md:w-1/2">
+        <m.div variants={textVariants} className="flex flex-col items-start gap-3 md:w-1/2">
           <div className="flex items-center gap-3">
             <span className="rounded-full bg-accent-blue/10 px-3 py-1 text-[0.75rem] font-semibold uppercase tracking-[0.06em] text-accent-blue">
               {blog.category}
@@ -134,9 +135,9 @@ function BlogRow({ blog, reverse, index }: BlogRowProps) {
               →
             </span>
           </span>
-        </motion.div>
+        </m.div>
       </AppLink>
-    </motion.article>
+    </m.article>
   );
 }
 

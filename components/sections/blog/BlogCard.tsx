@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import * as m from "framer-motion/m";
 import { cn } from "@/lib/utils";
 import { AppLink } from "@/lib/common/AppLink";
 import { AppImage } from "@/lib/common/AppImage";
@@ -17,7 +17,7 @@ interface BlogCardProps {
 
 export function BlogCard({ blog, index = 0, variant = "scroll" }: BlogCardProps) {
   return (
-    <motion.article
+    <m.article
       className={cn(
         "group flex flex-col overflow-hidden rounded-xl",
         "bg-bg-secondary border border-border-color",
@@ -91,6 +91,6 @@ export function BlogCard({ blog, index = 0, variant = "scroll" }: BlogCardProps)
           </div>
         </div>
       </AppLink>
-    </motion.article>
+    </m.article>
   );
 }

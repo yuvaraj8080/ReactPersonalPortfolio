@@ -22,9 +22,15 @@ export type BlogContentBlock =
 export interface Blog {
   title: string;
   slug: string;
+  /** Short keyword-led <title> text (≤42 chars so the brand suffix fits in 60). Falls back to `title`. */
+  seoTitle?: string;
+  /** Meta description, 150–160 chars. Falls back to a word-boundary trim of `excerpt`. */
+  seoDescription?: string;
   excerpt: string;
   category: string;
   date: string;
+  /** ISO date of the last real content edit (shown as "Updated" and used for dateModified). Omit if never revised. */
+  updated?: string;
   tags: string[];
   /** Card thumbnail + OG image. Omit to fall back to a category-label placeholder. */
   coverImage?: string;

@@ -1,6 +1,16 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SITE_URL } from "@/lib/constants/site";
+import { SITE_NAME } from "@/lib/constants/site";
+import {
+  blogFaqJsonLd,
+  blogPostJsonLd,
+  breadcrumbJsonLd,
+  buildMetadata,
+  buildTitle,
+  clampDescription,
+  ogImageFor,
+} from "@/lib/seo";
+import { JsonLd } from "@/lib/common/JsonLd";
 import { blogs } from "@/data/blogs";
 import { BlogDetail } from "@/components/sections/blog/BlogDetail";
 
@@ -20,29 +30,13 @@ export async function generateMetadata({
   if (!blog) {
     return { title: "Post not found", robots: { index: false, follow: false } };
   }
-
-  return {
-    title: `${blog.title} — Yuvaraj Dekhane`,
-    description: blog.excerpt,
-    alternates: {
-      canonical: `/blog/${blog.slug}`,
-    },
-    openGraph: {
-      title: blog.title,
-      description: blog.excerpt,
-      url: `${SITE_URL}/blog/${blog.slug}`,
-      type: "article",
-      publishedTime: blog.date,
-      tags: blog.tags,
-      images: blog.coverImage ? [blog.coverImage] : undefined,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: blog.title,
-      description: blog.excerpt,
-      images: blog.coverImage ? [blog.coverImage] : undefined,
-    },
-  };
+  return buildMetadata({
+    title: buildTitle(blog.seoTitle ?? blog.title),
+    description: blog.seoDescription ?? clampDescription(blog.excerpt),
+    path: `/blog/${blog.slug}`,
+    image: ogImageFor("blog", blog.slug, `${blog.title} — article by ${SITE_NAME}`),
+    article: { publishedTime: blog.date, modifiedTime: blog.updated, tags: blog.tags },
+  });
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -51,6 +45,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   if (!blog) notFound();
 
   const relatedBlogs = blogs.filter((b) => b.slug !== blog.slug).slice(0, 3);
+  const faq = blogFaqJsonLd(blog);
 
-  return <BlogDetail blog={blog} relatedBlogs={relatedBlogs} />;
+  return (
+    <>
+      <JsonLd
+        data={[
+          blogPostJsonLd(blog),
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Blog", path: "/all-blogs" },
+            { name: blog.title, path: `/blog/${blog.slug}` },
+          ]),
+          ...(faq ? [faq] : []),
+        ]}
+      />
+      <BlogDetail blog={blog} relatedBlogs={relatedBlogs} />
+    </>
+  );
 }
